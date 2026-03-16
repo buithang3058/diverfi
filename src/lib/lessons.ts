@@ -11,6 +11,7 @@ export interface LessonMeta {
   track: string;
   order: number;
   estimatedTime: string;
+  difficulty: "beginner" | "intermediate" | "advanced";
 }
 
 export interface Lesson extends LessonMeta {
@@ -40,6 +41,7 @@ export function getAllLessons(track?: string): LessonMeta[] {
         track: trackDir,
         order: data.order || 0,
         estimatedTime: data.estimatedTime || "5 min",
+        difficulty: data.difficulty || "beginner",
       });
     }
   }
@@ -64,6 +66,7 @@ export function getLesson(track: string, slug: string): Lesson | null {
     track,
     order: data.order || 0,
     estimatedTime: data.estimatedTime || "5 min",
+    difficulty: data.difficulty || "beginner",
     content,
   };
 }

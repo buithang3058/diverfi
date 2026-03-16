@@ -202,5 +202,65 @@
     "fullName": "Fear Of Missing Out",
     "definition": "Sợ bỏ lỡ cơ hội, dẫn đến quyết định mua vội vàng khi giá tăng. Thường gây thua lỗ.",
     "category": "Trading"
+  },
+  {
+    "term": "Whale",
+    "fullName": "Whale",
+    "definition": "Người sở hữu lượng lớn crypto, có khả năng ảnh hưởng giá thị trường. Theo dõi whale có thể cho tín hiệu giao dịch.",
+    "category": "Trading"
+  },
+  {
+    "term": "Pump and Dump",
+    "fullName": "Pump and Dump",
+    "definition": "Thao túng giá bằng cách đẩy giá lên (pump) rồi bán tháo (dump). Bất hợp pháp và rủi ro cao cho người mua sau.",
+    "category": "Risks"
+  },
+  {
+    "term": "Leverage",
+    "fullName": "Leverage Trading",
+    "definition": "Giao dịch đòn bẩy - vay thêm vốn để tăng vị thế. Lợi nhuận và thua lỗ đều được nhân lên theo tỷ lệ đòn bẩy.",
+    "category": "Trading"
+  },
+  {
+    "term": "Perpetual",
+    "fullName": "Perpetual Futures",
+    "definition": "Hợp đồng tương lai không có ngày hết hạn. Phổ biến trong crypto, cho phép long/short với đòn bẩy.",
+    "category": "Trading"
+  },
+  {
+    "term": "Oracle",
+    "fullName": "Blockchain Oracle",
+    "definition": "Dịch vụ cung cấp dữ liệu thực tế (giá, thời tiết...) cho smart contract. Ví dụ: Chainlink, Pyth.",
+    "category": "Blockchain"
+  },
+  {
+    "term": "Wrapped Token",
+    "fullName": "Wrapped Token",
+    "definition": "Token đại diện cho tài sản trên chain khác. Ví dụ: WBTC là Bitcoin wrapped trên Ethereum.",
+    "category": "Tokens"
+  },
+  {
+    "term": "Mint",
+    "fullName": "Minting",
+    "definition": "Tạo mới token hoặc NFT. Trong DeFi, mint thường xảy ra khi deposit tài sản vào protocol.",
+    "category": "DeFi"
+  },
+  {
+    "term": "Burn",
+    "fullName": "Token Burn",
+    "definition": "Hủy token vĩnh viễn bằng cách gửi đến địa chỉ không ai kiểm soát. Giảm supply, có thể tăng giá.",
+    "category": "Tokens"
+  },
+  {
+    "term": "Tokenomics",
+    "fullName": "Token Economics",
+    "definition": "Kinh tế học của token: supply, distribution, utility, vesting schedule. Quan trọng khi đánh giá dự án.",
+    "category": "Tokens"
+  },
+  {
+    "term": "Vesting",
+    "fullName": "Token Vesting",
+    "definition": "Lịch trình mở khóa token theo thời gian. Team và investors thường có vesting 1-4 năm để tránh dump.",
+    "category": "Tokens"
   }
 ]

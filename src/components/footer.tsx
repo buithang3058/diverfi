@@ -54,6 +54,14 @@ export function Footer() {
                   FAQ
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/tools"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Công cụ
+                </Link>
+              </li>
             </ul>
           </div>
 

@@ -59,6 +59,18 @@ export default async function LessonPage({ params }: Props) {
   const prevUrl = prevLesson ? `/learn/${track}/${prevLesson.slug}` : null;
   const nextUrl = nextLesson ? `/learn/${track}/${nextLesson.slug}` : null;
 
+  const difficultyLabels = {
+    beginner: "Cơ bản",
+    intermediate: "Trung bình",
+    advanced: "Nâng cao",
+  };
+
+  const difficultyColors = {
+    beginner: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
+    intermediate: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200",
+    advanced: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200",
+  };
+
   return (
     <>
       <ReadingProgress />
@@ -79,6 +91,10 @@ export default async function LessonPage({ params }: Props) {
           <Badge variant="secondary">{lesson.estimatedTime}</Badge>
           <span>•</span>
           <span>Bài {lesson.order}</span>
+          <span>•</span>
+          <Badge className={difficultyColors[lesson.difficulty]}>
+            {difficultyLabels[lesson.difficulty]}
+          </Badge>
         </div>
         <div className="mt-4">
           <ShareButtons

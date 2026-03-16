@@ -12,6 +12,7 @@ export const siteConfig = {
     { title: "Học", href: "/learn" },
     { title: "Thị trường", href: "/markets" },
     { title: "Thuật ngữ", href: "/glossary" },
+    { title: "Công cụ", href: "/tools" },
   ],
   keywords: [
     "DeFi",
