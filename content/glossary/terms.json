@@ -1,0 +1,146 @@
+[
+  {
+    "term": "APY",
+    "fullName": "Annual Percentage Yield",
+    "definition": "Lãi suất hàng năm bao gồm cả lãi kép. Ví dụ: APY 10% nghĩa là nếu gửi $1000, sau 1 năm bạn có $1100 (đã tính lãi kép).",
+    "category": "Yield"
+  },
+  {
+    "term": "APR",
+    "fullName": "Annual Percentage Rate",
+    "definition": "Lãi suất hàng năm không tính lãi kép. APR thường thấp hơn APY vì không bao gồm lãi kép.",
+    "category": "Yield"
+  },
+  {
+    "term": "TVL",
+    "fullName": "Total Value Locked",
+    "definition": "Tổng giá trị tài sản được khóa trong một DeFi protocol. TVL cao thường cho thấy protocol được tin tưởng.",
+    "category": "Metrics"
+  },
+  {
+    "term": "DEX",
+    "fullName": "Decentralized Exchange",
+    "definition": "Sàn giao dịch phi tập trung, cho phép swap token trực tiếp từ ví mà không cần đăng ký tài khoản. Ví dụ: Uniswap, SushiSwap.",
+    "category": "Trading"
+  },
+  {
+    "term": "CEX",
+    "fullName": "Centralized Exchange",
+    "definition": "Sàn giao dịch tập trung như Binance, Coinbase. Cần KYC và sàn giữ tài sản của bạn.",
+    "category": "Trading"
+  },
+  {
+    "term": "Liquidity Pool",
+    "fullName": "Liquidity Pool",
+    "definition": "Bể thanh khoản chứa 2 loại token (ví dụ: ETH/USDC). Người dùng cung cấp thanh khoản và nhận phí giao dịch.",
+    "category": "DeFi"
+  },
+  {
+    "term": "LP Token",
+    "fullName": "Liquidity Provider Token",
+    "definition": "Token nhận được khi cung cấp thanh khoản, đại diện cho phần sở hữu trong pool. Có thể dùng để stake kiếm thêm rewards.",
+    "category": "DeFi"
+  },
+  {
+    "term": "Impermanent Loss",
+    "fullName": "Impermanent Loss",
+    "definition": "Tổn thất tạm thời khi cung cấp thanh khoản do giá token thay đổi. Nếu giá quay về ban đầu, tổn thất sẽ biến mất.",
+    "category": "DeFi"
+  },
+  {
+    "term": "Yield Farming",
+    "fullName": "Yield Farming",
+    "definition": "Chiến lược tối ưu hóa lợi nhuận bằng cách di chuyển tài sản giữa các protocol để kiếm rewards cao nhất.",
+    "category": "DeFi"
+  },
+  {
+    "term": "Staking",
+    "fullName": "Staking",
+    "definition": "Khóa token để tham gia bảo mật mạng hoặc nhận rewards. Thường cần thời gian unstake.",
+    "category": "DeFi"
+  },
+  {
+    "term": "Smart Contract",
+    "fullName": "Smart Contract",
+    "definition": "Chương trình tự động chạy trên blockchain, thực thi khi điều kiện được đáp ứng mà không cần trung gian.",
+    "category": "Blockchain"
+  },
+  {
+    "term": "Gas Fee",
+    "fullName": "Gas Fee",
+    "definition": "Phí trả cho miners/validators để xử lý giao dịch trên blockchain. Gas fee cao khi mạng đông.",
+    "category": "Blockchain"
+  },
+  {
+    "term": "Wallet",
+    "fullName": "Crypto Wallet",
+    "definition": "Ví lưu trữ private key để truy cập tài sản crypto. Có 2 loại: Hot wallet (online) và Cold wallet (offline).",
+    "category": "Basics"
+  },
+  {
+    "term": "Private Key",
+    "fullName": "Private Key",
+    "definition": "Chìa khóa bí mật dùng để ký giao dịch và chứng minh quyền sở hữu. KHÔNG BAO GIỜ chia sẻ với ai.",
+    "category": "Basics"
+  },
+  {
+    "term": "Seed Phrase",
+    "fullName": "Seed Phrase / Recovery Phrase",
+    "definition": "12-24 từ tiếng Anh dùng để khôi phục ví. Từ seed phrase có thể tạo lại tất cả private keys.",
+    "category": "Basics"
+  },
+  {
+    "term": "DeFi",
+    "fullName": "Decentralized Finance",
+    "definition": "Tài chính phi tập trung - hệ thống tài chính trên blockchain, không cần ngân hàng hay trung gian.",
+    "category": "Basics"
+  },
+  {
+    "term": "Slippage",
+    "fullName": "Slippage",
+    "definition": "Chênh lệch giữa giá kỳ vọng và giá thực tế khi swap. Slippage cao khi thanh khoản thấp hoặc giao dịch lớn.",
+    "category": "Trading"
+  },
+  {
+    "term": "DYOR",
+    "fullName": "Do Your Own Research",
+    "definition": "Tự nghiên cứu trước khi đầu tư. Không tin tưởng mù quáng vào lời khuyên từ người khác.",
+    "category": "Basics"
+  },
+  {
+    "term": "Rug Pull",
+    "fullName": "Rug Pull",
+    "definition": "Lừa đảo khi đội ngũ phát triển bỏ trốn với tiền của nhà đầu tư. Thường xảy ra với dự án mới, chưa audit.",
+    "category": "Risks"
+  },
+  {
+    "term": "Audit",
+    "fullName": "Security Audit",
+    "definition": "Kiểm tra bảo mật code của smart contract bởi bên thứ 3. Protocol đã audit thường an toàn hơn.",
+    "category": "Security"
+  },
+  {
+    "term": "Layer 2",
+    "fullName": "Layer 2",
+    "definition": "Giải pháp mở rộng chạy trên Layer 1 (Ethereum). Phí thấp hơn, nhanh hơn. Ví dụ: Arbitrum, Optimism, Polygon.",
+    "category": "Blockchain"
+  },
+  {
+    "term": "Bridge",
+    "fullName": "Cross-chain Bridge",
+    "definition": "Cầu nối cho phép chuyển tài sản giữa các blockchain khác nhau. Ví dụ: chuyển ETH từ Ethereum sang Arbitrum.",
+    "category": "Blockchain"
+  },
+  {
+    "term": "Stablecoin",
+    "fullName": "Stablecoin",
+    "definition": "Đồng tiền ổn định, thường neo giá 1:1 với USD. Ví dụ: USDT, USDC, DAI.",
+    "category": "Tokens"
+  },
+  {
+    "term": "Governance Token",
+    "fullName": "Governance Token",
+    "definition": "Token cho phép holder bỏ phiếu về quyết định của protocol. Ví dụ: UNI (Uniswap), AAVE.",
+    "category": "Tokens"
+  }
+]

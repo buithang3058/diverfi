@@ -75,21 +75,21 @@ export default async function LessonPage({ params }: Props) {
       <div className="mt-12 pt-8 border-t">
         <LessonProgress lessonId={`${track}/${slug}`} />
 
-        <div className="flex justify-between mt-6">
+        <div className="flex flex-col sm:flex-row gap-3 sm:justify-between mt-6">
           {prevLesson ? (
-            <Button variant="outline" nativeButton={false} render={<Link href={`/learn/${track}/${prevLesson.slug}`} />}>
+            <Button variant="outline" className="w-full sm:w-auto" nativeButton={false} render={<Link href={`/learn/${track}/${prevLesson.slug}`} />}>
               ← {prevLesson.title}
             </Button>
           ) : (
-            <div />
+            <div className="hidden sm:block" />
           )}
           {nextLesson ? (
-            <Button nativeButton={false} render={<Link href={`/learn/${track}/${nextLesson.slug}`} />}>
+            <Button className="w-full sm:w-auto" nativeButton={false} render={<Link href={`/learn/${track}/${nextLesson.slug}`} />}>
               {nextLesson.title} →
             </Button>
           ) : (
-            <Button nativeButton={false} render={<Link href="/learn" />}>
-              Hoàn thành khóa học ✓
+            <Button className="w-full sm:w-auto" nativeButton={false} render={<Link href="/learn" />}>
+              Hoàn thành khóa học
             </Button>
           )}
         </div>

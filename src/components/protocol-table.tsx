@@ -57,11 +57,11 @@ export function ProtocolTable({ protocols, totalTvl, updatedAt }: Props) {
       {/* Protocols Table */}
       <Card>
         <CardHeader>
-          <CardTitle>Top DeFi Protocols theo TVL</CardTitle>
+          <CardTitle className="text-lg sm:text-xl">Top DeFi Protocols theo TVL</CardTitle>
         </CardHeader>
         <CardContent className="p-0">
-          <div className="overflow-x-auto">
-            <table className="w-full">
+          <div className="overflow-x-auto -mx-4 sm:mx-0">
+            <table className="w-full min-w-[600px]">
               <thead>
                 <tr className="border-b bg-muted/50">
                   <th className="text-left p-4 font-medium">#</th>
