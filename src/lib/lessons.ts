@@ -96,6 +96,7 @@ export function getTracks(): { slug: string; title: string; lessonCount: number;
       const lessons = getAllLessons(dir);
       const trackTitles: Record<string, string> = {
         "defi-basics": "DeFi Cơ bản",
+        "crypto-security": "Bảo mật Crypto",
         "yield-farming": "Yield Farming",
         "trading": "Trading",
       };

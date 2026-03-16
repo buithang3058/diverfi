@@ -16,6 +16,10 @@ const trackInfo: Record<string, { title: string; description: string }> = {
     title: "DeFi Cơ bản",
     description: "Tìm hiểu về DeFi là gì, tại sao nó quan trọng, và cách bắt đầu.",
   },
+  "crypto-security": {
+    title: "Bảo mật Crypto",
+    description: "Bảo vệ tài sản crypto của bạn khỏi hacker và lừa đảo.",
+  },
   "yield-farming": {
     title: "Yield Farming",
     description: "Cách kiếm lợi nhuận từ việc cung cấp thanh khoản.",

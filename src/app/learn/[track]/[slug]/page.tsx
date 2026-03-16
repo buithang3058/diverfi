@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { LessonProgress } from "@/components/lesson-progress";
 import { ShareButtons } from "@/components/share-buttons";
+import { ReadingProgress } from "@/components/reading-progress";
 
 interface Props {
   params: Promise<{
@@ -51,8 +52,10 @@ export default async function LessonPage({ params }: Props) {
   const nextLesson = currentIndex < allLessons.length - 1 ? allLessons[currentIndex + 1] : null;
 
   return (
-    <article className="max-w-3xl mx-auto">
-      {/* Header */}
+    <>
+      <ReadingProgress />
+      <article className="max-w-3xl mx-auto">
+        {/* Header */}
       <div className="mb-8">
         <Link
           href={`/learn`}
@@ -103,5 +106,6 @@ export default async function LessonPage({ params }: Props) {
         </div>
       </div>
     </article>
+    </>
   );
 }

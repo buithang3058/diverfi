@@ -10,6 +10,7 @@ export const metadata = {
 
 const trackDescriptions: Record<string, string> = {
   "defi-basics": "Tìm hiểu về DeFi là gì, tại sao nó quan trọng, và cách bắt đầu.",
+  "crypto-security": "Bảo vệ tài sản crypto của bạn khỏi hacker và lừa đảo.",
   "yield-farming": "Cách kiếm lợi nhuận từ việc cung cấp thanh khoản.",
   trading: "Chiến lược và kỹ thuật giao dịch crypto hiệu quả.",
 };
