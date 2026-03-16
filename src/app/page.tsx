@@ -10,6 +10,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { getAllLessons, getTracks } from "@/lib/lessons";
 import { getAllTerms } from "@/lib/glossary";
+import { ContinueLearning } from "@/components/continue-learning";
 import { BookOpen, TrendingUp, Search, GraduationCap } from "lucide-react";
 
 export default function Home() {
@@ -60,6 +61,11 @@ export default function Home() {
             </Button>
           </div>
         </div>
+      </section>
+
+      {/* Continue Learning Section - only shows if user has progress */}
+      <section className="w-full pb-8">
+        <ContinueLearning lessons={lessons} />
       </section>
 
       {/* Stats Section */}

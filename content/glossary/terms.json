@@ -142,5 +142,65 @@
     "fullName": "Governance Token",
     "definition": "Token cho phép holder bỏ phiếu về quyết định của protocol. Ví dụ: UNI (Uniswap), AAVE.",
     "category": "Tokens"
+  },
+  {
+    "term": "AMM",
+    "fullName": "Automated Market Maker",
+    "definition": "Cơ chế tạo thanh khoản tự động cho DEX bằng công thức toán học thay vì sổ lệnh. Ví dụ: x*y=k trong Uniswap.",
+    "category": "DeFi"
+  },
+  {
+    "term": "Flash Loan",
+    "fullName": "Flash Loan",
+    "definition": "Vay không cần thế chấp, với điều kiện phải trả trong cùng 1 giao dịch. Dùng cho arbitrage, liquidation.",
+    "category": "DeFi"
+  },
+  {
+    "term": "Liquidation",
+    "fullName": "Liquidation",
+    "definition": "Thanh lý vị thế vay khi giá trị tài sản thế chấp giảm xuống dưới ngưỡng an toàn.",
+    "category": "DeFi"
+  },
+  {
+    "term": "Collateral",
+    "fullName": "Collateral",
+    "definition": "Tài sản thế chấp khi vay trong DeFi. Thường cần thế chấp >100% giá trị vay (overcollateralized).",
+    "category": "DeFi"
+  },
+  {
+    "term": "NFT",
+    "fullName": "Non-Fungible Token",
+    "definition": "Token không thể thay thế, đại diện cho tài sản số độc nhất như ảnh, nhạc, đất ảo.",
+    "category": "Tokens"
+  },
+  {
+    "term": "DAO",
+    "fullName": "Decentralized Autonomous Organization",
+    "definition": "Tổ chức phi tập trung quản lý bởi smart contract và vote của cộng đồng, không có CEO.",
+    "category": "DeFi"
+  },
+  {
+    "term": "Airdrop",
+    "fullName": "Airdrop",
+    "definition": "Phát token miễn phí cho người dùng đủ điều kiện. Thường để marketing hoặc thưởng early adopters.",
+    "category": "Tokens"
+  },
+  {
+    "term": "HODL",
+    "fullName": "Hold On for Dear Life",
+    "definition": "Chiến lược giữ coin dài hạn bất chấp biến động giá ngắn hạn. Xuất phát từ lỗi đánh máy của 'hold'.",
+    "category": "Trading"
+  },
+  {
+    "term": "FUD",
+    "fullName": "Fear, Uncertainty, and Doubt",
+    "definition": "Chiến thuật tạo hoảng loạn để ép giá. Thường là tin đồn tiêu cực không có cơ sở.",
+    "category": "Trading"
+  },
+  {
+    "term": "FOMO",
+    "fullName": "Fear Of Missing Out",
+    "definition": "Sợ bỏ lỡ cơ hội, dẫn đến quyết định mua vội vàng khi giá tăng. Thường gây thua lỗ.",
+    "category": "Trading"
   }
 ]
