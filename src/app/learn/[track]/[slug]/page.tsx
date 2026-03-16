@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { LessonProgress } from "@/components/lesson-progress";
 import { ShareButtons } from "@/components/share-buttons";
 import { ReadingProgress } from "@/components/reading-progress";
+import { LessonKeyboardNav } from "@/components/lesson-keyboard-nav";
 
 interface Props {
   params: Promise<{
@@ -51,9 +52,13 @@ export default async function LessonPage({ params }: Props) {
   const prevLesson = currentIndex > 0 ? allLessons[currentIndex - 1] : null;
   const nextLesson = currentIndex < allLessons.length - 1 ? allLessons[currentIndex + 1] : null;
 
+  const prevUrl = prevLesson ? `/learn/${track}/${prevLesson.slug}` : null;
+  const nextUrl = nextLesson ? `/learn/${track}/${nextLesson.slug}` : null;
+
   return (
     <>
       <ReadingProgress />
+      <LessonKeyboardNav prevUrl={prevUrl} nextUrl={nextUrl} />
       <article className="max-w-3xl mx-auto">
         {/* Header */}
       <div className="mb-8">
