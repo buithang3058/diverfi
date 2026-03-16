@@ -17,10 +17,10 @@ export default function Home() {
             Từ zero đến hero. Hiểu về blockchain, DeFi, và cách tham gia thị trường crypto một cách an toàn.
           </p>
           <div className="flex gap-4">
-            <Button size="lg" render={<Link href="/learn" />}>
+            <Button size="lg" nativeButton={false} render={<Link href="/learn" />}>
               Bắt đầu học
             </Button>
-            <Button variant="outline" size="lg" render={<Link href="/markets" />}>
+            <Button variant="outline" size="lg" nativeButton={false} render={<Link href="/markets" />}>
               Xem thị trường
             </Button>
           </div>

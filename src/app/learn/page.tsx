@@ -1,12 +1,21 @@
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import { getTracks } from "@/lib/lessons";
 
 export const metadata = {
   title: "Học DeFi",
   description: "Khóa học DeFi và Crypto cho người Việt",
 };
 
+const trackDescriptions: Record<string, string> = {
+  "defi-basics": "Tìm hiểu về DeFi là gì, tại sao nó quan trọng, và cách bắt đầu.",
+  "yield-farming": "Cách kiếm lợi nhuận từ việc cung cấp thanh khoản.",
+};
+
 export default function LearnPage() {
+  const tracks = getTracks();
+
   return (
     <div>
       <div className="mb-8">
@@ -17,22 +26,31 @@ export default function LearnPage() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">
-        <Card className="hover:bg-muted/50 transition-colors">
-          <Link href="/learn/defi-basics">
-            <CardHeader>
-              <CardTitle>DeFi Cơ bản</CardTitle>
-              <CardDescription>
-                Tìm hiểu về DeFi là gì, tại sao nó quan trọng, và cách bắt đầu.
-              </CardDescription>
-            </CardHeader>
-          </Link>
-        </Card>
+        {tracks.map((track) => (
+          <Card key={track.slug} className="hover:bg-muted/50 transition-colors">
+            <Link href={`/learn/${track.slug}`}>
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle>{track.title}</CardTitle>
+                  <Badge variant="secondary">{track.lessonCount} bài</Badge>
+                </div>
+                <CardDescription>
+                  {trackDescriptions[track.slug] || "Khóa học về " + track.title}
+                </CardDescription>
+              </CardHeader>
+            </Link>
+          </Card>
+        ))}
 
-        <Card className="hover:bg-muted/50 transition-colors opacity-50">
+        {/* Coming soon tracks */}
+        <Card className="opacity-50">
           <CardHeader>
-            <CardTitle>Yield Farming</CardTitle>
+            <div className="flex items-center justify-between">
+              <CardTitle>Yield Farming</CardTitle>
+              <Badge variant="outline">Sắp ra mắt</Badge>
+            </div>
             <CardDescription>
-              Sắp ra mắt — Cách kiếm lợi nhuận từ việc cung cấp thanh khoản.
+              Cách kiếm lợi nhuận từ việc cung cấp thanh khoản.
             </CardDescription>
           </CardHeader>
         </Card>
