@@ -11,6 +11,8 @@ import { ReadingProgress } from "@/components/reading-progress";
 import { LessonKeyboardNav } from "@/components/lesson-keyboard-nav";
 import { TableOfContents } from "@/components/table-of-contents";
 import { RelatedLessons } from "@/components/related-lessons";
+import { BackToTop } from "@/components/back-to-top";
+import { mdxComponents } from "@/components/mdx-components";
 
 interface Props {
   params: Promise<{
@@ -61,6 +63,7 @@ export default async function LessonPage({ params }: Props) {
     <>
       <ReadingProgress />
       <LessonKeyboardNav prevUrl={prevUrl} nextUrl={nextUrl} />
+      <BackToTop />
       <div className="flex justify-center">
       <article className="max-w-3xl flex-1">
         {/* Header */}
@@ -87,7 +90,7 @@ export default async function LessonPage({ params }: Props) {
 
       {/* Content */}
       <div className="prose prose-neutral dark:prose-invert max-w-none">
-        <MDXRemote source={lesson.content} />
+        <MDXRemote source={lesson.content} components={mdxComponents} />
       </div>
 
       {/* Progress & Navigation */}

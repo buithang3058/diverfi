@@ -1,0 +1,288 @@
+---
+title: "Chiến lược Yield Farming thực tế"
+description: "Các chiến lược farming phổ biến và cách tối ưu lợi nhuận"
+order: 2
+estimatedTime: "15 phút"
+---
+
+## Các chiến lược Yield Farming
+
+Sau khi hiểu cơ bản về Yield Farming, hãy cùng tìm hiểu các chiến lược phổ biến mà farmer thường sử dụng.
+
+## 1. Stablecoin Farming
+
+### Tại sao nên bắt đầu với stablecoin?
+
+```
+Ưu điểm:
+✓ Không có Impermanent Loss
+✓ Giá ổn định, dễ tính toán
+✓ Phù hợp người mới
+✓ Rủi ro thấp hơn
+
+Nhược điểm:
+✗ APY thấp hơn (3-15%)
+✗ Vẫn có smart contract risk
+```
+
+### Các pool stablecoin phổ biến
+
+| Pool | Protocol | Chain | APY ước tính |
+|------|----------|-------|--------------|
+| 3pool (DAI/USDC/USDT) | Curve | Ethereum | 2-5% |
+| USDC/USDT | Uniswap V3 | Ethereum | 5-10% |
+| BUSD/USDT | PancakeSwap | BSC | 5-15% |
+| UST/3CRV | Curve | Ethereum | 10-20%* |
+
+*Lưu ý: APY thay đổi liên tục
+
+### Ví dụ: Farming trên Curve 3pool
+
+```
+Bước 1: Chuẩn bị
+- Có USDC, USDT, hoặc DAI
+- ETH để trả gas
+
+Bước 2: Gửi vào Curve
+- Vào curve.fi
+- Chọn 3pool
+- Deposit bất kỳ stablecoin nào
+- Nhận 3CRV token
+
+Bước 3: Stake để nhận thưởng
+- Stake 3CRV vào Convex Finance
+- Nhận CRV + CVX token
+
+Bước 4: Claim và compound
+- Claim rewards định kỳ
+- Swap về stablecoin
+- Gửi thêm vào pool
+```
+
+## 2. LP Farming (Liquidity Provider)
+
+### Cách chọn pool LP tốt
+
+```
+Tiêu chí đánh giá:
+
+1. TVL (Total Value Locked)
+   ✓ > $10M: An toàn
+   △ $1M-$10M: Chấp nhận được
+   ✗ < $1M: Rủi ro cao
+
+2. Volume/TVL ratio
+   ✓ > 0.3: Pool hoạt động tốt
+   △ 0.1-0.3: Trung bình
+   ✗ < 0.1: Ít giao dịch, phí thấp
+
+3. IL Risk
+   ✓ Stablecoin pairs: Không IL
+   △ Correlated pairs (ETH/stETH): IL thấp
+   ✗ Volatile pairs (ETH/SHIB): IL cao
+```
+
+### Chiến lược LP phổ biến
+
+#### A. Concentrated Liquidity (Uniswap V3)
+
+```
+Truyền thống (V2):
+[-------- Thanh khoản trải đều --------]
+$0                                    $∞
+
+Concentrated (V3):
+         [==== Thanh khoản tập trung ====]
+       $900         $1100
+              ETH/USDC
+
+→ Hiệu quả vốn cao hơn 4000x
+→ Nhưng cần quản lý active hơn
+```
+
+#### B. Single-sided Staking
+
+Một số protocol cho phép stake 1 loại token:
+
+```
+Bancor: Stake ETH → Nhận BNT rewards
+Tokemak: Stake ETH → Nhận TOKE rewards
+
+Ưu điểm: Không cần pair, không IL
+Nhược điểm: APY thường thấp hơn
+```
+
+## 3. Leveraged Farming
+
+### Cách hoạt động
+
+```
+Vốn ban đầu: $1000 USDC
+Leverage: 3x
+    ↓
+Vay thêm: $2000 từ protocol
+    ↓
+Tổng farming: $3000
+    ↓
+APY 20% → Lợi nhuận = $600/năm
+Chi phí vay: 5% → $100/năm
+    ↓
+Lợi nhuận thực: $500 (50% trên vốn gốc)
+```
+
+### Rủi ro
+
+```
+⚠️ CẢNH BÁO: Leveraged farming RẤT RỦI RO
+
+Rủi ro thanh lý:
+- Giá token giảm → Position bị liquidate
+- Mất toàn bộ vốn trong vài phút
+
+Chỉ phù hợp:
+- Người có kinh nghiệm
+- Hiểu rõ liquidation price
+- Có thể theo dõi 24/7
+```
+
+### Protocol leveraged farming
+
+| Protocol | Max Leverage | Chain |
+|----------|--------------|-------|
+| Alpaca Finance | 6x | BSC |
+| Francium | 3x | Solana |
+| Gearbox | 10x | Ethereum |
+
+## 4. Auto-compounding
+
+### Tại sao cần auto-compound?
+
+```
+Manual compound:
+- Tốn gas mỗi lần claim
+- Tốn thời gian
+- Dễ quên
+
+Auto-compound:
+- Protocol tự động gộp lãi
+- Tiết kiệm gas (chia sẻ với user khác)
+- Tối ưu APY
+```
+
+### Các auto-compounder phổ biến
+
+| Protocol | Hỗ trợ | Phí |
+|----------|--------|-----|
+| Beefy Finance | Multi-chain | 4.5% performance |
+| Yearn Finance | Ethereum | 2% management + 20% performance |
+| Convex Finance | Curve pools | 16% performance |
+| Autofarm | BSC, Polygon | 4% performance |
+
+### So sánh lợi nhuận
+
+```
+Pool: ETH/USDC với 50% APR base
+
+Manual (compound hàng tháng):
+APY = (1 + 0.5/12)^12 - 1 = 63.2%
+
+Auto (compound hàng ngày):
+APY = (1 + 0.5/365)^365 - 1 = 64.8%
+
+Auto (compound mỗi giờ):
+APY = (1 + 0.5/8760)^8760 - 1 = 64.87%
+
+→ Chênh lệch nhỏ nhưng tích lũy theo thời gian
+```
+
+## 5. Yield Aggregator Strategies
+
+### Delta-neutral Strategy
+
+```
+Mục tiêu: Kiếm yield mà không chịu rủi ro giá
+
+Cách làm:
+1. Long 1 ETH trên Aave (thế chấp USDC)
+2. Short 1 ETH trên Perpetual Protocol
+3. Farm trên cả 2 vị thế
+
+Kết quả:
+- ETH tăng giá: Long +, Short - = 0
+- ETH giảm giá: Long -, Short + = 0
+- Bạn chỉ kiếm yield/funding rate
+```
+
+### Loop Strategy
+
+```
+1. Deposit 1000 USDC vào Aave
+2. Vay 750 USDC (75% LTV)
+3. Deposit 750 USDC lại
+4. Vay 562 USDC
+5. Lặp lại...
+
+Kết quả:
+- Tổng deposit: ~4000 USDC
+- Tổng vay: ~3000 USDC
+- Kiếm supply APY trên 4000 USDC
+- Trả borrow APY trên 3000 USDC
+- Lãi = Supply APY × 4 - Borrow APY × 3
+```
+
+## Checklist trước khi farming
+
+```
+□ Đã research protocol (docs, audit, team)
+□ Hiểu rõ loại yield (real yield vs token emission)
+□ Tính toán IL potential (dùng calculator)
+□ Biết chi phí gas và breakeven point
+□ Có exit strategy
+□ Không dùng tiền không thể mất
+□ Đã test với số tiền nhỏ trước
+```
+
+## Công cụ tính toán
+
+### IL Calculator
+```
+Công thức đơn giản:
+
+IL = 2 × √(price_ratio) / (1 + price_ratio) - 1
+
+Ví dụ: ETH tăng 100% (2x)
+IL = 2 × √2 / (1 + 2) - 1
+   = 2 × 1.414 / 3 - 1
+   = -5.7%
+```
+
+### Breakeven Calculator
+```
+Số ngày để hòa vốn sau gas:
+
+Days = (Gas cost × 2) / (Principal × Daily APY)
+
+Ví dụ:
+- Gas deposit + withdraw = $50 × 2 = $100
+- Principal = $1000
+- APY = 36.5% (0.1%/ngày)
+
+Days = $100 / ($1000 × 0.001) = 100 ngày
+```
+
+## Tóm tắt chiến lược theo risk profile
+
+| Profile | Chiến lược | APY kỳ vọng | Rủi ro |
+|---------|------------|-------------|--------|
+| Conservative | Stablecoin farming | 5-15% | Thấp |
+| Moderate | LP major pairs | 15-50% | Trung bình |
+| Aggressive | Leveraged + new protocols | 50-200%+ | Cao |
+
+## Bước tiếp theo
+
+1. Chọn một chiến lược phù hợp risk profile
+2. Bắt đầu với số tiền nhỏ
+3. Theo dõi và học hỏi
+4. Dần dần tăng vốn khi có kinh nghiệm
+
+Chúc bạn farming thành công!

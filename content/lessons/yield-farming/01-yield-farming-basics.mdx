@@ -1,0 +1,153 @@
+---
+title: "Yield Farming là gì?"
+description: "Tìm hiểu về Yield Farming - chiến lược kiếm lợi nhuận phổ biến trong DeFi"
+order: 1
+estimatedTime: "12 phút"
+---
+
+## Yield Farming là gì?
+
+**Yield Farming** (canh tác lợi nhuận) là chiến lược trong DeFi cho phép bạn kiếm thêm token bằng cách cung cấp thanh khoản hoặc stake tài sản của mình vào các protocol.
+
+Hãy tưởng tượng bạn gửi tiền vào ngân hàng để nhận lãi suất. Yield Farming tương tự vậy, nhưng với lợi nhuận cao hơn nhiều (và rủi ro cũng cao hơn).
+
+## Cách Yield Farming hoạt động
+
+### 1. Cung cấp thanh khoản (LP)
+
+```
+Bạn có: 1000 USDC + 1 ETH
+    ↓
+Gửi vào Pool USDC/ETH trên Uniswap
+    ↓
+Nhận LP Token (đại diện phần của bạn trong pool)
+    ↓
+Kiếm phí giao dịch từ những người swap
+```
+
+### 2. Staking LP Token
+
+```
+LP Token từ bước 1
+    ↓
+Stake vào Farm
+    ↓
+Kiếm thêm token thưởng (ví dụ: UNI, SUSHI...)
+```
+
+### 3. Compound (gộp lãi)
+
+```
+Token thưởng nhận được
+    ↓
+Swap lại thành USDC + ETH
+    ↓
+Thêm vào Pool
+    ↓
+Lặp lại... (lãi kép)
+```
+
+## Các loại Yield Farming phổ biến
+
+### Liquidity Mining
+Cung cấp thanh khoản cho DEX và nhận token thưởng.
+
+| Protocol | Token thưởng | Rủi ro |
+|----------|--------------|--------|
+| Uniswap | UNI | Thấp |
+| SushiSwap | SUSHI | Trung bình |
+| Curve | CRV | Thấp |
+
+### Lending/Borrowing
+Cho vay tài sản trên các nền tảng lending.
+
+| Protocol | Loại | APY trung bình |
+|----------|------|----------------|
+| Aave | Lending | 2-5% |
+| Compound | Lending | 2-4% |
+| MakerDAO | CDP | Biến đổi |
+
+### Staking
+Lock token để bảo mật mạng lưới và nhận thưởng.
+
+## APY vs APR - Hiểu đúng lợi nhuận
+
+### APR (Annual Percentage Rate)
+- Lãi suất đơn trong 1 năm
+- **Không** tính lãi kép
+- Ví dụ: 100 USDC với 10% APR = 110 USDC sau 1 năm
+
+### APY (Annual Percentage Yield)
+- Lãi suất **có** tính lãi kép
+- Compound càng nhiều, APY càng cao
+- Ví dụ: 100 USDC với 10% APY (compound hàng ngày) ≈ 110.52 USDC
+
+```
+APY = (1 + APR/n)^n - 1
+
+Với n = số lần compound trong năm
+- Daily compound (n=365): APY cao nhất
+- Weekly (n=52): Trung bình
+- Yearly (n=1): APY = APR
+```
+
+## Rủi ro cần biết
+
+### 1. Impermanent Loss (IL)
+Khi giá token trong pool thay đổi so với lúc bạn gửi vào.
+
+```
+Gửi vào: 1000 USDC + 1 ETH (ETH = $1000)
+ETH tăng lên $4000
+Rút ra: ~1500 USDC + 0.5 ETH (tổng ~$3500)
+Nếu HODL: 1000 USDC + 1 ETH = $5000
+
+→ Impermanent Loss = $1500 (30%)
+```
+
+### 2. Smart Contract Risk
+- Bug trong code có thể bị exploit
+- Luôn kiểm tra audit trước khi farming
+
+### 3. Rug Pull
+- Team dự án rút hết thanh khoản và bỏ trốn
+- Dấu hiệu: Team ẩn danh, APY quá cao, TVL thấp
+
+### 4. Token Inflation
+- APY cao thường đến từ việc in thêm token
+- Giá token thưởng có thể giảm mạnh
+
+## Chiến lược an toàn cho người mới
+
+1. **Bắt đầu với stablecoin pools** (USDC/USDT, DAI/USDC)
+   - Không có IL vì giá ổn định
+   - APY thấp hơn nhưng an toàn
+
+2. **Chọn protocol lớn, đã audit**
+   - Uniswap, Aave, Curve, Compound
+   - TVL > $1 tỷ
+
+3. **Hiểu rõ trước khi tham gia**
+   - Đọc docs của protocol
+   - Tính toán chi phí gas
+
+4. **Đa dạng hóa**
+   - Không bỏ hết trứng vào một giỏ
+   - Chia nhỏ vốn vào nhiều protocol
+
+## Công cụ hữu ích
+
+- **DefiLlama**: Theo dõi TVL và APY
+- **Zapper.fi**: Quản lý portfolio DeFi
+- **APY.vision**: Tính toán IL và lợi nhuận thực
+- **DeBank**: Xem tất cả vị thế DeFi
+
+## Tóm tắt
+
+- Yield Farming = Kiếm lợi nhuận từ DeFi protocols
+- APY cao đi kèm rủi ro cao
+- Hiểu rõ IL, smart contract risk, và rug pull
+- Bắt đầu với stablecoin pools trên protocol lớn
+- Luôn DYOR (Do Your Own Research)
+
+Bài tiếp theo sẽ hướng dẫn bạn thực hành farming trên một protocol cụ thể.
