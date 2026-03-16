@@ -1,0 +1,113 @@
+---
+title: "Liquidity Pool và Yield cơ bản"
+description: "Hiểu cách cung cấp thanh khoản và kiếm lợi nhuận từ DeFi"
+order: 5
+estimatedTime: "10 min"
+---
+
+# Liquidity Pool và Yield cơ bản
+
+Bài cuối cùng của khóa DeFi Cơ bản - bạn sẽ học cách kiếm tiền thụ động từ DeFi.
+
+## Liquidity Pool là gì?
+
+**Liquidity Pool (LP)** là bể chứa 2 loại token để người khác có thể swap.
+
+Ví dụ pool ETH/USDC:
+- Bạn gửi 1 ETH + 2,000 USDC (tỷ lệ 50/50)
+- Nhận **LP Token** đại diện phần của bạn trong pool
+- Kiếm phí khi người khác swap
+
+## Cách kiếm tiền từ LP
+
+### 1. Phí giao dịch (Trading Fees)
+
+Mỗi khi ai đó swap qua pool của bạn, họ trả phí (thường 0.3%).
+
+Ví dụ:
+- Pool có $1,000,000 TVL
+- Bạn góp $10,000 (1% pool)
+- Hôm nay có $500,000 volume
+- Phí thu được: $1,500
+- Phần của bạn: $15
+
+### 2. Farm rewards
+
+Nhiều protocol thưởng thêm token khi bạn stake LP:
+
+```
+Góp ETH/USDC → Nhận LP Token → Stake LP → Nhận reward token
+```
+
+## APR vs APY
+
+| | APR | APY |
+|---|-----|-----|
+| **Công thức** | Lãi đơn | Lãi kép |
+| **Ví dụ 100% năm** | $1000 → $2000 | $1000 → $2718 |
+| **Khi nào dùng** | Lending | Farming có auto-compound |
+
+> **Lưu ý**: APY cao thường đi kèm rủi ro cao. APY >1000% thường không bền vững.
+
+## Impermanent Loss (IL)
+
+**Rủi ro lớn nhất** khi cung cấp thanh khoản.
+
+IL xảy ra khi giá token thay đổi so với lúc bạn deposit.
+
+### Ví dụ đơn giản
+
+Bạn deposit:
+- 1 ETH ($2,000)
+- 2,000 USDC
+- **Tổng: $4,000**
+
+Sau đó ETH tăng lên $4,000:
+
+| | Giữ trong ví | Trong LP |
+|---|--------------|----------|
+| ETH | 1 ETH ($4,000) | ~0.7 ETH ($2,800) |
+| USDC | 2,000 USDC | ~2,800 USDC |
+| **Tổng** | $6,000 | ~$5,600 |
+| **IL** | - | ~$400 (6.7%) |
+
+### Khi nào IL thành "Permanent"?
+
+- Bạn rút LP khi giá đã thay đổi nhiều
+- Giá không quay về mức ban đầu
+
+### Cách giảm IL
+
+1. **Chọn pair ít biến động**: stablecoin pairs (USDC/USDT)
+2. **Concentrated liquidity**: Uniswap v3 cho phép chọn range
+3. **Tính toán kỹ**: Phí kiếm được có bù được IL không?
+
+## Quy trình cung cấp thanh khoản
+
+```
+1. Chuẩn bị 2 token (ví dụ: ETH + USDC)
+2. Vào DEX (Uniswap, PancakeSwap...)
+3. Chọn "Add Liquidity"
+4. Nhập số lượng, approve token
+5. Confirm transaction
+6. Nhận LP Token
+7. (Tùy chọn) Stake LP để farm thêm
+```
+
+## Tóm tắt khóa DeFi Cơ bản
+
+Bạn đã học:
+
+1. **DeFi là gì**: Tài chính phi tập trung, không cần ngân hàng
+2. **Ví Crypto**: Cách tạo và bảo mật ví
+3. **Smart Contract**: Code tự động thực thi trên blockchain
+4. **DEX và AMM**: Swap token không qua sàn tập trung
+5. **Liquidity Pool**: Cung cấp thanh khoản và kiếm yield
+
+## Bước tiếp theo
+
+- Thử swap một giao dịch nhỏ trên DEX
+- Tìm hiểu thêm về các protocol cụ thể (Aave, Compound, Lido...)
+- Luôn **DYOR** (Do Your Own Research) trước khi đầu tư
+
+> **Cảnh báo**: DeFi có rủi ro cao. Chỉ đầu tư số tiền bạn sẵn sàng mất. Bắt đầu với số nhỏ để học.

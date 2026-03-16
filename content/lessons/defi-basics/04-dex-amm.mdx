@@ -1,0 +1,75 @@
+---
+title: "DEX và AMM là gì?"
+description: "Tìm hiểu về sàn giao dịch phi tập trung và cơ chế Automated Market Maker"
+order: 4
+estimatedTime: "8 min"
+---
+
+# DEX và AMM là gì?
+
+Trong bài này, bạn sẽ hiểu cách giao dịch token trên DeFi mà không cần sàn tập trung.
+
+## Sàn tập trung (CEX) vs Phi tập trung (DEX)
+
+### CEX - Centralized Exchange
+
+Sàn tập trung như Binance, Coinbase:
+
+- **Ưu điểm**: Dễ sử dụng, thanh khoản cao, hỗ trợ fiat
+- **Nhược điểm**: Cần KYC, sàn giữ tiền của bạn, có thể bị hack hoặc đóng cửa
+
+### DEX - Decentralized Exchange
+
+Sàn phi tập trung như Uniswap, PancakeSwap:
+
+- **Ưu điểm**: Không cần KYC, bạn giữ tiền trong ví, không thể bị đóng cửa
+- **Nhược điểm**: Phí gas, cần hiểu về blockchain
+
+## AMM là gì?
+
+**Automated Market Maker (AMM)** là cơ chế tạo thanh khoản cho DEX.
+
+Thay vì sổ lệnh (order book) như CEX, AMM sử dụng **Liquidity Pool** - bể chứa 2 loại token.
+
+### Ví dụ đơn giản
+
+Giả sử có pool ETH/USDC với:
+- 10 ETH
+- 20,000 USDC
+
+→ Giá 1 ETH = 2,000 USDC
+
+Khi bạn swap 1 ETH lấy USDC:
+- Pool còn: 11 ETH và ~18,182 USDC
+- Giá ETH giảm vì có nhiều ETH hơn trong pool
+
+## Các DEX phổ biến
+
+| DEX | Blockchain | Đặc điểm |
+|-----|------------|----------|
+| Uniswap | Ethereum, Arbitrum | DEX lớn nhất, pioneer AMM |
+| PancakeSwap | BSC | Phí thấp, nhiều farm |
+| Curve | Multi-chain | Chuyên stablecoin, ít slippage |
+| GMX | Arbitrum | Perpetual trading |
+
+## Slippage là gì?
+
+**Slippage** là chênh lệch giữa giá bạn thấy và giá thực tế khi swap.
+
+Slippage cao khi:
+- Thanh khoản thấp
+- Giao dịch lớn so với pool size
+- Mạng đông
+
+> **Tip**: Luôn kiểm tra slippage trước khi swap. Nên set slippage tolerance 0.5-1% cho stablecoin, 1-3% cho các token khác.
+
+## Tóm tắt
+
+- **CEX**: Dễ dùng nhưng cần tin tưởng sàn
+- **DEX**: Phi tập trung, bạn kiểm soát tiền
+- **AMM**: Cơ chế tạo thanh khoản cho DEX bằng pool
+- **Slippage**: Chênh lệch giá, cần chú ý với giao dịch lớn
+
+## Bài tiếp theo
+
+Bạn đã hiểu cách swap token. Bài tiếp theo sẽ học về cách kiếm tiền từ việc cung cấp thanh khoản!
