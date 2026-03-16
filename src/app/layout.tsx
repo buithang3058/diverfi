@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import { Header } from "@/components/header";
+import { HeaderWithSearch } from "@/components/header-with-search";
 import { Footer } from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { siteConfig } from "@/config/site";
@@ -74,7 +74,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
+          <HeaderWithSearch />
           <main className="flex-1 container py-6">{children}</main>
           <Footer />
         </ThemeProvider>
