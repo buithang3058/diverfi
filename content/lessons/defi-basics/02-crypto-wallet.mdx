@@ -1,0 +1,122 @@
+---
+title: "Ví Crypto là gì?"
+description: "Hướng dẫn tạo ví crypto đầu tiên và bảo mật tài sản số"
+track: "defi-basics"
+order: 2
+estimatedTime: "12 phút"
+---
+
+# Ví Crypto là gì?
+
+**Ví crypto** (cryptocurrency wallet) là công cụ cho phép bạn lưu trữ, gửi và nhận tiền điện tử. Khác với ví thông thường, ví crypto không thực sự "chứa" tiền — mà nó lưu trữ **private key** để truy cập vào tài sản trên blockchain.
+
+## Private Key vs Public Key
+
+Hãy tưởng tượng:
+- **Public Key** (địa chỉ ví) = Số tài khoản ngân hàng — có thể chia sẻ để nhận tiền
+- **Private Key** = Mật khẩu + chữ ký — KHÔNG BAO GIỜ chia sẻ
+
+```
+Public Key:  0x742d35Cc6634C0532925a3b844Bc9e7595f...
+Private Key: 4c0883a69102937d6231471b5dbb6204fe512...
+```
+
+> ⚠️ **Quy tắc vàng**: Ai có private key = người đó sở hữu tài sản. Mất private key = mất tiền vĩnh viễn.
+
+## Các loại ví crypto
+
+### 1. Hot Wallet (Ví nóng)
+Kết nối internet, tiện dụng nhưng rủi ro bị hack.
+
+| Ví | Loại | Ưu điểm |
+|-----|------|---------|
+| MetaMask | Browser extension | Phổ biến nhất, hỗ trợ nhiều chain |
+| Trust Wallet | Mobile app | Dễ dùng, đẹp |
+| Coinbase Wallet | Mobile/Extension | Bảo mật tốt |
+
+### 2. Cold Wallet (Ví lạnh)
+Không kết nối internet, an toàn hơn cho số tiền lớn.
+
+| Ví | Giá | Ưu điểm |
+|-----|-----|---------|
+| Ledger Nano | $79-149 | Phổ biến nhất |
+| Trezor | $69-219 | Open source |
+
+## Hướng dẫn tạo ví MetaMask
+
+MetaMask là ví phổ biến nhất cho DeFi. Đây là cách tạo:
+
+### Bước 1: Cài đặt
+1. Vào [metamask.io](https://metamask.io)
+2. Chọn "Download" → Cài extension cho Chrome/Firefox/Brave
+
+### Bước 2: Tạo ví mới
+1. Click "Create a new wallet"
+2. Tạo mật khẩu mạnh (ít nhất 8 ký tự)
+3. **Quan trọng**: Ghi lại 12 từ Secret Recovery Phrase
+
+### Bước 3: Bảo mật Recovery Phrase
+
+**DO:**
+- ✅ Viết tay ra giấy
+- ✅ Cất ở nơi an toàn (két sắt, hộp khóa)
+- ✅ Làm 2-3 bản backup ở các nơi khác nhau
+
+**DON'T:**
+- ❌ Screenshot hoặc chụp ảnh
+- ❌ Lưu trên cloud (Google Drive, iCloud)
+- ❌ Gửi qua email, chat
+- ❌ Nhập vào bất kỳ website nào (trừ khi khôi phục ví)
+
+## Seed Phrase là gì?
+
+**Seed Phrase** (Recovery Phrase) là 12-24 từ tiếng Anh dùng để khôi phục ví.
+
+```
+abandon ability able about above absent absorb abstract
+absurd abuse access accident account accuse achieve acid
+```
+
+Từ seed phrase, ví có thể tạo lại tất cả private keys. Đây là "master key" cho toàn bộ tài sản của bạn.
+
+## Phân biệt các loại ví
+
+```
+CUSTODY SPECTRUM
+════════════════════════════════════════════════════
+
+Custodial                              Non-custodial
+(Sàn giữ key)                         (Bạn giữ key)
+     │                                       │
+     ▼                                       ▼
+┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐
+│ Binance │   │ Coinbase│   │MetaMask │   │ Ledger  │
+│ OKX     │   │ Kraken  │   │ Trust   │   │ Trezor  │
+└─────────┘   └─────────┘   └─────────┘   └─────────┘
+     │              │             │              │
+  Tiện lợi     Có bảo hiểm    Tự do hoàn    An toàn nhất
+  Dễ dùng      một phần       toàn          cho DeFi
+```
+
+## Các lỗi phổ biến khi dùng ví
+
+1. **Không backup seed phrase** → Mất điện thoại = mất tiền
+2. **Lưu seed phrase online** → Hacker có thể đánh cắp
+3. **Approve không giới hạn** → DApp có thể rút hết token
+4. **Dùng ví chính cho mọi thứ** → Tạo ví riêng cho DeFi thử nghiệm
+
+## Best Practices
+
+1. **Ví nhỏ cho giao dịch hàng ngày** — Hot wallet, số tiền nhỏ
+2. **Ví lớn cho tích trữ** — Cold wallet, số tiền lớn
+3. **Ví riêng cho DeFi** — Tách biệt, giới hạn rủi ro
+4. **Kiểm tra địa chỉ trước khi gửi** — Copy-paste, check 4 ký tự đầu và cuối
+
+## Tổng kết
+
+- Ví crypto lưu private key, không lưu tiền
+- Seed phrase là chìa khóa master — bảo mật tuyệt đối
+- Hot wallet tiện dụng, cold wallet an toàn
+- MetaMask là lựa chọn tốt để bắt đầu
+
+**Bài tiếp theo**: Smart Contract — Code tự động thực thi trên blockchain.

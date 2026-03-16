@@ -1,0 +1,149 @@
+---
+title: "Smart Contract là gì?"
+description: "Hiểu về hợp đồng thông minh - nền tảng của DeFi"
+track: "defi-basics"
+order: 3
+estimatedTime: "10 phút"
+---
+
+# Smart Contract là gì?
+
+**Smart Contract** (hợp đồng thông minh) là chương trình máy tính chạy trên blockchain, tự động thực thi khi các điều kiện được đáp ứng — không cần bên trung gian.
+
+## Ví dụ đơn giản
+
+Hãy tưởng tượng một máy bán nước tự động:
+
+```
+NẾU khách bỏ 10.000đ VÀ chọn Coca
+THÌ máy trả ra 1 lon Coca
+
+→ Không cần người bán
+→ Không cần tin tưởng ai
+→ Giao dịch tự động, minh bạch
+```
+
+Smart contract hoạt động y như vậy, nhưng trên blockchain:
+
+```solidity
+// Ví dụ smart contract đơn giản
+if (sender.balance >= 100 USDT && recipient.isValid) {
+    transfer(100 USDT from sender to recipient)
+    emit TransferComplete(sender, recipient, 100)
+}
+```
+
+## Đặc điểm của Smart Contract
+
+### 1. Bất biến (Immutable)
+Sau khi deploy, code không thể thay đổi — như khắc trên đá.
+
+### 2. Minh bạch (Transparent)
+Ai cũng có thể đọc code trên blockchain.
+
+### 3. Tự động (Autonomous)
+Chạy 24/7, không cần can thiệp của con người.
+
+### 4. Không tin tưởng (Trustless)
+Không cần tin ai — chỉ cần tin vào code và toán học.
+
+## Smart Contract trong DeFi
+
+```
+DEFI APPLICATIONS
+════════════════════════════════════════════════════
+
+┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
+│     LENDING     │  │       DEX       │  │   YIELD FARM    │
+│                 │  │                 │  │                 │
+│  Gửi ETH       │  │ Swap ETH→USDC   │  │ Stake LP token  │
+│  ↓              │  │ ↓               │  │ ↓               │
+│  Nhận lãi 5%   │  │ Nhận USDC      │  │ Nhận rewards   │
+│                 │  │                 │  │                 │
+│  Aave, Compound │  │ Uniswap, Curve │  │ Yearn, Convex   │
+└─────────────────┘  └─────────────────┘  └─────────────────┘
+         │                   │                    │
+         └───────────────────┼────────────────────┘
+                             │
+                    ┌────────┴────────┐
+                    │ SMART CONTRACTS │
+                    │  Tự động thực   │
+                    │  thi mọi thứ    │
+                    └─────────────────┘
+```
+
+## Cách tương tác với Smart Contract
+
+Khi bạn dùng DeFi, bạn đang tương tác với smart contracts:
+
+1. **Connect Wallet** — Ví kết nối với DApp
+2. **Approve** — Cho phép contract dùng token của bạn
+3. **Execute** — Thực hiện giao dịch (swap, stake, lend...)
+4. **Confirm** — Ký giao dịch bằng ví
+
+## Rủi ro của Smart Contract
+
+### 1. Bug trong code
+```
+$600M+ đã mất vì lỗi smart contract
+├── The DAO hack (2016): $60M
+├── Ronin Bridge (2022): $625M
+└── Wormhole (2022): $320M
+```
+
+### 2. Rug Pull
+Đội ngũ phát triển cố ý để lại "backdoor" trong contract.
+
+### 3. Infinite Approval
+Bạn approve không giới hạn → Contract có thể rút hết token.
+
+## Cách bảo vệ bản thân
+
+### ✅ Kiểm tra Audit
+- Các protocol uy tín được audit bởi: Certik, Trail of Bits, OpenZeppelin
+- Xem audit report trên website của protocol
+
+### ✅ Dùng protocol đã chứng minh
+- TVL cao, hoạt động lâu năm
+- Aave, Uniswap, Compound — đã qua nhiều lần audit
+
+### ✅ Kiểm tra approval
+- Dùng [Revoke.cash](https://revoke.cash) để xem và hủy approvals
+- Chỉ approve số tiền cần thiết
+
+### ✅ Bắt đầu nhỏ
+- Test với số tiền nhỏ trước
+- Hiểu rõ protocol trước khi đầu tư lớn
+
+## EVM và các blockchain
+
+**EVM** (Ethereum Virtual Machine) là môi trường chạy smart contracts.
+
+Các blockchain EVM-compatible:
+- Ethereum (ETH) — Original
+- Polygon (MATIC) — Phí thấp
+- Arbitrum — Layer 2
+- BNB Chain — Phí thấp
+- Avalanche — Nhanh
+
+> Smart contract viết cho Ethereum có thể chạy trên các chain này với ít thay đổi.
+
+## So sánh: Hợp đồng truyền thống vs Smart Contract
+
+| Tiêu chí | Hợp đồng truyền thống | Smart Contract |
+|----------|----------------------|----------------|
+| Thực thi | Cần tòa án, luật sư | Tự động |
+| Tốc độ | Ngày - tháng | Giây - phút |
+| Chi phí | Cao (luật sư, giấy tờ) | Thấp (gas fee) |
+| Minh bạch | Giới hạn | Hoàn toàn |
+| Sửa đổi | Có thể | Không thể |
+
+## Tổng kết
+
+- Smart contract = Code tự động thực thi trên blockchain
+- Là nền tảng của toàn bộ hệ sinh thái DeFi
+- Minh bạch, bất biến, không cần trung gian
+- Có rủi ro: bugs, rug pulls, infinite approval
+- Luôn DYOR và bắt đầu với số tiền nhỏ
+
+**Bài tiếp theo**: DEX là gì và cách swap token đầu tiên.
