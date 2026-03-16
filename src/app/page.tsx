@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { getAllLessons, getTracks } from "@/lib/lessons";
 import { getAllTerms } from "@/lib/glossary";
 import { ContinueLearning } from "@/components/continue-learning";
+import { Newsletter } from "@/components/newsletter";
 import { BookOpen, TrendingUp, Search, GraduationCap } from "lucide-react";
 
 export default function Home() {
@@ -216,6 +217,11 @@ export default function Home() {
             </Card>
           ))}
         </div>
+      </section>
+
+      {/* Newsletter Section */}
+      <section className="w-full py-12 border-t">
+        <Newsletter />
       </section>
 
       {/* CTA Section */}

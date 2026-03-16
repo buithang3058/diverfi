@@ -9,6 +9,8 @@ import { LessonProgress } from "@/components/lesson-progress";
 import { ShareButtons } from "@/components/share-buttons";
 import { ReadingProgress } from "@/components/reading-progress";
 import { LessonKeyboardNav } from "@/components/lesson-keyboard-nav";
+import { TableOfContents } from "@/components/table-of-contents";
+import { RelatedLessons } from "@/components/related-lessons";
 
 interface Props {
   params: Promise<{
@@ -59,7 +61,8 @@ export default async function LessonPage({ params }: Props) {
     <>
       <ReadingProgress />
       <LessonKeyboardNav prevUrl={prevUrl} nextUrl={nextUrl} />
-      <article className="max-w-3xl mx-auto">
+      <div className="flex justify-center">
+      <article className="max-w-3xl flex-1">
         {/* Header */}
       <div className="mb-8">
         <Link
@@ -110,7 +113,16 @@ export default async function LessonPage({ params }: Props) {
           )}
         </div>
       </div>
+
+      {/* Related Lessons */}
+      <RelatedLessons
+        currentSlug={slug}
+        lessons={allLessons}
+        track={track}
+      />
     </article>
+    <TableOfContents />
+    </div>
     </>
   );
 }
