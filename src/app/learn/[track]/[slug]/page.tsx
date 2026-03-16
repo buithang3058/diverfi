@@ -2,9 +2,11 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import { getLesson, getAllLessons } from "@/lib/lessons";
+import { siteConfig } from "@/config/site";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { LessonProgress } from "@/components/lesson-progress";
+import { ShareButtons } from "@/components/share-buttons";
 
 interface Props {
   params: Promise<{
@@ -59,10 +61,16 @@ export default async function LessonPage({ params }: Props) {
           ← Quay lại danh sách
         </Link>
         <h1 className="text-3xl font-bold tracking-tight mb-2">{lesson.title}</h1>
-        <div className="flex items-center gap-2 text-muted-foreground">
+        <div className="flex flex-wrap items-center gap-2 text-muted-foreground">
           <Badge variant="secondary">{lesson.estimatedTime}</Badge>
           <span>•</span>
           <span>Bài {lesson.order}</span>
+        </div>
+        <div className="mt-4">
+          <ShareButtons
+            title={lesson.title}
+            url={`${siteConfig.url}/learn/${track}/${slug}`}
+          />
         </div>
       </div>
 

@@ -68,7 +68,26 @@ export function getLesson(track: string, slug: string): Lesson | null {
   };
 }
 
-export function getTracks(): { slug: string; title: string; lessonCount: number }[] {
+// Parse "X min" string to number of minutes
+function parseMinutes(timeStr: string): number {
+  const match = timeStr.match(/(\d+)/);
+  return match ? parseInt(match[1], 10) : 5;
+}
+
+// Format minutes to readable string
+function formatTotalTime(minutes: number): string {
+  if (minutes < 60) {
+    return `${minutes} phút`;
+  }
+  const hours = Math.floor(minutes / 60);
+  const remainingMinutes = minutes % 60;
+  if (remainingMinutes === 0) {
+    return `${hours} giờ`;
+  }
+  return `${hours} giờ ${remainingMinutes} phút`;
+}
+
+export function getTracks(): { slug: string; title: string; lessonCount: number; totalTime: string }[] {
   const trackDirs = fs.readdirSync(contentDirectory);
 
   return trackDirs
@@ -81,10 +100,17 @@ export function getTracks(): { slug: string; title: string; lessonCount: number 
         "trading": "Trading",
       };
 
+      // Calculate total estimated time
+      const totalMinutes = lessons.reduce(
+        (sum, lesson) => sum + parseMinutes(lesson.estimatedTime),
+        0
+      );
+
       return {
         slug: dir,
         title: trackTitles[dir] || dir,
         lessonCount: lessons.length,
+        totalTime: formatTotalTime(totalMinutes),
       };
     });
 }

@@ -5,13 +5,14 @@ import Link from "next/link";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { getProgress } from "@/lib/progress";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Clock } from "lucide-react";
 
 interface Props {
   track: {
     slug: string;
     title: string;
     lessonCount: number;
+    totalTime: string;
   };
   lessonIds: string[];
   description: string;
@@ -52,6 +53,12 @@ export function TrackCard({ track, lessonIds, description }: Props) {
             </Badge>
           </div>
           <CardDescription>{description}</CardDescription>
+
+          {/* Time estimate */}
+          <div className="flex items-center gap-1 text-xs text-muted-foreground mt-2">
+            <Clock className="h-3 w-3" />
+            <span>{track.totalTime}</span>
+          </div>
 
           {/* Progress bar - only show if user has started */}
           {mounted && hasStarted && (
