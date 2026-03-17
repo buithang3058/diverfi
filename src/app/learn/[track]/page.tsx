@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import { getAllLessons, getTracks } from "@/lib/lessons";
 import { Badge } from "@/components/ui/badge";
-import { LessonListItem } from "@/components/lesson-list-item";
 import { Breadcrumb } from "@/components/breadcrumb";
+import { TrackLessonsFilter } from "@/components/track-lessons-filter";
 
 interface Props {
   params: Promise<{
@@ -22,6 +22,10 @@ const trackInfo: Record<string, { title: string; description: string }> = {
   "yield-farming": {
     title: "Yield Farming",
     description: "Cách kiếm lợi nhuận từ việc cung cấp thanh khoản.",
+  },
+  trading: {
+    title: "Trading Cơ bản",
+    description: "Học cách giao dịch crypto từ cơ bản đến phân tích kỹ thuật.",
   },
 };
 
@@ -71,15 +75,7 @@ export default async function TrackPage({ params }: Props) {
         </div>
       </div>
 
-      <div className="space-y-3">
-        {lessons.map((lesson, index) => (
-          <LessonListItem
-            key={lesson.slug}
-            lesson={lesson}
-            index={index + 1}
-          />
-        ))}
-      </div>
+      <TrackLessonsFilter lessons={lessons} />
     </div>
   );
 }

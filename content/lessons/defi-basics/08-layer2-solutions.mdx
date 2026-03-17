@@ -1,0 +1,303 @@
+---
+title: "Layer 2 là gì?"
+description: "Tìm hiểu về các giải pháp mở rộng Layer 2 và cách sử dụng chúng"
+order: 8
+estimatedTime: "12 phút"
+difficulty: "intermediate"
+prerequisites:
+  - "defi-basics/03-smart-contracts"
+---
+
+## Vấn đề với Ethereum
+
+Ethereum là blockchain phổ biến nhất cho DeFi, nhưng có một vấn đề lớn: phí gas quá cao và tốc độ chậm khi mạng đông.
+
+```
+Vấn đề của Ethereum (Layer 1):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Throughput: ~15-30 TPS (transactions per second)
+• Gas fee: $5-100+ khi đông
+• Thời gian: 12-15 giây/block
+• So sánh: Visa xử lý ~24,000 TPS
+
+Kết quả:
+- Swap $100 có thể tốn $50 phí
+- Giao dịch nhỏ không khả thi
+- DeFi chỉ cho "cá voi"
+```
+
+## Layer 2 là gì?
+
+Layer 2 (L2) là các blockchain chạy "trên" Ethereum, xử lý giao dịch nhanh hơn và rẻ hơn, sau đó gửi kết quả về Ethereum (Layer 1).
+
+```
+Kiến trúc Layer 2:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+┌─────────────────────────────────────────┐
+│            LAYER 2                       │
+│  (Arbitrum, Optimism, Base, zkSync)     │
+│                                          │
+│  • Xử lý giao dịch nhanh, rẻ            │
+│  • Batch transactions                    │
+│  • Gửi proof về L1                       │
+└─────────────────┬───────────────────────┘
+                  │ Settlement
+                  ▼
+┌─────────────────────────────────────────┐
+│            LAYER 1 (Ethereum)           │
+│                                          │
+│  • Bảo mật bởi validators               │
+│  • Lưu trữ dữ liệu cuối cùng            │
+│  • Source of truth                       │
+└─────────────────────────────────────────┘
+```
+
+## Các loại Layer 2
+
+### 1. Optimistic Rollups
+
+```
+Cách hoạt động:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Xử lý giao dịch trên L2
+2. "Lạc quan" rằng tất cả đều hợp lệ
+3. Post batch lên L1
+4. Challenge period (7 ngày)
+5. Nếu có fraud → Rollback
+
+Ví dụ: Arbitrum, Optimism, Base
+
+Ưu điểm:
+✓ Tương thích tốt với Ethereum
+✓ Dễ deploy existing contracts
+✓ Chi phí thấp
+
+Nhược điểm:
+✗ Withdrawal chậm (7 ngày)
+✗ Phụ thuộc vào fraud proofs
+```
+
+### 2. ZK Rollups
+
+```
+Cách hoạt động:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Xử lý giao dịch trên L2
+2. Tạo ZK proof (bằng chứng toán học)
+3. Post proof lên L1
+4. L1 verify proof
+5. Finality ngay lập tức
+
+Ví dụ: zkSync, StarkNet, Polygon zkEVM
+
+Ưu điểm:
+✓ Withdrawal nhanh
+✓ Bảo mật hơn (math proofs)
+✓ Scalability tốt hơn
+
+Nhược điểm:
+✗ Phức tạp hơn
+✗ Tương thích EVM còn hạn chế
+✗ Proving tốn tài nguyên
+```
+
+## So sánh các Layer 2 phổ biến
+
+```
+┌──────────────┬─────────────┬─────────────┬──────────────┐
+│              │  Arbitrum   │  Optimism   │   Base       │
+├──────────────┼─────────────┼─────────────┼──────────────┤
+│ Type         │ Optimistic  │ Optimistic  │ Optimistic   │
+│ TVL          │ $10B+       │ $5B+        │ $5B+         │
+│ Gas fee      │ $0.01-0.10  │ $0.01-0.10  │ $0.001-0.01  │
+│ TPS          │ ~40,000     │ ~2,000      │ ~2,000       │
+│ Withdraw     │ 7 days      │ 7 days      │ 7 days       │
+│ Backed by    │ OffChain    │ OP Labs     │ Coinbase     │
+└──────────────┴─────────────┴─────────────┴──────────────┘
+
+┌──────────────┬─────────────┬─────────────┬──────────────┐
+│              │   zkSync    │  StarkNet   │ Polygon zkEVM│
+├──────────────┼─────────────┼─────────────┼──────────────┤
+│ Type         │ ZK Rollup   │ ZK Rollup   │ ZK Rollup    │
+│ TVL          │ $500M+      │ $200M+      │ $50M+        │
+│ Gas fee      │ $0.01-0.05  │ $0.01-0.05  │ $0.01-0.05   │
+│ TPS          │ ~100,000    │ ~500,000    │ ~2,000       │
+│ Withdraw     │ Minutes     │ Minutes     │ Minutes      │
+│ Language     │ Solidity    │ Cairo       │ Solidity     │
+└──────────────┴─────────────┴─────────────┴──────────────┘
+```
+
+## Cách sử dụng Layer 2
+
+### 1. Bridge tài sản
+
+```
+Chuyển ETH từ L1 sang L2:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Official Bridges:
+• bridge.arbitrum.io (Arbitrum)
+• app.optimism.io/bridge (Optimism)
+• bridge.base.org (Base)
+• portal.zksync.io (zkSync)
+
+Bước thực hiện:
+1. Connect wallet
+2. Chọn token và số lượng
+3. Approve + Confirm
+4. Chờ confirmation (10-20 phút)
+5. Add L2 network vào MetaMask
+
+⚠️ Lưu ý:
+- Bridge chính thức an toàn nhất
+- Third-party bridges nhanh hơn nhưng rủi ro hơn
+- Giữ ít ETH trên L1 cho gas
+```
+
+### 2. Thêm network vào MetaMask
+
+```
+Arbitrum One:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Network Name: Arbitrum One
+RPC URL: https://arb1.arbitrum.io/rpc
+Chain ID: 42161
+Currency: ETH
+Explorer: https://arbiscan.io
+
+Optimism:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Network Name: OP Mainnet
+RPC URL: https://mainnet.optimism.io
+Chain ID: 10
+Currency: ETH
+Explorer: https://optimistic.etherscan.io
+
+Base:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Network Name: Base
+RPC URL: https://mainnet.base.org
+Chain ID: 8453
+Currency: ETH
+Explorer: https://basescan.org
+
+Tip: Dùng chainlist.org để auto-add networks
+```
+
+### 3. Sử dụng DeFi trên L2
+
+```
+DeFi protocols trên L2:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Arbitrum:
+• GMX (perpetuals)
+• Uniswap
+• Aave
+• Radiant Capital
+
+Optimism:
+• Velodrome (DEX)
+• Synthetix
+• Uniswap
+• Aave
+
+Base:
+• Aerodrome (DEX)
+• Uniswap
+• Extra Finance
+
+Trải nghiệm:
+• Giống hệt Ethereum
+• Phí rẻ hơn 10-100x
+• Nhanh hơn
+```
+
+## Rủi ro của Layer 2
+
+```
+1. Bridge risk
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Bridge là target của hackers
+• Nhiều vụ hack lớn: Ronin ($600M), Wormhole ($320M)
+• Dùng official bridges
+
+2. Sequencer risk
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Hầu hết L2 có centralized sequencer
+• Sequencer down = không giao dịch được
+• Đang phát triển decentralized sequencers
+
+3. Withdrawal delay
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Optimistic Rollups: 7 ngày
+• Có thể dùng fast bridges (thêm phí)
+• ZK Rollups nhanh hơn
+
+4. Smart contract risk
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• L2 contracts có thể có bugs
+• Upgradeable contracts
+• Check audits
+```
+
+## Chiến lược sử dụng L2
+
+```
+Cho người mới:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Bắt đầu với Base (phí thấp nhất, backed by Coinbase)
+2. Bridge số nhỏ để test
+3. Thử swap trên Uniswap
+4. Làm quen với trải nghiệm
+
+Cho DeFi users:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Giữ tài sản trên nhiều L2
+2. Arbitrum cho trading (GMX)
+3. Base cho yield farming
+4. Optimism cho Synthetix
+
+Cho advanced users:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Theo dõi airdrops (L2s thường có airdrop)
+2. Test ZK rollups early
+3. Đa dạng hóa across L2s
+4. Sử dụng bridges hiệu quả
+```
+
+## Tools hữu ích
+
+```
+Network info:
+• l2beat.com - So sánh L2s
+• l2fees.info - Gas fees comparison
+• chainlist.org - Add networks
+
+Bridges:
+• Official bridges (an toàn nhất)
+• Stargate (cross-chain)
+• Hop Protocol
+• Across Protocol
+
+Block explorers:
+• arbiscan.io (Arbitrum)
+• optimistic.etherscan.io (Optimism)
+• basescan.org (Base)
+```
+
+## Tóm tắt
+
+- L2 giải quyết vấn đề gas cao và tốc độ chậm của Ethereum
+- Hai loại chính: Optimistic Rollups và ZK Rollups
+- Arbitrum, Optimism, Base là L2 phổ biến nhất
+- Bridge tài sản qua official bridges
+- Trải nghiệm DeFi giống L1 nhưng rẻ và nhanh hơn
+- Vẫn có rủi ro: bridge, sequencer, withdrawal delay
+- Bắt đầu với số nhỏ để làm quen
+
+> **Tip**: Layer 2 là tương lai của Ethereum. Làm quen sớm để không bỏ lỡ cơ hội airdrops và yield farming.
