@@ -9,6 +9,8 @@ import { FocusModeProvider } from "@/components/focus-mode";
 import { ReadingPreferencesLoader } from "@/components/reading-preferences";
 import { MobileNav } from "@/components/mobile-nav";
 import { OrganizationSchema, EducationalOrgSchema } from "@/components/structured-data";
+import { PWAProvider } from "@/components/pwa-provider";
+import { AchievementNotification } from "@/components/achievement-notification";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
@@ -31,6 +33,15 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   keywords: [...siteConfig.keywords],
   authors: [{ name: "diverFi" }],
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: siteConfig.name,
+  },
+  formatDetection: {
+    telephone: false,
+  },
   robots: {
     index: true,
     follow: true,
@@ -71,6 +82,9 @@ export default function RootLayout({
   return (
     <html lang="vi" suppressHydrationWarning>
       <head>
+        <meta name="theme-color" content="#7c3aed" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
         <OrganizationSchema />
         <EducationalOrgSchema />
       </head>
@@ -84,12 +98,15 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <FocusModeProvider>
-            <ReadingPreferencesLoader />
-            <HeaderWithSearch />
-            <main className="flex-1 container py-6 pb-20 md:pb-6">{children}</main>
-            <Footer />
-            <MobileNav />
-            <KeyboardShortcuts />
+            <PWAProvider>
+              <ReadingPreferencesLoader />
+              <HeaderWithSearch />
+              <main className="flex-1 container py-6 pb-20 md:pb-6">{children}</main>
+              <Footer />
+              <MobileNav />
+              <KeyboardShortcuts />
+              <AchievementNotification />
+            </PWAProvider>
           </FocusModeProvider>
         </ThemeProvider>
         <Analytics />
