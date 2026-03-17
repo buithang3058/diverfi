@@ -1,0 +1,419 @@
+---
+title: "Concentrated Liquidity (Uniswap V3)"
+description: "Hiểu và áp dụng Concentrated Liquidity để tối ưu hóa lợi nhuận LP"
+difficulty: advanced
+estimatedTime: "20 phút"
+order: 7
+prerequisites: ["yield-farming/03-impermanent-loss", "yield-farming/05-lp-tokens"]
+---
+
+# Concentrated Liquidity (Uniswap V3)
+
+Concentrated Liquidity là bước tiến lớn trong công nghệ AMM, cho phép LP tối ưu hóa hiệu quả vốn lên đến **4000x** so với mô hình truyền thống.
+
+## Vấn Đề Của AMM Truyền Thống
+
+### Uniswap V2 (Full Range)
+
+```
+       Thanh khoản phân bố đều
+       từ giá $0 đến $∞
+
+  $    │
+       │ ████████████████████████
+       │ ████████████████████████
+       │ ████████████████████████
+       └─────────────────────────→
+         $0                    $∞
+
+  Vấn đề: Phần lớn vốn KHÔNG được sử dụng!
+```
+
+Ví dụ: ETH/USDC ở giá $3,000
+- Vốn từ $0-$1,000: Không bao giờ dùng đến
+- Vốn từ $10,000-$∞: Cũng không dùng
+- Chỉ ~5% vốn thực sự hoạt động
+
+### Giải Pháp: Concentrated Liquidity
+
+```
+       Thanh khoản TẬP TRUNG
+       trong khoảng giá cụ thể
+
+  $    │
+       │              ██████
+       │            ██████████
+       │          ██████████████
+       └─────────────────────────→
+             $2,500    $3,500
+
+  → 100% vốn làm việc trong range!
+```
+
+## Cách Hoạt Động
+
+### 1. Chọn Price Range
+
+```
+Giá hiện tại ETH: $3,000
+
+Bạn chọn cung cấp từ $2,500 - $3,500
+
+┌──────────────────────────────────┐
+│         RANGE CỦA BẠN            │
+│  ◄─────────────────────────────► │
+│  $2,500    $3,000      $3,500    │
+│            [CURRENT]              │
+└──────────────────────────────────┘
+```
+
+### 2. Hiệu Quả Vốn
+
+```
+So sánh cùng $10,000 vốn:
+
+V2 (Full Range):
+├─ Liquidity depth: $10,000 trải đều
+├─ Effective range: $2,500-$3,500
+└─ Actual working capital: ~$500
+
+V3 (Concentrated):
+├─ Liquidity depth: $10,000 tập trung
+├─ Range: $2,500-$3,500
+└─ Actual working capital: $10,000
+
+→ Hiệu quả gấp 20x!
+→ Kiếm fees nhiều hơn 20x với cùng vốn!
+```
+
+### 3. Tick System
+
+```
+V3 chia price range thành "ticks"
+
+         ←── 1 tick ──→
+    │    │    │    │    │    │
+────┼────┼────┼────┼────┼────┼────
+  $2800 $2850 $2900 $2950 $3000
+
+Mỗi tick = ~0.01% thay đổi giá
+Bạn chọn lower_tick và upper_tick
+```
+
+## Các Chiến Lược V3
+
+### Strategy 1: Tight Range (High Risk/High Reward)
+
+```
+Range: $2,900 - $3,100 (±3.3%)
+
+PROs:
++ Fees cực cao (tập trung max)
++ Capital efficiency 100-400x
+
+CONs:
+- Giá dễ ra khỏi range
+- Cần rebalance thường xuyên
+- IL lớn nếu giá di chuyển
+
+Best for: Stablecoin pairs, sideways market
+```
+
+### Strategy 2: Medium Range
+
+```
+Range: $2,500 - $4,000 (±33%)
+
+PROs:
++ Cân bằng giữa fees và risk
++ Ít cần rebalance
+
+CONs:
+- Fees thấp hơn tight range
+- Vẫn có thể out of range
+
+Best for: Major pairs (ETH/USDC, BTC/USDC)
+```
+
+### Strategy 3: Wide Range
+
+```
+Range: $1,500 - $6,000 (±100%)
+
+PROs:
++ An toàn, hiếm khi out of range
++ Passive, ít quản lý
+
+CONs:
+- Fees thấp (gần như V2)
+- Capital efficiency thấp
+
+Best for: Long-term holders, lazy LPs
+```
+
+## Out of Range - Điều Gì Xảy Ra?
+
+### Khi Giá Ra Khỏi Range
+
+```
+Bạn LP: $2,500 - $3,500
+Giá ban đầu: $3,000 (trong range)
+
+CASE 1: Giá tăng lên $4,000 (vượt upper)
+┌──────────────────────────────────────┐
+│ Position: 100% USDC, 0% ETH          │
+│ Đang kiếm fees: KHÔNG ❌             │
+│ IL: Đã xảy ra (miss upside của ETH)  │
+└──────────────────────────────────────┘
+
+CASE 2: Giá giảm về $2,000 (dưới lower)
+┌──────────────────────────────────────┐
+│ Position: 100% ETH, 0% USDC          │
+│ Đang kiếm fees: KHÔNG ❌             │
+│ IL: Đã xảy ra (hold ETH đang giảm)   │
+└──────────────────────────────────────┘
+```
+
+### Rebalancing Options
+
+```
+Khi out of range, bạn có 3 lựa chọn:
+
+1. WAIT (Chờ giá quay lại)
+   + Không tốn gas
+   + IL có thể hồi phục
+   - Không kiếm fees trong lúc chờ
+
+2. REBALANCE (Tạo position mới)
+   + Tiếp tục kiếm fees
+   - Tốn gas
+   - Lock-in IL của position cũ
+
+3. EXIT (Rút hoàn toàn)
+   + Cắt lỗ/Chốt lời
+   - IL trở thành permanent
+```
+
+## So Sánh IL: V2 vs V3
+
+### V3 IL Cao Hơn V2?
+
+```
+Cùng price change 2x:
+
+V2 IL: 5.7%
+
+V3 IL: Phụ thuộc vào range width
+├─ Range ±10%: IL ~15%
+├─ Range ±20%: IL ~10%
+├─ Range ±50%: IL ~7%
+└─ Full range: IL = 5.7% (giống V2)
+
+→ Range càng hẹp, IL càng lớn!
+```
+
+### Nhưng Fees Cũng Cao Hơn
+
+```
+Trade-off:
+
+Tight range:
++ Fees: 50x more
+- IL: 3x more
+= Net: Vẫn lời nhiều hơn (nếu trong range)
+
+Wide range:
++ Fees: 2x more
+- IL: 1.2x more
+= Net: Safe profit
+```
+
+## NFT LP Positions
+
+### V3 LP = NFT
+
+```
+V2: LP tokens fungible (có thể swap)
+V3: LP positions là NFT (unique)
+
+┌─────────────────────────────────┐
+│  UNISWAP V3 LP #12345           │
+│  ─────────────────────          │
+│  Pool: ETH/USDC                 │
+│  Range: $2,500 - $3,500         │
+│  Liquidity: $10,000             │
+│  Unclaimed fees: $125           │
+│                                 │
+│  [Collect Fees] [Remove] [+/-]  │
+└─────────────────────────────────┘
+```
+
+### Quản Lý Position
+
+```
+Actions bạn có thể làm:
+
+1. Collect Fees
+   - Claim fees đã tích lũy
+   - Không ảnh hưởng position
+
+2. Add Liquidity
+   - Thêm vốn vào CÙNG range
+   - Tăng LP depth
+
+3. Remove Liquidity
+   - Rút một phần hoặc toàn bộ
+   - Claim fees đồng thời
+
+4. Close Position
+   - Rút hết + claim fees
+   - Burn NFT
+```
+
+## Tools Hỗ Trợ V3
+
+### 1. Position Managers
+
+```
+Các protocol giúp quản lý V3:
+
+Arrakis (Gelato):
+- Auto-rebalance khi out of range
+- Compound fees tự động
+- Có phí quản lý
+
+Gamma Strategies:
+- Active management
+- Multiple strategies
+- Nhiều pools được support
+
+Bunni:
+- Ve-token model
+- Liquidity incentives
+- Lower IL
+```
+
+### 2. Analytics Tools
+
+```
+Revert Finance:
+- Dashboard cho V3 positions
+- IL tracking
+- Fees analytics
+- Backtest strategies
+
+APY.vision:
+- ROI calculation
+- IL comparison
+- Multi-chain support
+```
+
+## Thực Hành: Tạo V3 Position
+
+### Step 1: Chọn Pool
+
+```
+Factors cần xem xét:
+
+□ TVL: Nên > $1M
+□ Volume 24h: Nên > $100k
+□ Fee tier: 0.05%, 0.3%, 1%
+  - 0.05%: Stablecoin pairs
+  - 0.3%: Standard pairs
+  - 1%: Exotic/volatile pairs
+```
+
+### Step 2: Phân Tích Giá
+
+```
+Xem historical data:
+
+1. Giá 30 ngày qua:
+   High: $3,500
+   Low: $2,800
+   Average: $3,100
+
+2. Volatility: ±15%/tháng
+
+3. Chọn range:
+   Lower: $2,500 (buffer cho downside)
+   Upper: $4,000 (buffer cho upside)
+```
+
+### Step 3: Deposit
+
+```
+Tính toán token ratio:
+
+Giá hiện tại: $3,000
+Range: $2,500 - $4,000
+
+Công thức phức tạp, dùng UI:
+┌──────────────────────────────┐
+│ Deposit:                     │
+│ ETH: 1.5 ($4,500)           │
+│ USDC: 3,000                  │
+│ Total: $7,500                │
+│                              │
+│ [Preview] [Deposit]          │
+└──────────────────────────────┘
+```
+
+## Common Mistakes
+
+### 1. Range Quá Hẹp
+
+```
+❌ Sai: Range ±2% cho volatile pair
+   → Out of range trong vài giờ
+   → Gas rebalance > fees earned
+
+✓ Đúng: Range ±20-30% cho volatile
+   → Ở trong range lâu hơn
+   → Net positive ROI
+```
+
+### 2. Không Tính Gas
+
+```
+❌ Sai: Rebalance mỗi khi out of range
+   - Gas: $20-50/lần
+   - 10 lần/tháng = $200-500
+
+✓ Đúng: Tính gas vào strategy
+   - Use L2 (Arbitrum, Optimism)
+   - Gas chỉ $0.5-2/lần
+   - Hoặc wide range, ít rebalance
+```
+
+### 3. Bỏ Qua IL
+
+```
+❌ Sai: Chỉ nhìn APY quảng cáo
+   "APY 500%!!!"
+
+✓ Đúng: Tính Net APY
+   Gross APY: 500%
+   - IL: -200%
+   - Gas costs: -50%
+   = Net APY: 250%
+```
+
+## Tóm Tắt
+
+```
+CONCENTRATED LIQUIDITY CHECKLIST:
+
+□ Hiểu trade-off: Range hẹp = High risk/reward
+□ Chọn range phù hợp với strategy
+□ Tính toán gas costs (dùng L2 nếu cần)
+□ Theo dõi position thường xuyên
+□ Có plan cho out-of-range scenarios
+□ Sử dụng tools để track performance
+□ Cân nhắc position managers nếu không có thời gian
+
+PRO TIP: Bắt đầu với wide range để hiểu cơ chế,
+         sau đó thu hẹp dần khi có kinh nghiệm.
+```
+
+Concentrated Liquidity là công cụ mạnh mẽ, nhưng cần hiểu rõ trước khi sử dụng!

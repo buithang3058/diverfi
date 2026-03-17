@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink } from "lucide-react";
+import { DefiCalculators } from "@/components/defi-calculators";
 
 export const metadata = {
   title: "Công cụ DeFi",
@@ -198,6 +199,11 @@ export default function ToolsPage() {
           Tổng hợp các công cụ và tài nguyên hữu ích cho người dùng DeFi
         </p>
       </div>
+
+      {/* Interactive Calculators */}
+      <section className="mb-10">
+        <DefiCalculators />
+      </section>
 
       {categories.map((category) => (
         <section key={category} className="mb-10">

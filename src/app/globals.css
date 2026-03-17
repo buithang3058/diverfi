@@ -126,6 +126,19 @@
   html {
     @apply font-sans;
   }
+
+  /* Reading preferences variables */
+  :root {
+    --prose-font-size: 100%;
+    --prose-line-height: 1.75;
+    --prose-max-width: 750px;
+  }
+
+  .prose {
+    font-size: var(--prose-font-size);
+    line-height: var(--prose-line-height);
+    max-width: var(--prose-max-width);
+  }
 }
 
 /* Confetti animation */

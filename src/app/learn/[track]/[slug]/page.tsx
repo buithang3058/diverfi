@@ -23,6 +23,7 @@ import { LessonRating } from "@/components/lesson-rating";
 import { PrintLesson } from "@/components/print-lesson";
 import { LessonViewTracker } from "@/components/lesson-view-tracker";
 import { FocusModeToggle } from "@/components/focus-mode";
+import { ReadingPreferences } from "@/components/reading-preferences";
 import { getTracks } from "@/lib/lessons";
 
 interface Props {
@@ -111,7 +112,7 @@ export default async function LessonPage({ params }: Props) {
             {difficultyLabels[lesson.difficulty]}
           </Badge>
         </div>
-        <div className="mt-4 flex items-center gap-4">
+        <div className="mt-4 flex flex-wrap items-center gap-3 relative">
           <ShareButtons
             title={lesson.title}
             url={`${siteConfig.url}/learn/${track}/${slug}`}
@@ -119,6 +120,7 @@ export default async function LessonPage({ params }: Props) {
           <BookmarkButton lessonId={`${track}/${slug}`} title={lesson.title} />
           <PrintLesson lessonTitle={lesson.title} />
           <FocusModeToggle />
+          <ReadingPreferences />
           <ReadingTimeTracker lessonId={`${track}/${slug}`} />
         </div>
       </div>
