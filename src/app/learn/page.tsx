@@ -2,6 +2,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { Badge } from "@/components/ui/badge";
 import { getTracks, getAllLessons } from "@/lib/lessons";
 import { TrackCard } from "@/components/track-card";
+import { BookmarkedLessons } from "@/components/bookmarked-lessons";
 
 export const metadata = {
   title: "Học DeFi",
@@ -36,6 +37,9 @@ export default function LearnPage() {
         </p>
       </div>
 
+      {/* Bookmarked lessons */}
+      <BookmarkedLessons />
+
       <div className="grid gap-4 md:grid-cols-2">
         {tracks.map((track) => (
           <TrackCard
@@ -46,19 +50,7 @@ export default function LearnPage() {
           />
         ))}
 
-        {/* Coming soon tracks */}
-        <Card className="opacity-50 cursor-not-allowed">
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle>Yield Farming</CardTitle>
-              <Badge variant="outline">Sắp ra mắt</Badge>
-            </div>
-            <CardDescription>
-              Cách kiếm lợi nhuận từ việc cung cấp thanh khoản.
-            </CardDescription>
-          </CardHeader>
-        </Card>
-
+        {/* Coming soon track */}
         <Card className="opacity-50 cursor-not-allowed">
           <CardHeader>
             <div className="flex items-center justify-between">

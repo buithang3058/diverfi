@@ -1,0 +1,283 @@
+---
+title: "Rủi ro Smart Contract"
+description: "Hiểu về các rủi ro kỹ thuật khi tương tác với smart contract trong DeFi"
+order: 3
+estimatedTime: "12 phút"
+difficulty: "intermediate"
+prerequisites:
+  - "defi-basics/03-smart-contracts"
+---
+
+## Smart Contract Risk là gì?
+
+Khi tham gia DeFi, bạn đang tin tưởng code. Smart contract là nền tảng của mọi protocol, và code có thể có lỗi hoặc được thiết kế để lừa đảo.
+
+## Các loại rủi ro chính
+
+### 1. Bug và Vulnerabilities
+
+```
+Reentrancy Attack (tấn công đệ quy)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Attacker gọi withdraw()
+2. Contract gửi ETH cho attacker
+3. Attacker contract nhận ETH
+4. Ngay lập tức gọi lại withdraw() (trước khi balance cập nhật)
+5. Lặp lại cho đến khi contract hết tiền
+
+Ví dụ nổi tiếng: The DAO hack 2016 - Mất $60M ETH
+```
+
+### 2. Oracle Manipulation
+
+```
+Attacker thao túng giá từ oracle:
+
+1. Flashloan một lượng lớn token
+2. Swap để đẩy giá trên DEX
+3. Dùng giá sai để vay/thanh lý trên protocol
+4. Trả flashloan, giữ lợi nhuận
+
+Ví dụ: Mango Markets hack - Mất $100M+
+```
+
+### 3. Access Control Issues
+
+```
+Không kiểm soát quyền truy cập:
+
+- Admin key bị leak → Attacker rút hết tiền
+- Function không có modifier → Ai cũng gọi được
+- Backdoor trong code → Team tự rút tiền
+
+Ví dụ: Ronin Bridge hack - Mất $600M
+```
+
+### 4. Logic Errors
+
+```
+Lỗi tính toán:
+
+- Chia cho 0
+- Overflow/underflow (trước Solidity 0.8)
+- Rounding errors
+- Sai thứ tự operations
+
+Ví dụ: Compound bug - Phát thưởng sai $90M
+```
+
+## Cách kiểm tra an toàn trước khi dùng
+
+### 1. Audit Reports
+
+```
+✓ Được audit bởi firm uy tín:
+  - Trail of Bits
+  - OpenZeppelin
+  - Consensys Diligence
+  - CertiK
+  - Peckshield
+
+⚠️ Lưu ý:
+- Audit không đảm bảo 100% an toàn
+- Kiểm tra audit có phải bản mới nhất không
+- Code có thể thay đổi sau audit
+```
+
+### 2. Time-tested (Battle-tested)
+
+```
+Protocol an toàn hơn khi:
+
+✓ Hoạt động > 1 năm mà không bị hack
+✓ TVL cao (> $1B) - nhiều người tin tưởng
+✓ Nhiều integrations với protocol lớn khác
+✓ Code được fork nhiều (Uniswap, Compound)
+
+❌ Cẩn thận với:
+- Protocol mới < 3 tháng
+- TVL thấp < $10M
+- Chưa có audit
+- Team ẩn danh
+```
+
+### 3. Bug Bounty Programs
+
+```
+Protocol nghiêm túc thường có bug bounty:
+
+- Immunefi: Nền tảng bug bounty lớn nhất
+- Rewards: $10K - $10M cho critical bugs
+- Càng nhiều tiền bounty = càng nhiều researcher tìm lỗi
+
+Kiểm tra: immunefi.com/explore
+```
+
+### 4. Multisig & Timelock
+
+```
+Governance an toàn:
+
+✓ Multisig (cần nhiều signatures để thay đổi)
+  - 3/5, 4/7... không phải 1/1
+
+✓ Timelock (delay trước khi thay đổi có hiệu lực)
+  - 24h, 48h, 7 ngày
+  - Cho phép users rút tiền nếu thấy nghi ngờ
+
+❌ Red flags:
+- Owner là EOA đơn lẻ
+- Không có timelock
+- Có thể upgrade contract không qua vote
+```
+
+## Các công cụ kiểm tra
+
+### De.Fi Scanner
+```
+https://de.fi/scanner
+
+- Paste contract address
+- Xem điểm an toàn
+- Phát hiện honeypot
+- Kiểm tra ownership
+```
+
+### Token Sniffer
+```
+https://tokensniffer.com
+
+- Phân tích token contract
+- Phát hiện scam patterns
+- So sánh với known scams
+```
+
+### Etherscan
+```
+https://etherscan.io
+
+- Xem source code (nếu verified)
+- Kiểm tra transactions
+- Xem holders và distribution
+```
+
+## Checklist trước khi tương tác
+
+```
+□ Contract đã được verify trên Etherscan?
+□ Có audit report không? Từ firm nào?
+□ TVL bao nhiêu? > $100M là tốt
+□ Hoạt động được bao lâu? > 6 tháng là tốt
+□ Team có doxxed (công khai danh tính)?
+□ Có bug bounty không?
+□ Governance là multisig hay EOA?
+□ Có timelock không?
+□ Đã test với số tiền nhỏ chưa?
+```
+
+## Cách giảm thiểu rủi ro
+
+### 1. Diversification
+
+```
+Không bỏ hết tiền vào 1 protocol:
+
+- Protocol A: 30%
+- Protocol B: 30%
+- Protocol C: 30%
+- Cash reserve: 10%
+
+Nếu 1 protocol bị hack, bạn chỉ mất 30%
+```
+
+### 2. Insurance
+
+```
+DeFi Insurance protocols:
+
+- Nexus Mutual: Cover cho smart contract risk
+- InsurAce: Multi-chain coverage
+- Unslashed: Parametric insurance
+
+Chi phí: 2-10% APY
+Có đáng không? Tùy risk tolerance của bạn
+```
+
+### 3. Limit Approvals
+
+```
+Khi approve token:
+
+❌ Unlimited approval (max uint256)
+   - Nếu contract bị hack, mất hết token
+
+✓ Approve đúng số lượng cần
+   - Tốn thêm gas nhưng an toàn hơn
+
+Revoke approvals thường xuyên:
+- revoke.cash
+- Rabby wallet (có tính năng này)
+```
+
+### 4. Use Hardware Wallet
+
+```
+Cho số tiền lớn:
+
+- Ledger, Trezor
+- Không ký transaction mù quáng
+- Kiểm tra kỹ địa chỉ trước khi confirm
+```
+
+## Case studies
+
+### Ronin Bridge (2022) - $600M
+
+```
+Nguyên nhân:
+- Bridge dùng 9 validators
+- Chỉ cần 5/9 signatures để rút tiền
+- Hacker compromise 5 validators
+- Rút hết tiền trong bridge
+
+Bài học:
+- Không dùng bridge với ít validators
+- Kiểm tra validator distribution
+```
+
+### Wormhole (2022) - $320M
+
+```
+Nguyên nhân:
+- Bug trong signature verification
+- Attacker tạo fake signature
+- Mint wrapped ETH không có backing
+
+Bài học:
+- Bridge là target lớn của hackers
+- Cross-chain có nhiều rủi ro hơn single-chain
+```
+
+### Euler Finance (2023) - $197M
+
+```
+Nguyên nhân:
+- Flash loan attack
+- Lỗi trong liquidation logic
+- Attacker tự tạo bad debt rồi thanh lý
+
+Plot twist: Hacker trả lại tiền!
+
+Bài học:
+- Ngay cả protocol đã audit vẫn có thể bị hack
+- Flash loan là công cụ nguy hiểm trong tay attacker
+```
+
+## Tóm tắt
+
+- Smart contract risk là rủi ro lớn nhất trong DeFi
+- Kiểm tra audit, TVL, time-tested trước khi dùng
+- Diversify và mua insurance nếu cần
+- Limit approvals và dùng hardware wallet
+- Không protocol nào an toàn 100%

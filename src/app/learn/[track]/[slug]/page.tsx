@@ -15,6 +15,7 @@ import { BackToTop } from "@/components/back-to-top";
 import { mdxComponents } from "@/components/mdx-components";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { LessonPrerequisites } from "@/components/lesson-prerequisites";
+import { BookmarkButton } from "@/components/bookmark-button";
 import { getTracks } from "@/lib/lessons";
 
 interface Props {
@@ -102,11 +103,12 @@ export default async function LessonPage({ params }: Props) {
             {difficultyLabels[lesson.difficulty]}
           </Badge>
         </div>
-        <div className="mt-4">
+        <div className="mt-4 flex items-center gap-4">
           <ShareButtons
             title={lesson.title}
             url={`${siteConfig.url}/learn/${track}/${slug}`}
           />
+          <BookmarkButton lessonId={`${track}/${slug}`} title={lesson.title} />
         </div>
       </div>
 
