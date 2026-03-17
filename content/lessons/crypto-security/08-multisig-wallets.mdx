@@ -1,0 +1,295 @@
+---
+title: "Multi-sig Wallets"
+description: "Tìm hiểu về ví đa chữ ký và cách bảo vệ tài sản với nhiều người ký"
+order: 8
+estimatedTime: "10 phút"
+difficulty: "intermediate"
+prerequisites:
+  - "crypto-security/01-wallet-security"
+  - "defi-basics/03-smart-contracts"
+---
+
+## Multi-sig là gì?
+
+Multi-signature (đa chữ ký) là loại ví yêu cầu nhiều private keys để authorize một transaction, thay vì chỉ một key như ví thông thường.
+
+```
+So sánh:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Ví thông thường (1-of-1):
+┌─────────────────────────────────────────┐
+│  [Key A] ────────────► Transaction ✓    │
+│                                         │
+│  Một key = full control                 │
+│  Mất key = mất tiền                     │
+└─────────────────────────────────────────┘
+
+Multi-sig (2-of-3):
+┌─────────────────────────────────────────┐
+│  [Key A] ─┐                             │
+│           ├───────────► Transaction ✓   │
+│  [Key B] ─┘                             │
+│  [Key C] (backup)                       │
+│                                         │
+│  Cần 2/3 keys để ký                     │
+│  Mất 1 key vẫn an toàn                  │
+└─────────────────────────────────────────┘
+```
+
+## Tại sao cần Multi-sig?
+
+```
+Use cases:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Bảo mật cá nhân
+   • Không có single point of failure
+   • Keys ở nhiều locations
+   • Chống hack/theft
+
+2. Tổ chức/DAO
+   • Treasury cần nhiều người approve
+   • Không ai có full control
+   • Transparent governance
+
+3. Gia đình/Thừa kế
+   • Backup cho trường hợp qua đời
+   • Quản lý tài sản chung
+   • Bảo vệ inheritance
+
+4. Business
+   • Accounting controls
+   • Giảm internal fraud
+   • Compliance requirements
+```
+
+## Các cấu hình phổ biến
+
+```
+M-of-N configurations:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+2-of-2:
+• Cần cả 2 keys
+• Use: Cặp vợ chồng, 2 partners
+• Risk: Mất 1 key = locked forever
+
+2-of-3:
+• Cần 2/3 keys
+• Use: Cá nhân, small teams
+• Popular: Mất 1 key vẫn access được
+• Flexibility + Security
+
+3-of-5:
+• Cần 3/5 keys
+• Use: DAOs, companies
+• More decentralized
+
+Ví dụ 2-of-3 setup:
+┌─────────────────────────────────────────┐
+│ Key 1: Hardware wallet (tại nhà)        │
+│ Key 2: Mobile wallet (mang theo)        │
+│ Key 3: Paper backup (bank safe)         │
+│                                         │
+│ → Hàng ngày: Key 1 + Key 2              │
+│ → Emergency: Key 2 + Key 3              │
+│ → Worst case: Key 1 + Key 3             │
+└─────────────────────────────────────────┘
+```
+
+## Multi-sig Solutions
+
+```
+Smart Contract Wallets:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Safe (formerly Gnosis Safe):
+• Leading multi-sig solution
+• EVM chains (ETH, Polygon, etc.)
+• Web interface + mobile
+• Dùng bởi DAOs lớn
+
+Squads (Solana):
+• Multi-sig cho Solana
+• Similar concept
+• Program-based
+
+Hardware Multi-sig:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Ledger + Trezor combo
+• Multiple hardware devices
+• Native Bitcoin multi-sig
+• Coldcard, Specter, etc.
+```
+
+## Cách tạo Safe Multi-sig
+
+```
+Bước 1: Truy cập Safe
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• app.safe.global
+• Connect wallet
+• Chọn network
+
+Bước 2: Create new Safe
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Đặt tên cho Safe
+• Chọn threshold (M of N)
+• Add owner addresses
+
+Bước 3: Add owners
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┌─────────────────────────────────────────┐
+│ Owner 1: 0x123... (Your main wallet)    │
+│ Owner 2: 0x456... (Hardware wallet)     │
+│ Owner 3: 0x789... (Backup wallet)       │
+│                                         │
+│ Threshold: 2 of 3                       │
+└─────────────────────────────────────────┘
+
+Bước 4: Deploy
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Review settings
+• Pay gas fee
+• Safe được tạo on-chain
+```
+
+## Quy trình Transaction
+
+```
+Cách multi-sig transaction hoạt động:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Propose (Owner 1)
+   ┌────────────────────────────────────┐
+   │ "Send 1 ETH to 0xABC..."           │
+   │ Status: 1/2 signatures             │
+   └────────────────────────────────────┘
+
+2. Review & Sign (Owner 2)
+   ┌────────────────────────────────────┐
+   │ Verify: amount, recipient, data    │
+   │ Sign if correct                    │
+   │ Status: 2/2 signatures ✓           │
+   └────────────────────────────────────┘
+
+3. Execute
+   ┌────────────────────────────────────┐
+   │ Threshold reached                  │
+   │ Anyone can execute                 │
+   │ Pay gas → Transaction sent         │
+   └────────────────────────────────────┘
+
+Timeline:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Propose] → [Wait for signs] → [Execute]
+   ↓              ↓                ↓
+ Owner 1    Other owners      Any owner
+```
+
+## Lợi ích và Hạn chế
+
+```
+Lợi ích:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ No single point of failure
+✓ Key compromise ≠ fund loss
+✓ Shared control for teams
+✓ Audit trail of approvals
+✓ Customizable thresholds
+
+Hạn chế:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✗ Higher gas costs
+✗ Slower transactions
+✗ More complex UX
+✗ Need coordination
+✗ Setup requires knowledge
+```
+
+## Best Practices
+
+```
+Security:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+□ Keys ở different locations
+□ Different device types
+□ Test với small amount trước
+□ Document owner addresses
+□ Have recovery plan
+
+Configuration:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+□ 2-of-3 cho cá nhân
+□ 3-of-5 cho organizations
+□ Không dùng 2-of-2 (risky)
+□ Always have backup key
+
+Operations:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+□ Verify transaction details
+□ Use hardware wallets
+□ Regular key health checks
+□ Update owners khi cần
+```
+
+## Multi-sig cho Bitcoin
+
+```
+Native Bitcoin Multi-sig:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Bitcoin hỗ trợ multi-sig native:
+• P2SH (Pay to Script Hash)
+• P2WSH (SegWit)
+
+Tools:
+• Sparrow Wallet
+• Specter Desktop
+• Coldcard + others
+• Caravan (Unchained)
+
+Ví dụ tạo 2-of-3:
+┌─────────────────────────────────────────┐
+│ Device 1: Coldcard                      │
+│ Device 2: Trezor                        │
+│ Device 3: Ledger                        │
+│                                         │
+│ Coordinator: Sparrow Wallet             │
+│ → Import public keys                    │
+│ → Create multi-sig wallet               │
+│ → Sign từ 2 devices bất kỳ              │
+└─────────────────────────────────────────┘
+```
+
+## Khi nào nên dùng Multi-sig?
+
+```
+Nên dùng khi:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Số tiền lớn (> $10,000)
+✓ Long-term holdings
+✓ Shared funds (team, family)
+✓ Business treasury
+✓ DAO funds
+
+Không cần khi:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Số tiền nhỏ
+• Frequent trading
+• Hot wallet cho daily use
+• Testing/development
+```
+
+## Tóm tắt
+
+- Multi-sig yêu cầu nhiều keys để ký transaction
+- Cấu hình phổ biến: 2-of-3, 3-of-5
+- Safe (Gnosis) là solution phổ biến nhất cho EVM
+- Bitcoin có native multi-sig support
+- Keys nên ở different locations và device types
+- Không có single point of failure
+
+> **Nhớ**: Multi-sig là gold standard cho bảo mật crypto lớn. Phức tạp hơn nhưng an toàn hơn nhiều so với single-key wallet.

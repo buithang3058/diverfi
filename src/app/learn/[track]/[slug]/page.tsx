@@ -21,6 +21,7 @@ import { ReadingTimeTracker } from "@/components/reading-time-tracker";
 import { LessonNotes } from "@/components/lesson-notes";
 import { LessonRating } from "@/components/lesson-rating";
 import { PrintLesson } from "@/components/print-lesson";
+import { LessonViewTracker } from "@/components/lesson-view-tracker";
 import { getTracks } from "@/lib/lessons";
 
 interface Props {
@@ -84,6 +85,7 @@ export default async function LessonPage({ params }: Props) {
 
   return (
     <>
+      <LessonViewTracker lessonId={`${track}/${slug}`} />
       <ReadingProgress />
       <LessonKeyboardNav prevUrl={prevUrl} nextUrl={nextUrl} />
       <BackToTop />
