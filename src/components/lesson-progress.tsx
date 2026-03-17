@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { Confetti } from "@/components/confetti";
 import { isLessonComplete, markLessonComplete, updateLastVisited } from "@/lib/progress";
 
 interface Props {
@@ -11,6 +12,7 @@ interface Props {
 export function LessonProgress({ lessonId }: Props) {
   const [isComplete, setIsComplete] = useState(false);
   const [saveError, setSaveError] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
 
   useEffect(() => {
     // Check if lesson is already complete
@@ -26,6 +28,7 @@ export function LessonProgress({ lessonId }: Props) {
     if (success) {
       setIsComplete(true);
       setSaveError(false);
+      setShowConfetti(true);
     } else {
       setSaveError(true);
     }
@@ -33,22 +36,25 @@ export function LessonProgress({ lessonId }: Props) {
 
   if (isComplete) {
     return (
-      <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
-        <svg
-          className="w-5 h-5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M5 13l4 4L19 7"
-          />
-        </svg>
-        <span className="font-medium">Đã hoàn thành bài học này</span>
-      </div>
+      <>
+        <Confetti show={showConfetti} onComplete={() => setShowConfetti(false)} />
+        <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+          <span className="font-medium">Đã hoàn thành bài học này</span>
+        </div>
+      </>
     );
   }
 

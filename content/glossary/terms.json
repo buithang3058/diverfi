@@ -262,5 +262,35 @@
     "fullName": "Token Vesting",
     "definition": "Lịch trình mở khóa token theo thời gian. Team và investors thường có vesting 1-4 năm để tránh dump.",
     "category": "Tokens"
+  },
+  {
+    "term": "Stop Loss",
+    "fullName": "Stop Loss Order",
+    "definition": "Lệnh tự động bán khi giá xuống đến một mức xác định. Giúp giới hạn tổn thất và bảo vệ vốn.",
+    "category": "Trading"
+  },
+  {
+    "term": "Take Profit",
+    "fullName": "Take Profit Order",
+    "definition": "Lệnh tự động bán khi giá lên đến mục tiêu lợi nhuận. Giúp chốt lời mà không cần theo dõi liên tục.",
+    "category": "Trading"
+  },
+  {
+    "term": "RSI",
+    "fullName": "Relative Strength Index",
+    "definition": "Chỉ báo động lượng dao động 0-100. RSI > 70 là quá mua (overbought), RSI < 30 là quá bán (oversold).",
+    "category": "Trading"
+  },
+  {
+    "term": "Support/Resistance",
+    "fullName": "Support and Resistance",
+    "definition": "Support là vùng giá có nhiều người muốn mua, Resistance là vùng có nhiều người muốn bán. Quan trọng trong phân tích kỹ thuật.",
+    "category": "Trading"
+  },
+  {
+    "term": "Market Cap",
+    "fullName": "Market Capitalization",
+    "definition": "Vốn hóa thị trường = Giá x Tổng supply. Dùng để so sánh quy mô các crypto. Large cap > $10B, mid cap $1-10B, small cap < $1B.",
+    "category": "Metrics"
   }
 ]

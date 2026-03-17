@@ -1,0 +1,387 @@
+---
+title: "Phân tích Kỹ thuật Cơ bản"
+description: "Học cách đọc biểu đồ và các chỉ báo kỹ thuật phổ biến trong trading crypto"
+order: 2
+estimatedTime: "15 phút"
+difficulty: "intermediate"
+prerequisites:
+  - "trading/01-trading-basics"
+---
+
+## Phân tích Kỹ thuật là gì?
+
+Phân tích kỹ thuật (Technical Analysis - TA) là phương pháp dự đoán xu hướng giá dựa trên dữ liệu lịch sử: giá và khối lượng. Giả định cơ bản: "Lịch sử có xu hướng lặp lại".
+
+## Biểu đồ nến (Candlestick)
+
+### Cấu tạo một cây nến
+
+```
+     ┌───┐  ← High (Giá cao nhất)
+     │   │
+     │   │  ← Upper Wick (Bấc trên)
+     │   │
+   ┌─┴───┴─┐
+   │       │  ← Body (Thân nến)
+   │       │     • Xanh: Close > Open (tăng)
+   │       │     • Đỏ: Close < Open (giảm)
+   └─┬───┬─┘
+     │   │  ← Lower Wick (Bấc dưới)
+     │   │
+     └───┘  ← Low (Giá thấp nhất)
+```
+
+### Các mẫu nến quan trọng
+
+```
+Nến đảo chiều tăng:              Nến đảo chiều giảm:
+━━━━━━━━━━━━━━━━━━━             ━━━━━━━━━━━━━━━━━━━
+
+Hammer (Búa):                    Shooting Star (Sao băng):
+     │                                ┌─┐
+     │                                │ │
+   ┌─┴─┐                              │ │
+   │   │                            ┌─┴─┴─┐
+   │   │                            │     │
+   └───┘                            └─────┘
+
+Bullish Engulfing:               Bearish Engulfing:
+  ┌─┐                              ┌───┐
+  │ │  ┌───┐                       │   │  ┌─┐
+  └─┘  │   │                       │   │  └─┘
+       │   │                       └───┘
+       └───┘
+
+Morning Star:                    Evening Star:
+  ┌─┐  ─  ┌───┐                   ┌───┐  ─  ┌─┐
+  │ │     │   │                   │   │     │ │
+  │ │     │   │                   │   │     │ │
+  └─┘     └───┘                   └───┘     └─┘
+
+Doji (Lưỡng lự):
+     │
+   ──┼──  ← Open ≈ Close
+     │       Thị trường đang cân bằng
+```
+
+## Đường Trend và Support/Resistance
+
+### Trend Lines (Đường xu hướng)
+
+```
+Uptrend (Xu hướng tăng):
+                              ╱
+                           ╱
+                        ╱     ← Higher Highs
+                     ╱
+                  ╱
+               ╱  ← Higher Lows
+            ╱
+         ╱
+      ╱
+   ╱  ← Nối các đáy lại
+
+Downtrend (Xu hướng giảm):
+   ╲
+      ╲  ← Lower Highs
+         ╲
+            ╲
+               ╲
+                  ╲  ← Lower Lows
+                     ╲
+                        ╲
+                           ╲
+```
+
+### Support và Resistance
+
+```
+Resistance (Kháng cự):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━  $55,000
+       ╱╲      ╱╲    ╱╲
+      ╱  ╲    ╱  ╲  ╱  ╲
+     ╱    ╲  ╱    ╲╱    ╲
+    ╱      ╲╱              ╲
+   ╱                        ╲
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━  $45,000
+Support (Hỗ trợ):
+
+• Support: Vùng giá có nhiều người muốn MUA
+• Resistance: Vùng giá có nhiều người muốn BÁN
+• Khi breakout → Support cũ thành Resistance mới (và ngược lại)
+```
+
+## Moving Averages (Đường trung bình)
+
+### SMA vs EMA
+
+```
+SMA (Simple Moving Average):
+- Trung bình cộng đơn giản
+- Chậm hơn, ít nhiễu hơn
+
+EMA (Exponential Moving Average):
+- Trung bình có trọng số
+- Nhanh hơn, phản ứng tốt với giá mới
+
+Các MA phổ biến:
+- MA20: Ngắn hạn
+- MA50: Trung hạn
+- MA200: Dài hạn (quan trọng nhất)
+```
+
+### Golden Cross và Death Cross
+
+```
+Golden Cross (Tín hiệu tăng):
+                       ╱  MA50
+                    ╱╱
+                 ╱╱
+              ╱╱
+           ╱╱ ←── MA50 cắt lên MA200
+        ╱╱
+     ╱╱
+  ╱╱────────────  MA200
+
+Death Cross (Tín hiệu giảm):
+  ╲╲────────────  MA200
+     ╲╲
+        ╲╲
+           ╲╲ ←── MA50 cắt xuống MA200
+              ╲╲
+                 ╲╲
+                    ╲╲
+                       ╲  MA50
+```
+
+## RSI (Relative Strength Index)
+
+```
+RSI đo động lượng, dao động 0-100
+
+100 ─┬─────────────────────────
+     │
+ 70 ─┼─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─  ← Overbought (Quá mua)
+     │         ╱╲
+     │       ╱    ╲
+ 50 ─┼─────╱────────╲──────────
+     │   ╱            ╲
+     │ ╱                ╲
+ 30 ─┼─ ─ ─ ─ ─ ─ ─ ─ ─ ─╲─ ─  ← Oversold (Quá bán)
+     │                    ╲╱
+  0 ─┴─────────────────────────
+
+Cách đọc:
+• RSI > 70: Quá mua → Có thể giảm
+• RSI < 30: Quá bán → Có thể tăng
+• RSI 50: Trung tính
+
+⚠️ Lưu ý: RSI có thể ở vùng cực đoan lâu trong xu hướng mạnh
+```
+
+### RSI Divergence (Phân kỳ)
+
+```
+Bearish Divergence (Tín hiệu giảm):
+Giá:  Higher High          ╱╲
+                        ╱╲╱  ╲
+                      ╱       ╲
+                    ╱
+RSI:  Lower High    ╱╲
+                  ╱  ╲
+                ╱    ╲
+              ╱      ↘ Giá tăng nhưng RSI giảm = Yếu dần
+
+Bullish Divergence (Tín hiệu tăng):
+Giá:  Lower Low   ╲
+                    ╲
+                      ╲       ╱
+                        ╲╱╲╱
+RSI:  Higher Low     ╲
+                      ╱↗ Giá giảm nhưng RSI tăng = Mạnh dần
+                    ╱
+```
+
+## MACD (Moving Average Convergence Divergence)
+
+```
+MACD Line = EMA12 - EMA26
+Signal Line = EMA9 của MACD Line
+Histogram = MACD Line - Signal Line
+
+        Histogram
+          │ │
+          │ │ │
+        │ │ │ │ │
+      │ │ │ │ │ │ │
+ ─────┼─┼─┼─┼─┼─┼─┼─┼────────
+          │ │ │ │ │
+            │ │ │
+              │
+
+ ──────────────────────────── MACD Line
+ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ Signal Line
+
+Tín hiệu:
+• MACD cắt lên Signal → Bullish
+• MACD cắt xuống Signal → Bearish
+• Histogram xanh/dương → Momentum tăng
+• Histogram đỏ/âm → Momentum giảm
+```
+
+## Bollinger Bands
+
+```
+           Upper Band (SMA20 + 2σ)
+        ╱────────────────────────╲
+      ╱                            ╲
+     │    ╱╲    ╱╲     ╱╲           │
+     │  ╱    ╲╱    ╲  ╱  ╲         │
+─────┼╱──────────────╲────╲────────┼── Middle Band (SMA20)
+     │                 ╲    ╲      │
+     │                  ╲    ╲╱    │
+      ╲                            ╱
+        ╲────────────────────────╱
+           Lower Band (SMA20 - 2σ)
+
+Cách đọc:
+• Bands thu hẹp → Sắp có biến động lớn (squeeze)
+• Giá chạm Upper → Quá mua
+• Giá chạm Lower → Quá bán
+• Giá breakout ngoài bands → Xu hướng mạnh
+```
+
+## Volume Analysis
+
+```
+Xác nhận xu hướng bằng volume:
+
+Giá tăng + Volume tăng = Xu hướng tăng mạnh ✓
+Giá tăng + Volume giảm = Xu hướng tăng yếu ⚠️
+Giá giảm + Volume tăng = Xu hướng giảm mạnh ✓
+Giá giảm + Volume giảm = Xu hướng giảm yếu ⚠️
+
+Volume spike tại support/resistance:
+- Thường là dấu hiệu đảo chiều
+- Hoặc breakout mạnh
+```
+
+## Chart Patterns (Mẫu hình)
+
+### Continuation Patterns (Tiếp diễn)
+
+```
+Flag (Cờ):                  Triangle (Tam giác):
+      ╱│╲                        ╱╲
+     ╱ │ ╲                      ╱  ╲
+    ╱  │  ╲ ╱╲                 ╱ ╱╲ ╲
+   ╱   │   ╲  ╲               ╱ ╱  ╲ ╲
+  ╱    │    ╱  ╲             ╱ ╱    ╲ ╲→ Breakout
+ ╱     │   ╲    → Breakout  ─────────────
+       │
+```
+
+### Reversal Patterns (Đảo chiều)
+
+```
+Head & Shoulders (Đầu và vai):
+            ╱╲ Head
+           ╱  ╲
+     ╱╲   ╱    ╲   ╱╲
+    ╱  ╲ ╱      ╲ ╱  ╲
+   ╱ L  ╲        ╲  R  ╲
+──╱──────╲──────────╲───╲── Neckline
+                        ╲
+                         ╲→ Target
+
+Double Top/Bottom:
+Double Top:          Double Bottom:
+   ╱╲    ╱╲             ╲╱    ╲╱
+  ╱  ╲  ╱  ╲           ╱  ╲  ╱  ╲
+ ╱    ╲╱    ╲         ╱    ╲╱    ╲
+```
+
+## Kết hợp nhiều chỉ báo
+
+```
+Confluence (Hội tụ) = Nhiều tín hiệu cùng hướng
+
+Ví dụ setup mua tốt:
+✓ Giá tại support mạnh
+✓ RSI < 30 (oversold)
+✓ MACD sắp cắt lên
+✓ Volume tăng
+✓ Bullish candlestick pattern
+
+→ Confluence càng nhiều → Xác suất thành công càng cao
+```
+
+## Timeframe Analysis
+
+```
+Multiple Timeframe Analysis:
+
+Weekly  → Xác định xu hướng chính
+Daily   → Tìm vùng entry/exit
+4H      → Fine-tune điểm vào
+1H      → Chốt quyết định cuối
+
+Quy tắc:
+- Trade theo xu hướng timeframe cao hơn
+- Không trade ngược xu hướng chính
+- Timeframe nhỏ = nhiễu nhiều hơn
+```
+
+## Sai lầm khi dùng TA
+
+```
+1. Dùng quá nhiều chỉ báo
+   ❌ Chart đầy indicators
+   ✓ 2-3 indicators là đủ
+
+2. Chỉ nhìn 1 timeframe
+   ❌ Chỉ xem 5m hoặc 1h
+   ✓ Phân tích từ cao xuống thấp
+
+3. Tin TA 100%
+   ❌ "Pattern này chắc chắn thành công"
+   ✓ TA chỉ tăng xác suất, không đảm bảo
+
+4. Bỏ qua context
+   ❌ Trade TA mà không biết tin tức
+   ✓ Kết hợp FA + TA + Sentiment
+```
+
+## Công cụ phân tích
+
+```
+TradingView:
+- Platform phổ biến nhất
+- Nhiều indicators
+- Social features
+
+Coinalyze:
+- Dữ liệu futures/perpetuals
+- Open Interest, Funding
+
+Glassnode:
+- On-chain metrics
+- Dữ liệu dài hạn
+
+CryptoQuant:
+- Exchange flow
+- Whale tracking
+```
+
+## Tóm tắt
+
+- TA giúp tìm điểm entry/exit tốt hơn
+- Học candlestick patterns cơ bản
+- Hiểu Support/Resistance và Trend
+- Dùng RSI, MACD, Bollinger Bands
+- Xác nhận bằng Volume
+- Kết hợp nhiều tín hiệu (confluence)
+- Phân tích từ timeframe cao xuống thấp
+- TA không hoàn hảo - luôn có kế hoạch quản lý rủi ro
+
+> **Quan trọng**: TA chỉ là 1 phần của trading. Kết hợp với quản lý vốn, tâm lý và fundamental analysis để có kết quả tốt nhất.

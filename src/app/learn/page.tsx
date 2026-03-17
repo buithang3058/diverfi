@@ -1,5 +1,3 @@
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { getTracks, getAllLessons } from "@/lib/lessons";
 import { TrackCard } from "@/components/track-card";
 import { BookmarkedLessons } from "@/components/bookmarked-lessons";
@@ -13,7 +11,7 @@ const trackDescriptions: Record<string, string> = {
   "defi-basics": "Tìm hiểu về DeFi là gì, tại sao nó quan trọng, và cách bắt đầu.",
   "crypto-security": "Bảo vệ tài sản crypto của bạn khỏi hacker và lừa đảo.",
   "yield-farming": "Cách kiếm lợi nhuận từ việc cung cấp thanh khoản.",
-  trading: "Chiến lược và kỹ thuật giao dịch crypto hiệu quả.",
+  trading: "Học cách giao dịch crypto từ cơ bản đến phân tích kỹ thuật.",
 };
 
 export default function LearnPage() {
@@ -50,18 +48,6 @@ export default function LearnPage() {
           />
         ))}
 
-        {/* Coming soon track */}
-        <Card className="opacity-50 cursor-not-allowed">
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle>Trading Cơ bản</CardTitle>
-              <Badge variant="outline">Sắp ra mắt</Badge>
-            </div>
-            <CardDescription>
-              Chiến lược và kỹ thuật giao dịch crypto hiệu quả.
-            </CardDescription>
-          </CardHeader>
-        </Card>
       </div>
     </div>
   );
