@@ -1,0 +1,314 @@
+---
+title: "Các loại lệnh Trading"
+description: "Tìm hiểu về Market, Limit, Stop-Loss và các loại lệnh giao dịch khác"
+order: 5
+estimatedTime: "10 phút"
+difficulty: "intermediate"
+prerequisites:
+  - "trading/01-trading-basics"
+---
+
+## Tổng quan về Order Types
+
+Hiểu các loại lệnh là kỹ năng cơ bản nhưng quan trọng trong trading. Mỗi loại lệnh phục vụ mục đích khác nhau.
+
+```
+Phân loại lệnh:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Theo thời điểm thực hiện:
+   • Market Order - Thực hiện ngay
+   • Limit Order - Chờ đạt giá
+
+2. Theo mục đích:
+   • Entry Orders - Vào lệnh
+   • Exit Orders - Thoát lệnh
+   • Protection Orders - Bảo vệ vốn
+
+3. Theo điều kiện:
+   • Unconditional - Không điều kiện
+   • Conditional - Có điều kiện kích hoạt
+```
+
+## Market Order
+
+```
+Market Order = Mua/Bán ngay với giá hiện tại
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Ưu điểm:
+✓ Thực hiện ngay lập tức
+✓ Đảm bảo khớp lệnh
+✓ Đơn giản, dễ hiểu
+
+Nhược điểm:
+✗ Không kiểm soát được giá
+✗ Có thể bị slippage
+✗ Giá thực tế khác giá hiển thị
+
+Khi nào dùng:
+• Cần vào/ra lệnh ngay
+• Thị trường biến động mạnh
+• Thanh khoản cao, spread nhỏ
+
+Ví dụ:
+BTC giá hiện tại: $60,000
+Market Buy → Mua ngay ~$60,000 (có thể +-$50)
+```
+
+## Limit Order
+
+```
+Limit Order = Mua/Bán tại giá cụ thể hoặc tốt hơn
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Limit Buy: Mua khi giá <= giá đặt
+Limit Sell: Bán khi giá >= giá đặt
+
+Ưu điểm:
+✓ Kiểm soát giá entry/exit
+✓ Không bị slippage
+✓ Có thể đặt trước và chờ
+
+Nhược điểm:
+✗ Không đảm bảo khớp lệnh
+✗ Có thể miss cơ hội
+✗ Cần quản lý lệnh pending
+
+Ví dụ:
+BTC giá hiện tại: $60,000
+Limit Buy $58,000 → Chờ giá xuống $58k mới mua
+Limit Sell $65,000 → Chờ giá lên $65k mới bán
+```
+
+## Stop-Loss Order
+
+```
+Stop-Loss = Lệnh tự động cắt lỗ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Stop-Loss Buy (cho Short position):
+• Kích hoạt khi giá >= trigger price
+• Đóng short để hạn chế lỗ
+
+Stop-Loss Sell (cho Long position):
+• Kích hoạt khi giá <= trigger price
+• Bán ra để hạn chế lỗ
+
+Ví dụ Long BTC:
+Entry: $60,000
+Stop-Loss: $57,000 (giảm 5%)
+→ Nếu BTC xuống $57k, tự động bán
+→ Giới hạn lỗ tối đa 5%
+
+Lưu ý quan trọng:
+⚠️ Stop-Loss không đảm bảo giá chính xác
+⚠️ Trong biến động mạnh có thể slippage
+⚠️ Flash crash có thể trigger sớm
+```
+
+## Take-Profit Order
+
+```
+Take-Profit = Lệnh tự động chốt lời
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Take-Profit Buy (cho Short position):
+• Đóng short khi đạt target profit
+
+Take-Profit Sell (cho Long position):
+• Bán ra khi đạt target profit
+
+Ví dụ Long BTC:
+Entry: $60,000
+Take-Profit: $66,000 (tăng 10%)
+→ Nếu BTC lên $66k, tự động bán
+→ Chốt lời 10%
+
+Kết hợp SL và TP:
+Entry: $60,000
+Stop-Loss: $57,000 (-5%)
+Take-Profit: $66,000 (+10%)
+Risk/Reward = 1:2 (good setup)
+```
+
+## Stop-Limit Order
+
+```
+Stop-Limit = Stop trigger + Limit execution
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Cách hoạt động:
+1. Giá chạm Stop Price → Trigger
+2. Limit Order được đặt tại Limit Price
+3. Khớp lệnh khi có người đối ứng
+
+Ví dụ:
+BTC = $60,000
+Stop-Limit Sell:
+• Stop Price: $58,000
+• Limit Price: $57,500
+
+Khi BTC xuống $58k:
+→ Đặt Limit Sell tại $57,500
+→ Bán nếu có người mua >= $57,500
+
+Ưu điểm:
+✓ Kiểm soát giá tốt hơn Stop-Loss
+✓ Tránh slippage trong market order
+
+Nhược điểm:
+✗ Có thể không khớp nếu giá xuống quá nhanh
+✗ Phức tạp hơn
+```
+
+## Trailing Stop
+
+```
+Trailing Stop = Stop-Loss di động theo giá
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Cách hoạt động:
+• SL tự động điều chỉnh khi giá tăng
+• SL giữ nguyên khi giá giảm
+• Khoảng cách (trail) cố định
+
+Ví dụ Long BTC:
+Entry: $60,000
+Trailing Stop: 5% ($3,000)
+
+BTC lên $65,000:
+→ SL tự động lên $61,750 (65k - 5%)
+
+BTC tiếp tục lên $70,000:
+→ SL tự động lên $66,500 (70k - 5%)
+
+BTC quay xuống $66,500:
+→ Trigger SL, đóng lệnh
+→ Lợi nhuận: $6,500 (thay vì có thể lỗ)
+
+Ưu điểm:
+✓ Lock in profits
+✓ Để lợi nhuận chạy
+✓ Tự động quản lý
+```
+
+## OCO Order (One-Cancels-Other)
+
+```
+OCO = Hai lệnh, một khớp thì hủy lệnh kia
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Thường dùng để đặt SL và TP cùng lúc:
+
+Ví dụ:
+Entry Long BTC: $60,000
+
+OCO Order:
+• Lệnh 1: Stop-Loss Sell $57,000
+• Lệnh 2: Take-Profit Sell $66,000
+
+Kịch bản 1 - Giá lên:
+→ BTC lên $66k, TP khớp
+→ SL tự động hủy
+
+Kịch bản 2 - Giá xuống:
+→ BTC xuống $57k, SL khớp
+→ TP tự động hủy
+
+Lợi ích:
+✓ Set and forget
+✓ Không cần theo dõi liên tục
+✓ Quản lý risk tự động
+```
+
+## Post-Only và IOC
+
+```
+Các loại lệnh đặc biệt (thường trên CEX):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Post-Only (Maker Only):
+• Chỉ đặt lệnh làm maker
+• Nếu khớp ngay → hủy lệnh
+• Đảm bảo nhận maker fee (thấp hơn)
+
+IOC (Immediate-Or-Cancel):
+• Khớp ngay phần có thể
+• Hủy phần còn lại
+• Không để lệnh pending
+
+FOK (Fill-Or-Kill):
+• Khớp toàn bộ hoặc hủy
+• Không chấp nhận partial fill
+• Cho lệnh lớn cần đảm bảo
+
+GTC (Good-Til-Cancelled):
+• Lệnh tồn tại đến khi khớp hoặc hủy
+• Default trên hầu hết sàn
+
+GTD (Good-Til-Date):
+• Lệnh có thời hạn
+• Tự hủy sau ngày cụ thể
+```
+
+## Order Types trên DEX
+
+```
+DEX thường có ít order types hơn CEX:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Standard DEX (Uniswap, PancakeSwap):
+• Market Order only (swap)
+• Slippage tolerance thay cho limit
+
+DEX với Limit Orders:
+• 1inch Limit Order Protocol
+• Cowswap
+• dYdX (orderbook DEX)
+
+Perp DEX (GMX, dYdX):
+• Market Orders
+• Limit Orders
+• Stop-Loss / Take-Profit
+• Advanced order types
+```
+
+## Best Practices
+
+```
+1. Luôn đặt Stop-Loss
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Quyết định SL trước khi vào lệnh
+• Không trade without protection
+• Tính position size dựa trên SL
+
+2. Sử dụng Limit Orders khi có thể
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Kiểm soát giá entry
+• Tránh FOMO market orders
+• Tiết kiệm slippage
+
+3. Hiểu fee structure
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Maker orders: phí thấp hơn
+• Taker orders: phí cao hơn
+• Market orders luôn là taker
+
+4. Test với số tiền nhỏ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Thử các loại lệnh
+• Hiểu cách chúng hoạt động
+• Trước khi dùng với số lớn
+```
+
+## Tóm tắt
+
+- Market Order: mua/bán ngay, không kiểm soát giá
+- Limit Order: chờ giá cụ thể, kiểm soát được giá
+- Stop-Loss: tự động cắt lỗ, bảo vệ vốn
+- Take-Profit: tự động chốt lời
+- Trailing Stop: SL di động, lock in profits
+- OCO: kết hợp SL + TP tự động
+
+> **Nhớ**: Order types là công cụ - hiểu rõ và sử dụng đúng cách sẽ giúp trading hiệu quả và an toàn hơn.

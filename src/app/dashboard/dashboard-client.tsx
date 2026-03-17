@@ -25,6 +25,8 @@ import {
 } from "lucide-react";
 import { ShareProgress } from "@/components/share-progress";
 import { Achievements } from "@/components/achievements";
+import { WeeklyGoals } from "@/components/weekly-goals";
+import { DataExport } from "@/components/data-export";
 import type { LessonMeta } from "@/lib/lessons";
 
 interface Track {
@@ -267,6 +269,11 @@ export function DashboardClient({ lessons, tracks, totalMinutes }: Props) {
         </Card>
       </div>
 
+      {/* Weekly Goals */}
+      <div className="mb-8">
+        <WeeklyGoals />
+      </div>
+
       {/* Continue Learning */}
       {nextLesson && (
         <Card className="mb-8 bg-primary/5 border-primary/20">
@@ -406,6 +413,11 @@ export function DashboardClient({ lessons, tracks, totalMinutes }: Props) {
       {/* Achievements */}
       <div className="mb-8">
         <Achievements />
+      </div>
+
+      {/* Data Export */}
+      <div className="mb-8">
+        <DataExport />
       </div>
 
       {/* Empty State */}
