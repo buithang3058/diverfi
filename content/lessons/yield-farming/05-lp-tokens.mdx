@@ -1,0 +1,315 @@
+---
+title: "LP Tokens - Hiểu về token thanh khoản"
+description: "Tìm hiểu LP tokens là gì, cách hoạt động và cách quản lý chúng"
+order: 5
+estimatedTime: "10 phút"
+difficulty: "intermediate"
+prerequisites:
+  - "yield-farming/01-yield-farming-basics"
+  - "defi-basics/05-liquidity-pool"
+---
+
+## LP Token là gì?
+
+LP Token (Liquidity Provider Token) là token bạn nhận được khi cung cấp thanh khoản cho liquidity pool. Nó đại diện cho phần sở hữu của bạn trong pool.
+
+```
+Quy trình nhận LP Token:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Bạn deposit vào pool
+   ETH + USDC → Pool ETH/USDC
+
+2. Pool mint LP token cho bạn
+   → Nhận: ETH-USDC-LP token
+
+3. LP token = Bằng chứng sở hữu
+   • Có thể redeem bất cứ lúc nào
+   • Nhận lại ETH + USDC + fees earned
+
+Ví dụ:
+• Deposit: 1 ETH + 3000 USDC
+• Nhận: 100 ETH-USDC-LP tokens
+• LP tokens này = 1% pool (nếu pool có 100 ETH + 300k USDC)
+```
+
+## Cách LP Token hoạt động
+
+```
+Giá trị LP Token thay đổi theo:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Tỷ lệ sở hữu trong pool
+   • Pool lớn hơn → LP token của bạn = % nhỏ hơn
+   • Người khác rút → LP token của bạn = % lớn hơn
+
+2. Giá trị tài sản trong pool
+   • ETH tăng giá → Giá trị LP tăng
+   • ETH giảm giá → Giá trị LP giảm
+
+3. Trading fees tích lũy
+   • Mỗi swap → 0.3% fee vào pool
+   • Fees tự động cộng vào pool
+   • LP token của bạn = share of fees
+
+Công thức đơn giản:
+LP Value = (Your LP / Total LP) × Pool Value
+```
+
+## Các loại LP Token
+
+### 1. Standard LP (Uniswap V2 style)
+
+```
+Đặc điểm:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• ERC-20 token
+• Fungible (có thể trade, transfer)
+• Đại diện cho 50/50 pool
+
+Ví dụ protocols:
+• Uniswap V2
+• SushiSwap
+• PancakeSwap
+
+Tên LP token thường là:
+• UNI-V2 (Uniswap)
+• SLP (SushiSwap)
+• Cake-LP (PancakeSwap)
+```
+
+### 2. NFT Position (Uniswap V3 style)
+
+```
+Đặc điểm:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• ERC-721 NFT (không phải ERC-20)
+• Non-fungible (mỗi position là unique)
+• Concentrated liquidity (chọn price range)
+
+Ví dụ protocols:
+• Uniswap V3
+• Quickswap V3
+• PancakeSwap V3
+
+Mỗi NFT chứa thông tin:
+• Token pair
+• Price range (min - max)
+• Liquidity amount
+• Uncollected fees
+```
+
+### 3. Receipt Tokens
+
+```
+Một số protocol dùng receipt token khác:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Curve:
+• Deposit vào pool → Nhận crvLP token
+• Stake crvLP vào Gauge → Nhận CRV rewards
+
+Balancer:
+• BPT (Balancer Pool Token)
+• Có thể multi-asset pools (không chỉ 2 tokens)
+
+Yearn:
+• yToken (yield-bearing)
+• Auto-compounding
+```
+
+## Quản lý LP Tokens
+
+### Xem LP position
+
+```
+Cách check LP tokens của bạn:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Trên DEX trực tiếp
+   • Uniswap: app.uniswap.org → Pool
+   • PancakeSwap: Liquidity tab
+
+2. Portfolio trackers
+   • Zapper.xyz
+   • DeBank
+   • Zerion
+
+3. Block explorer
+   • Thêm LP token contract vào MetaMask
+   • Check balance trên Etherscan
+
+Thông tin cần biết:
+• Số lượng LP tokens
+• Giá trị USD hiện tại
+• Fees earned (uncollected)
+• IL (Impermanent Loss) nếu có
+```
+
+### Thêm/Rút thanh khoản
+
+```
+Thêm thanh khoản (Add Liquidity):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Chuẩn bị cả 2 tokens
+   • Phải có đủ cả ETH và USDC
+   • Tỷ lệ theo giá hiện tại
+
+2. Approve tokens (lần đầu)
+3. Add Liquidity
+4. Nhận LP tokens
+
+Rút thanh khoản (Remove Liquidity):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Chọn số % muốn rút (25%, 50%, 100%)
+2. Remove Liquidity
+3. Nhận lại cả 2 tokens
+4. LP tokens bị burn
+
+⚠️ Lưu ý:
+• Số lượng tokens nhận lại có thể khác ban đầu
+• Do IL và price changes
+• Fees đã tự động cộng vào
+```
+
+## LP Token trong DeFi
+
+### Staking LP tokens
+
+```
+Stake LP để farm thêm rewards:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Flow phổ biến:
+1. Deposit tokens → Pool → LP tokens
+2. Stake LP tokens → Farm → Rewards
+
+Ví dụ:
+• Uniswap: Deposit ETH+USDC → UNI-V2-LP
+• Stake UNI-V2-LP trên farm → Earn SUSHI/other tokens
+
+Lợi ích:
+✓ Kiếm trading fees từ pool
+✓ Kiếm thêm farm rewards
+✓ Double yield
+
+Rủi ro:
+✗ Smart contract risk (cả pool và farm)
+✗ IL risk
+✗ Farm token có thể mất giá
+```
+
+### LP tokens làm collateral
+
+```
+Một số protocol cho phép dùng LP làm collateral:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+AAVE:
+• Deposit LP tokens
+• Borrow stablecoins
+• Nhưng không phải LP nào cũng được chấp nhận
+
+Abracadabra:
+• LP tokens → MIM (stablecoin)
+• Leverage strategies
+
+Rủi ro:
+⚠️ Liquidation nếu LP value giảm
+⚠️ IL có thể trigger liquidation
+⚠️ Complex risk layers
+```
+
+## Risks với LP Tokens
+
+```
+1. Impermanent Loss (IL)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Giá token thay đổi → IL
+• Rút ra có thể ít hơn hold
+• Xem bài học về IL để hiểu rõ hơn
+
+2. Smart Contract Risk
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Pool bị hack → Mất tiền
+• Chọn pool từ protocol uy tín
+• Check audit reports
+
+3. Rug Pull
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Pool mới, token lạ
+• Team rút hết liquidity
+• LP token trở thành vô giá trị
+
+4. LP Token Scams
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Fake LP tokens airdrop
+• Approve scam contracts
+• Luôn verify contract address
+```
+
+## Best Practices
+
+```
+1. Chọn pool an toàn
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Blue-chip tokens (ETH, BTC, stables)
+✓ Protocol đã audit
+✓ TVL cao, liquidity tốt
+✓ Đã hoạt động lâu
+
+2. Theo dõi position
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Check IL định kỳ
+✓ So sánh với simple hold
+✓ Tính toán real yield
+
+3. Quản lý rủi ro
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Không all-in một pool
+✓ Diversify across protocols
+✓ Có exit strategy
+
+4. Hiểu rõ trước khi tham gia
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Đọc docs của protocol
+✓ Hiểu fee structure
+✓ Biết cách rút khi cần
+```
+
+## Tools hữu ích
+
+```
+Tracking & Analytics:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• APY.vision - Track LP positions, IL
+• Revert.finance - Uniswap V3 analytics
+• DeBank - Overall portfolio
+• Zapper - Multi-chain positions
+
+Calculators:
+• IL calculators online
+• APY calculators
+• Yield simulators
+
+Alerts:
+• Set price alerts
+• IL threshold alerts
+• Pool TVL changes
+```
+
+## Tóm tắt
+
+- LP Token là bằng chứng sở hữu phần trong liquidity pool
+- Có thể là ERC-20 (fungible) hoặc NFT (Uniswap V3)
+- LP tokens có thể stake để farm thêm rewards
+- Cần theo dõi IL và so sánh với simple hold
+- Chọn pool an toàn từ protocol uy tín
+- Sử dụng tools để track positions
+
+> **Nhớ**: LP tokens mở ra nhiều cơ hội yield, nhưng đi kèm nhiều layer rủi ro. Hiểu rõ trước khi tham gia.

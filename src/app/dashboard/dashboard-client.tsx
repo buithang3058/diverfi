@@ -24,6 +24,7 @@ import {
   Bookmark,
 } from "lucide-react";
 import { ShareProgress } from "@/components/share-progress";
+import { Achievements } from "@/components/achievements";
 import type { LessonMeta } from "@/lib/lessons";
 
 interface Track {
@@ -376,7 +377,7 @@ export function DashboardClient({ lessons, tracks, totalMinutes }: Props) {
 
       {/* Recent Completed */}
       {recentCompleted.length > 0 && (
-        <div>
+        <div className="mb-8">
           <h2 className="text-xl font-semibold mb-4">Hoàn thành gần đây</h2>
           <div className="space-y-2">
             {recentCompleted.map(
@@ -401,6 +402,11 @@ export function DashboardClient({ lessons, tracks, totalMinutes }: Props) {
           </div>
         </div>
       )}
+
+      {/* Achievements */}
+      <div className="mb-8">
+        <Achievements />
+      </div>
 
       {/* Empty State */}
       {completedCount === 0 && (
