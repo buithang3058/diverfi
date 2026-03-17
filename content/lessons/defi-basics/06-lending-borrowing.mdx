@@ -1,0 +1,262 @@
+---
+title: "Lending và Borrowing trong DeFi"
+description: "Tìm hiểu cách cho vay và vay tiền trên các nền tảng DeFi"
+order: 6
+estimatedTime: "12 phút"
+difficulty: "intermediate"
+---
+
+## Lending và Borrowing là gì?
+
+Trong tài chính truyền thống, bạn gửi tiền vào ngân hàng và nhận lãi. Hoặc bạn vay tiền từ ngân hàng và trả lãi. **DeFi Lending** hoạt động tương tự nhưng không cần ngân hàng làm trung gian.
+
+## Cách hoạt động
+
+### 1. Lending (Cho vay)
+
+```
+Bạn có 1000 USDC
+    ↓
+Deposit vào Aave/Compound
+    ↓
+Nhận aToken (aUSDC) đại diện phần của bạn
+    ↓
+Kiếm lãi suất tự động (APY)
+    ↓
+Rút bất cứ lúc nào (với lãi)
+```
+
+### 2. Borrowing (Vay)
+
+```
+Bạn có 1 ETH ($3000)
+    ↓
+Deposit làm collateral (thế chấp)
+    ↓
+Vay được ~75% giá trị = $2250 USDC
+    ↓
+Sử dụng USDC (trading, farming...)
+    ↓
+Trả nợ + lãi để lấy lại ETH
+```
+
+## Tại sao vay khi đã có tiền?
+
+Đây là câu hỏi phổ biến của người mới. Có nhiều lý do:
+
+### 1. Không muốn bán crypto
+```
+Bạn tin ETH sẽ tăng giá
+    ↓
+Không muốn bán ETH
+    ↓
+Thế chấp ETH, vay USDC để chi tiêu
+    ↓
+Khi ETH tăng, bạn vẫn sở hữu ETH
+```
+
+### 2. Leverage (Đòn bẩy)
+```
+Có 1 ETH ($3000)
+    ↓
+Thế chấp, vay $2000 USDC
+    ↓
+Mua thêm 0.67 ETH
+    ↓
+Tổng cộng: 1.67 ETH
+    ↓
+Nếu ETH tăng 50%: Lời nhiều hơn
+    ↓
+Nếu ETH giảm 30%: Có thể bị liquidate!
+```
+
+### 3. Tax optimization
+Ở một số quốc gia, bán crypto phải đóng thuế. Vay thì không.
+
+## Các khái niệm quan trọng
+
+### Collateral Factor / LTV (Loan-to-Value)
+Tỷ lệ tối đa bạn có thể vay so với giá trị thế chấp.
+
+| Asset | LTV trên Aave |
+|-------|---------------|
+| ETH | 80% |
+| WBTC | 75% |
+| USDC | 87% |
+| Stablecoins | 75-90% |
+
+### Health Factor
+Chỉ số sức khỏe của vị thế vay. Nếu < 1, bạn sẽ bị liquidate.
+
+```
+Health Factor = (Collateral × LTV) / Debt
+
+Ví dụ:
+- Thế chấp: 1 ETH = $3000
+- LTV: 80%
+- Nợ: $2000
+
+Health Factor = ($3000 × 0.8) / $2000 = 1.2
+
+Nếu ETH giảm xuống $2500:
+Health Factor = ($2500 × 0.8) / $2000 = 1.0 → Nguy hiểm!
+```
+
+### Liquidation (Thanh lý)
+Khi Health Factor < 1, một phần collateral sẽ bị bán để trả nợ.
+
+```
+Liquidation xảy ra:
+- Liquidator trả nợ cho bạn (một phần)
+- Liquidator nhận collateral của bạn + bonus (5-15%)
+- Bạn mất một phần tài sản
+
+→ Luôn giữ Health Factor > 1.5 để an toàn
+```
+
+### Interest Rate Model
+Lãi suất thay đổi dựa trên utilization (tỷ lệ sử dụng).
+
+```
+Utilization = Tổng vay / Tổng deposit
+
+Utilization thấp (20%):
+- Supply APY: thấp (2%)
+- Borrow APY: thấp (3%)
+
+Utilization cao (90%):
+- Supply APY: cao (10%)
+- Borrow APY: rất cao (15-50%)
+
+→ Protocol tự điều chỉnh để cân bằng supply/demand
+```
+
+## Top Lending Protocols
+
+### Aave
+- TVL: $10B+
+- Multi-chain: Ethereum, Polygon, Arbitrum, Optimism...
+- Features: Flash loans, stable rate, credit delegation
+
+### Compound
+- TVL: $2B+
+- Chain: Ethereum, Base
+- Features: COMP rewards, simple UI
+
+### MakerDAO
+- TVL: $7B+
+- Chain: Ethereum
+- Features: Tạo DAI stablecoin từ collateral
+
+### Morpho
+- Phiên bản cải tiến của Aave/Compound
+- Tối ưu lãi suất cho cả lender và borrower
+
+## Rủi ro cần biết
+
+### 1. Liquidation Risk
+Giá collateral giảm → bị thanh lý → mất tiền
+
+**Cách phòng tránh:**
+- Giữ Health Factor > 2
+- Set alert khi HF xuống thấp
+- Không vay quá 50% LTV
+
+### 2. Smart Contract Risk
+Bug trong code có thể bị exploit.
+
+**Cách phòng tránh:**
+- Chỉ dùng protocol đã audit
+- Chọn protocol có TVL cao, lâu đời
+
+### 3. Oracle Risk
+Giá từ oracle sai → liquidation không công bằng.
+
+**Cách phòng tránh:**
+- Chọn protocol dùng Chainlink
+- Tránh asset có thanh khoản thấp
+
+### 4. Interest Rate Risk
+Lãi suất có thể tăng đột ngột khi utilization cao.
+
+**Cách phòng tránh:**
+- Theo dõi utilization
+- Dùng stable rate (Aave)
+
+## Chiến lược phổ biến
+
+### 1. Earning yield an toàn
+```
+Deposit stablecoin (USDC)
+    ↓
+Nhận 3-8% APY
+    ↓
+Rủi ro thấp (không IL, không liquidation)
+```
+
+### 2. Recursive borrowing (Looping)
+```
+Deposit 1000 USDC
+    ↓
+Vay 750 USDC
+    ↓
+Deposit 750 USDC
+    ↓
+Vay 562 USDC
+    ↓
+Lặp lại...
+    ↓
+Kiếm supply APY × 4 - borrow APY × 3
+```
+
+### 3. Short selling
+```
+Deposit USDC
+    ↓
+Vay ETH
+    ↓
+Bán ETH lấy USDC
+    ↓
+Chờ ETH giảm giá
+    ↓
+Mua lại ETH với giá thấp hơn
+    ↓
+Trả nợ, giữ lại lợi nhuận
+```
+
+## Bắt đầu như thế nào?
+
+### Bước 1: Chuẩn bị
+- Ví với ETH để trả gas
+- Stablecoin hoặc crypto để deposit
+
+### Bước 2: Chọn protocol
+- Aave: Nhiều tính năng, multi-chain
+- Compound: Đơn giản, Ethereum
+
+### Bước 3: Deposit nhỏ trước
+- Bắt đầu với $100-500
+- Hiểu cách UI hoạt động
+- Test withdraw
+
+### Bước 4: Vay cẩn thận (nếu muốn)
+- Chỉ vay 30-50% LTV ban đầu
+- Set alert cho Health Factor
+- Có kế hoạch trả nợ rõ ràng
+
+## Công cụ hữu ích
+
+- **DefiLlama Yields**: So sánh APY các protocol
+- **DeFi Saver**: Tự động bảo vệ khỏi liquidation
+- **Instadapp**: Quản lý vị thế DeFi
+- **Aave Dashboard**: Theo dõi vị thế trên Aave
+
+## Tóm tắt
+
+- Lending = Gửi crypto kiếm lãi
+- Borrowing = Thế chấp crypto để vay tiền khác
+- Luôn giữ Health Factor > 1.5
+- Hiểu rõ liquidation trước khi vay
+- Bắt đầu nhỏ, tăng dần khi có kinh nghiệm
+
+Chúc bạn học tốt!

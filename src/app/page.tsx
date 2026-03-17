@@ -12,12 +12,25 @@ import { getAllLessons, getTracks } from "@/lib/lessons";
 import { getAllTerms } from "@/lib/glossary";
 import { ContinueLearning } from "@/components/continue-learning";
 import { Newsletter } from "@/components/newsletter";
+import { LearningStats } from "@/components/learning-stats";
 import { BookOpen, TrendingUp, Search, GraduationCap } from "lucide-react";
 
 export default function Home() {
   const lessons = getAllLessons();
   const tracks = getTracks();
   const terms = getAllTerms();
+
+  // Calculate total time
+  const totalTimeMinutes = tracks.reduce((sum, track) => {
+    const minutes = parseInt(track.totalTime.match(/\d+/)?.[0] || "0");
+    const hours = track.totalTime.includes("giờ")
+      ? parseInt(track.totalTime.match(/(\d+)\s*giờ/)?.[1] || "0") * 60
+      : 0;
+    return sum + minutes + hours;
+  }, 0);
+  const totalTimeStr = totalTimeMinutes >= 60
+    ? `${Math.floor(totalTimeMinutes / 60)}h ${totalTimeMinutes % 60}m`
+    : `${totalTimeMinutes}m`;
 
   // Get first 3 lessons for featured section
   const featuredLessons = lessons.slice(0, 3);
@@ -67,6 +80,11 @@ export default function Home() {
       {/* Continue Learning Section - only shows if user has progress */}
       <section className="w-full pb-8">
         <ContinueLearning lessons={lessons} />
+      </section>
+
+      {/* Learning Stats - only shows if user has completed lessons */}
+      <section className="w-full pb-8">
+        <LearningStats totalLessons={lessons.length} totalTime={totalTimeStr} />
       </section>
 
       {/* Stats Section */}
