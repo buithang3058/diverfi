@@ -1,0 +1,300 @@
+---
+title: "Yield Aggregators"
+description: "Tìm hiểu về các nền tảng tự động hóa yield farming"
+order: 6
+estimatedTime: "10 phút"
+difficulty: "intermediate"
+prerequisites:
+  - "yield-farming/01-what-is-yield-farming"
+  - "yield-farming/02-liquidity-pools"
+---
+
+## Yield Aggregator là gì?
+
+Yield Aggregator (bộ tổng hợp lợi nhuận) là các protocol tự động tìm kiếm và tối ưu hóa yield farming strategies cho người dùng.
+
+```
+So sánh:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Manual Farming:
+┌─────────────────────────────────────────┐
+│ 1. Research protocols                   │
+│ 2. Deposit vào farm                     │
+│ 3. Claim rewards thủ công               │
+│ 4. Compound lại                         │
+│ 5. Trả gas fees nhiều lần              │
+│ 6. Monitor và switch farms             │
+└─────────────────────────────────────────┘
+
+Yield Aggregator:
+┌─────────────────────────────────────────┐
+│ 1. Deposit 1 lần                        │
+│ 2. Protocol tự động:                    │
+│    • Harvest rewards                    │
+│    • Compound lợi nhuận                 │
+│    • Tối ưu gas                         │
+│    • Chuyển đổi strategies              │
+│ 3. Withdraw khi cần                     │
+└─────────────────────────────────────────┘
+```
+
+## Cách Yield Aggregators hoạt động
+
+```
+Quy trình:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+            User Deposits
+                  ↓
+    ┌─────────────────────────────┐
+    │      Yield Aggregator       │
+    │  ┌────────────────────────┐ │
+    │  │    Strategy Vault      │ │
+    │  │                        │ │
+    │  │  ┌──────┐  ┌──────┐   │ │
+    │  │  │Farm A│  │Farm B│   │ │
+    │  │  └──────┘  └──────┘   │ │
+    │  │         ↓              │ │
+    │  │   Auto-compound        │ │
+    │  │   Auto-harvest         │ │
+    │  └────────────────────────┘ │
+    └─────────────────────────────┘
+                  ↓
+            Maximized Yield
+
+Cơ chế auto-compound:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Harvest rewards từ farm
+2. Swap rewards → base token
+3. Deposit lại vào pool
+4. Lặp lại định kỳ
+
+Ví dụ:
+$1,000 deposit với 50% APR
+• Manual (compound monthly): ~$1,628/năm
+• Auto-compound (hourly): ~$1,648/năm
+```
+
+## Các Yield Aggregators phổ biến
+
+```
+Yearn Finance (YFI):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• OG yield aggregator
+• Ethereum mainnet
+• "Vaults" với strategies
+• 2% management + 20% performance fee
+
+Beefy Finance:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Multi-chain (30+ chains)
+• Đa dạng strategies
+• Community-driven
+• ~4.5% fee trên profits
+
+Convex Finance:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Chuyên về Curve ecosystem
+• Boost CRV rewards
+• cvxCRV staking
+• Liquid staking derivatives
+
+Harvest Finance:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Multi-chain
+• FARM token rewards
+• Auto-compounding vaults
+```
+
+## Vaults và Strategies
+
+```
+Vault Types:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Single Asset Vaults:
+┌─────────────────────────────────────────┐
+│ • Deposit 1 loại token                  │
+│ • Ví dụ: ETH vault, USDC vault          │
+│ • Đơn giản, ít IL risk                  │
+└─────────────────────────────────────────┘
+
+LP Token Vaults:
+┌─────────────────────────────────────────┐
+│ • Deposit LP tokens (ETH-USDC LP)       │
+│ • Auto-compound LP rewards              │
+│ • Có IL risk                            │
+└─────────────────────────────────────────┘
+
+Strategy Examples:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Strategy A - Lending:
+1. Deposit USDC
+2. Lend trên Aave → aUSDC
+3. Stake aUSDC → thêm rewards
+4. Compound tất cả
+
+Strategy B - LP Farming:
+1. Deposit ETH-USDC LP
+2. Stake LP trên farm
+3. Harvest rewards
+4. Swap → thêm LP
+5. Restake
+```
+
+## Lợi ích của Yield Aggregators
+
+```
+1. Time-saving
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Không cần claim thủ công
+• Không cần monitor liên tục
+• Automated 24/7
+
+2. Gas Optimization
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Batched transactions
+• Shared gas costs giữa users
+• Compound khi gas thấp
+
+3. Higher APY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Frequent compounding
+• Optimized strategies
+• Professional management
+
+4. Simplicity
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Deposit và quên
+• Không cần chuyên môn sâu
+• UI/UX thân thiện
+```
+
+## Rủi ro cần biết
+
+```
+1. Smart Contract Risk
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Aggregator contract có thể bị hack
+• Strategy contracts vulnerable
+• Multiple layers of risk
+
+2. Strategy Risk
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Strategy có thể fail
+• Underlying protocol risk
+• Impermanent loss (LP vaults)
+
+3. Fee Structure
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Management fees
+• Performance fees
+• Withdrawal fees (một số)
+• Có thể ăn vào profit
+
+4. Complexity Risk
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Nhiều layers = nhiều risk
+• Khó trace vấn đề
+• Dependencies phức tạp
+
+Risk Matrix:
+┌─────────────────────────────────────────┐
+│ Stablecoin vaults: Lower risk          │
+│ Blue-chip LP:      Medium risk          │
+│ Exotic strategies: Higher risk          │
+└─────────────────────────────────────────┘
+```
+
+## So sánh APY vs APR
+
+```
+APR (Annual Percentage Rate):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Simple interest
+• Không compound
+• $1,000 @ 50% APR = $1,500/năm
+
+APY (Annual Percentage Yield):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Compound interest
+• Thường cao hơn APR
+• $1,000 @ 50% APY ≈ $1,648/năm (daily compound)
+
+Chú ý khi so sánh:
+• Một số hiển thị APR, một số APY
+• APY nghe "đẹp" hơn
+• Luôn so sánh cùng đơn vị
+```
+
+## Cách chọn Yield Aggregator
+
+```
+Checklist:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Security:
+□ Audited contracts?
+□ Track record?
+□ TVL và community?
+□ Insurance/coverage?
+
+Performance:
+□ Historical APY?
+□ Compound frequency?
+□ Strategy transparency?
+
+Fees:
+□ Management fee?
+□ Performance fee?
+□ Withdrawal fee?
+□ Hidden fees?
+
+Usability:
+□ Supported chains?
+□ Assets available?
+□ UI/UX quality?
+□ Documentation?
+```
+
+## Sử dụng Beefy Finance (Ví dụ)
+
+```
+Bước 1: Connect Wallet
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Truy cập app.beefy.finance
+• Connect MetaMask
+• Chọn chain (Polygon, BSC, etc.)
+
+Bước 2: Chọn Vault
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Filter by chain, asset, APY
+• Xem strategy details
+• Check TVL và safety score
+
+Bước 3: Deposit
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Approve token
+• Enter amount
+• Confirm deposit
+• Nhận "mooToken" (receipt)
+
+Bước 4: Monitor
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Track balance growth
+• Auto-compound diễn ra tự động
+• Withdraw bất cứ lúc nào
+```
+
+## Tóm tắt
+
+- Yield Aggregators tự động hóa và tối ưu yield farming
+- Tiết kiệm thời gian, gas, và tăng lợi nhuận qua compounding
+- Các platforms phổ biến: Yearn, Beefy, Convex
+- Có thêm layer risk từ aggregator contracts
+- So sánh fees và APY kỹ trước khi deposit
+- Bắt đầu với số nhỏ để test
+
+> **Nhớ**: Yield aggregators giúp maximize returns nhưng cũng thêm complexity. Hiểu rõ risks và chỉ đầu tư số tiền có thể mất.

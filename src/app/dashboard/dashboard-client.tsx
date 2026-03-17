@@ -32,6 +32,7 @@ import { CompletedTracks } from "@/components/completed-tracks";
 import { StudyStatistics } from "@/components/study-statistics";
 import { DailyTip } from "@/components/daily-tip";
 import { StudyReminder } from "@/components/study-reminder";
+import { ProgressMilestones, MilestoneProgress } from "@/components/progress-milestones";
 import type { LessonMeta } from "@/lib/lessons";
 
 interface Track {
@@ -188,6 +189,9 @@ export function DashboardClient({ lessons, tracks, totalMinutes }: Props) {
           )}
         </div>
       </div>
+
+      {/* Progress Milestones Celebration */}
+      <ProgressMilestones />
 
       {/* Daily Tip */}
       <DailyTip />
