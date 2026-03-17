@@ -9,6 +9,7 @@ export const siteConfig = {
     github: "https://github.com/diverfi",
   },
   nav: [
+    { title: "Bắt đầu", href: "/getting-started" },
     { title: "Học", href: "/learn" },
     { title: "Thị trường", href: "/markets" },
     { title: "Thuật ngữ", href: "/glossary" },

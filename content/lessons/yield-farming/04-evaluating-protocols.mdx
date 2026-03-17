@@ -1,0 +1,371 @@
+---
+title: "Đánh giá Protocol DeFi"
+description: "Cách phân tích và lựa chọn protocol DeFi an toàn để farming"
+order: 4
+estimatedTime: "15 phút"
+difficulty: "intermediate"
+prerequisites:
+  - "yield-farming/01-yield-farming-basics"
+  - "crypto-security/03-smart-contract-risks"
+---
+
+## Tại sao cần đánh giá Protocol?
+
+Không phải protocol DeFi nào cũng an toàn. Nhiều protocol đã bị hack, rug pull, hoặc đơn giản là thiết kế kém. Việc đánh giá kỹ trước khi deposit là bước quan trọng để bảo vệ tài sản.
+
+## Framework đánh giá SCORE
+
+```
+S - Security (Bảo mật)
+C - Community (Cộng đồng)
+O - Operations (Vận hành)
+R - Reputation (Danh tiếng)
+E - Economics (Tokenomics)
+
+Đánh giá mỗi tiêu chí 1-5 điểm
+Tổng điểm > 20: An toàn
+Tổng điểm 15-20: Trung bình
+Tổng điểm < 15: Rủi ro cao
+```
+
+## S - Security (Bảo mật)
+
+### Audit Reports
+
+```
+Checklist audit:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+□ Có audit không?
+□ Audit từ firm uy tín?
+  ✓ Trail of Bits
+  ✓ OpenZeppelin
+  ✓ Consensys Diligence
+  ✓ Peckshield
+  ✓ Certik
+
+□ Audit có findings critical/high không?
+□ Findings đã được fix chưa?
+□ Code hiện tại có match với code audit?
+
+⚠️ Lưu ý:
+- Audit KHÔNG đảm bảo 100% an toàn
+- Code có thể thay đổi sau audit
+- Kiểm tra ngày audit (quá cũ = ít giá trị)
+```
+
+### Bug Bounty
+
+```
+Protocol nghiêm túc có bug bounty:
+
+Kiểm tra tại: immunefi.com
+
+Tiêu chí đánh giá:
+• Có bug bounty: +1 điểm
+• Bounty > $100K: +1 điểm
+• Bounty > $1M: +2 điểm
+• Từng trả bounty: +1 điểm (chứng tỏ có người review)
+```
+
+### Multisig & Timelock
+
+```
+Governance controls:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Multisig:
+✓ 3/5 hoặc 4/7 signers: Tốt
+✓ Signers được công khai: Tốt
+✗ 1/1 hoặc 2/3: Rủi ro cao
+✗ Signers ẩn danh: Rủi ro
+
+Timelock:
+✓ 48h+: An toàn
+✓ 24h: Chấp nhận được
+✗ < 24h: Rủi ro
+✗ Không có: Rất rủi ro
+
+Kiểm tra:
+- Governance contracts trên Etherscan
+- Docs của protocol
+- DefiSafety.com ratings
+```
+
+## C - Community (Cộng đồng)
+
+```
+Metrics cộng đồng:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Discord:
+□ Số members (> 10K: tốt)
+□ Active discussions
+□ Team responsive
+□ Moderation chuyên nghiệp
+
+Twitter:
+□ Followers (> 50K: tốt)
+□ Engagement rate
+□ Không spam/shill quá nhiều
+
+GitHub:
+□ Stars và forks
+□ Commit frequency
+□ Multiple contributors
+□ Issues được resolve
+
+Forum/Governance:
+□ Có governance forum không?
+□ Proposals có được thảo luận?
+□ Voter participation
+```
+
+## O - Operations (Vận hành)
+
+### TVL và History
+
+```
+Total Value Locked:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+> $1B TVL: Blue chip (Aave, Uniswap, Lido)
+> $100M TVL: Established
+> $10M TVL: Growing
+< $10M TVL: Risky (có thể mới hoặc dying)
+
+Timeline:
+> 2 năm: Battle-tested
+> 1 năm: Established
+> 6 tháng: Developing
+< 3 tháng: Very risky
+
+Kiểm tra TVL: defillama.com
+```
+
+### Integrations
+
+```
+Được integrate bởi protocols khác = Signal tốt
+
+Ví dụ:
+• Yearn dùng Aave, Compound → Signal tốt cho Aave
+• Curve được Convex, Yearn dùng → Signal tốt cho Curve
+
+Các integration quan trọng:
+□ Oracle providers (Chainlink)
+□ Aggregators (1inch, Paraswap)
+□ Yield optimizers (Yearn, Beefy)
+□ Wallets (MetaMask, Rabby)
+```
+
+### Team
+
+```
+Team evaluation:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Doxxed team (công khai danh tính):
+✓ LinkedIn profiles
+✓ Previous projects
+✓ Conference appearances
+✓ Background verification
+
+Anonymous team:
+⚠️ Không tự động là red flag
+⚠️ Nhưng cần thêm các signal khác
+⚠️ Pseudonymous + long history = OK
+
+Kiểm tra:
+• Team page trên website
+• LinkedIn của team members
+• GitHub contributions
+• Conference talks (YouTube, ETHGlobal)
+```
+
+## R - Reputation (Danh tiếng)
+
+```
+Track record:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Positive signals:
+✓ Chưa từng bị hack
+✓ Xử lý incidents tốt (nếu có)
+✓ Transparent communication
+✓ Được VCs uy tín back
+
+Negative signals:
+✗ Từng bị exploit
+✗ Team drama/exits
+✗ Delays liên tục
+✗ Promises không thực hiện
+
+Research sources:
+• Rekt.news (hack history)
+• DeFi Safety
+• Twitter search
+• Forum discussions
+```
+
+## E - Economics (Tokenomics)
+
+### Token Distribution
+
+```
+Phân bổ token:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Healthy distribution:
+┌─────────────────────────────────────────┐
+│ Community/Ecosystem: > 50%              │
+│ Team: 10-20% (with vesting)             │
+│ Investors: 10-20% (with vesting)        │
+│ Treasury/DAO: 10-20%                    │
+└─────────────────────────────────────────┘
+
+Red flags:
+✗ Team/Investors > 40%
+✗ Vesting < 1 năm
+✗ Cliff quá ngắn
+✗ Concentrated holdings (whales)
+
+Tools kiểm tra:
+• Token terminal
+• Dune Analytics
+• Etherscan token holders
+```
+
+### Sustainability
+
+```
+APY sustainability:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+APY đến từ đâu?
+
+Sustainable sources:
+✓ Trading fees (real revenue)
+✓ Lending interest (real demand)
+✓ Protocol fees (real usage)
+
+Unsustainable sources:
+✗ Token emissions only
+✗ Ponzi-like mechanics
+✗ "Too good to be true" APYs
+
+Rule of thumb:
+• APY > 100%: Likely unsustainable
+• APY > 50%: Check source carefully
+• APY < 20%: More likely sustainable
+```
+
+## Checklist đánh giá nhanh
+
+```
+Quick evaluation (5 phút):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+□ TVL > $100M?
+□ Age > 1 năm?
+□ Đã audit?
+□ Team doxxed hoặc có reputation?
+□ Chưa từng bị hack major?
+□ APY reasonable (< 50%)?
+□ Active community?
+□ Có multisig?
+
+7-8/8: Green light
+5-6/8: Proceed with caution
+< 5/8: High risk - research more
+```
+
+## Red Flags tuyệt đối
+
+```
+TRÁNH ngay nếu thấy:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚩 APY > 1000% (gần như chắc chắn scam)
+🚩 "Guaranteed returns" (không ai đảm bảo được)
+🚩 Anonymous team + mới launch
+🚩 Không có audit + TVL thấp
+🚩 Contract không verified trên Etherscan
+🚩 Copied code từ protocol khác không credit
+🚩 Aggressive marketing, influencer shills
+🚩 Không có documentation
+🚩 Admin có thể mint unlimited tokens
+🚩 Không có timelock
+```
+
+## Tools đánh giá
+
+```
+Security:
+• defisafety.com - Security scores
+• rugdoc.io - Rug pull detection
+• tokensniffer.com - Token analysis
+
+Data:
+• defillama.com - TVL, revenue
+• dune.com - On-chain analytics
+• token.unlocks.app - Vesting schedules
+
+Research:
+• rekt.news - Hack history
+• messari.io - Research reports
+• docs của protocol
+```
+
+## Case Study: Đánh giá Aave
+
+```
+S - Security: 5/5
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Multiple audits (Trail of Bits, OpenZeppelin)
+✓ Bug bounty $1M+
+✓ Đã trả bounty
+✓ Timelock 24h
+✓ Multisig governance
+
+C - Community: 5/5
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ 200K+ Discord
+✓ 500K+ Twitter
+✓ Active governance
+✓ Global community
+
+O - Operations: 5/5
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ TVL $10B+
+✓ Since 2020
+✓ Multi-chain
+✓ Doxxed team (Stani Kulechov)
+
+R - Reputation: 5/5
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Chưa bị major hack
+✓ Top lending protocol
+✓ VCs: A16z, Framework
+
+E - Economics: 4/5
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Real revenue từ lending
+✓ Reasonable APYs
+○ Token inflation for rewards
+
+TOTAL: 24/25 → Blue chip, very safe
+```
+
+## Tóm tắt
+
+- Dùng framework SCORE để đánh giá protocol
+- Kiểm tra audit, bug bounty, timelock trước
+- TVL và history là signal quan trọng
+- Team doxxed + reputation tốt = safer
+- APY quá cao thường không sustainable
+- Tránh ngay các red flags tuyệt đối
+- Dùng tools để verify thông tin
+- Không có protocol nào 100% an toàn
+
+> **Nhớ**: "DYOR" không chỉ là đọc whitepaper. Đó là đánh giá toàn diện security, team, economics, và community.

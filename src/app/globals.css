@@ -143,3 +143,76 @@
 .animate-confetti {
   animation: confetti 3s ease-out forwards;
 }
+
+/* Print styles */
+@media print {
+  /* Hide non-essential elements */
+  header,
+  footer,
+  nav,
+  .no-print,
+  [data-reading-progress],
+  [data-back-to-top],
+  [data-toc],
+  button {
+    display: none !important;
+  }
+
+  /* Reset background colors */
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Ensure good contrast */
+  * {
+    color: black !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* Page breaks */
+  article {
+    page-break-inside: avoid;
+  }
+
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+
+  pre, code {
+    page-break-inside: avoid;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+  }
+
+  /* Show full URLs for links */
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666 !important;
+  }
+
+  /* Code blocks */
+  pre {
+    border: 1px solid #ccc !important;
+    padding: 1rem !important;
+    background: #f5f5f5 !important;
+  }
+
+  code {
+    background: #f0f0f0 !important;
+  }
+
+  /* Improve readability */
+  .prose {
+    max-width: 100% !important;
+    font-size: 12pt !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Cards and borders */
+  .border {
+    border-color: #ccc !important;
+  }
+}
