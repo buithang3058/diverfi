@@ -1,0 +1,329 @@
+---
+title: "Quản lý Portfolio"
+description: "Học cách xây dựng và quản lý portfolio crypto hiệu quả"
+order: 7
+estimatedTime: "12 phút"
+difficulty: "intermediate"
+prerequisites:
+  - "trading/01-trading-basics"
+  - "defi-basics/01-what-is-defi"
+---
+
+## Portfolio Crypto là gì?
+
+Portfolio (danh mục đầu tư) là tập hợp các tài sản crypto mà bạn sở hữu. Quản lý portfolio tốt giúp tối đa hóa lợi nhuận và giảm thiểu rủi ro.
+
+```
+Ví dụ Portfolio:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Tổng giá trị: $10,000
+
+┌──────────────┬────────┬─────────┐
+│ Asset        │ Phần % │ Giá trị │
+├──────────────┼────────┼─────────┤
+│ Bitcoin (BTC)│  40%   │ $4,000  │
+│ Ethereum(ETH)│  30%   │ $3,000  │
+│ Stablecoins  │  15%   │ $1,500  │
+│ Altcoins     │  10%   │ $1,000  │
+│ DeFi Tokens  │   5%   │ $500    │
+└──────────────┴────────┴─────────┘
+```
+
+## Nguyên tắc Diversification
+
+```
+Tại sao cần đa dạng hóa?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Don't put all your eggs in one basket"
+
+Lợi ích:
+• Giảm rủi ro tổng thể
+• Một asset giảm, asset khác có thể tăng
+• Bảo vệ khỏi black swan events
+• Tâm lý ổn định hơn
+
+Ví dụ:
+┌────────────────────────────────────────┐
+│ Scenario: BTC giảm 50%                 │
+├────────────────────────────────────────┤
+│ Portfolio A (100% BTC):                │
+│ $10,000 → $5,000 (-50%)                │
+│                                        │
+│ Portfolio B (đa dạng):                 │
+│ BTC 40%: $4,000 → $2,000               │
+│ ETH 30%: $3,000 → $2,400 (-20%)        │
+│ USDC 30%: $3,000 → $3,000              │
+│ Total: $10,000 → $7,400 (-26%)         │
+└────────────────────────────────────────┘
+```
+
+## Các loại Asset trong Portfolio
+
+```
+1. Blue Chips (60-70%):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Bitcoin (BTC)
+• Ethereum (ETH)
+• Đặc điểm: Ổn định nhất, liquidity cao
+• Rủi ro: Thấp (so với crypto khác)
+
+2. Large Cap Altcoins (15-25%):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• SOL, BNB, XRP, ADA, DOT
+• Market cap > $10B
+• Rủi ro: Trung bình
+
+3. Mid/Small Cap (5-15%):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• DeFi tokens, L2 tokens
+• Market cap < $5B
+• Rủi ro: Cao, reward cao
+
+4. Stablecoins (10-20%):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• USDC, USDT, DAI
+• Dùng để: Buy dips, earn yield
+• Rủi ro: Thấp (depeg risk)
+```
+
+## Chiến lược Allocation
+
+```
+Conservative (Thận trọng):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+BTC: 50%    ████████████████████
+ETH: 30%    ████████████
+Stable: 20% ████████
+
+Phù hợp: Người mới, risk-averse
+
+Balanced (Cân bằng):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+BTC: 35%    ██████████████
+ETH: 25%    ██████████
+Alts: 25%   ██████████
+Stable: 15% ██████
+
+Phù hợp: Đa số investors
+
+Aggressive (Tích cực):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+BTC: 20%    ████████
+ETH: 20%    ████████
+Alts: 50%   ████████████████████
+Stable: 10% ████
+
+Phù hợp: Risk-tolerant, experienced
+```
+
+## Rebalancing Portfolio
+
+```
+Khi nào cần rebalance?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Time-based: Mỗi tháng/quý
+2. Threshold-based: Khi lệch >5-10%
+
+Ví dụ rebalancing:
+┌────────────────────────────────────────┐
+│ Target: BTC 40%, ETH 30%, USDC 30%     │
+│                                        │
+│ Sau 1 tháng (BTC tăng mạnh):           │
+│ BTC: 55% (+15%)                        │
+│ ETH: 25% (-5%)                         │
+│ USDC: 20% (-10%)                       │
+│                                        │
+│ Rebalance action:                      │
+│ → Bán bớt BTC                          │
+│ → Mua thêm ETH và USDC                 │
+│ → Về lại 40/30/30                      │
+└────────────────────────────────────────┘
+
+Lợi ích:
+• "Buy low, sell high" tự động
+• Maintain risk level
+• Discipline, không emotional
+```
+
+## Tracking Portfolio
+
+```
+Tools để track portfolio:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Free:
+• CoinGecko Portfolio
+• CoinMarketCap Portfolio
+• Delta (mobile app)
+• Zapper.fi (DeFi)
+
+Advanced:
+• Koinly (có tax report)
+• CoinTracker
+• DeBank (multi-chain)
+
+Metrics cần theo dõi:
+┌────────────────────────────────────────┐
+│ • Total value (USD)                    │
+│ • 24h change (%)                       │
+│ • 7d/30d/YTD performance               │
+│ • Allocation breakdown                 │
+│ • Unrealized P&L                       │
+│ • Cost basis                           │
+└────────────────────────────────────────┘
+```
+
+## Position Sizing
+
+```
+Bao nhiêu % cho mỗi trade/investment?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Rule of thumb:
+• Blue chips: Max 30-40% mỗi asset
+• Large cap: Max 10-15% mỗi asset
+• Mid/Small cap: Max 3-5% mỗi asset
+• Moonshots: Max 1-2% mỗi asset
+
+Risk per trade:
+• Conservative: 1% portfolio
+• Moderate: 2% portfolio
+• Aggressive: 5% portfolio
+
+Ví dụ ($10,000 portfolio):
+┌────────────────────────────────────────┐
+│ "Tôi muốn mua token XYZ mới"           │
+│                                        │
+│ Risk tolerance: 2%                     │
+│ Max investment: $200                   │
+│                                        │
+│ Nếu XYZ về 0: Mất $200 (2%)            │
+│ Không ảnh hưởng lớn đến portfolio      │
+└────────────────────────────────────────┘
+```
+
+## DCA Strategy
+
+```
+Dollar Cost Averaging:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Thay vì: Mua $1,200 một lần
+Thực hiện: Mua $100/tháng x 12 tháng
+
+Lợi ích:
+• Giảm timing risk
+• Tâm lý thoải mái hơn
+• Average cost có thể tốt hơn
+
+Ví dụ BTC DCA:
+┌──────────┬─────────┬────────┬──────────┐
+│ Tháng    │ Giá BTC │ Mua    │ Nhận BTC │
+├──────────┼─────────┼────────┼──────────┤
+│ Jan      │ $40,000 │ $100   │ 0.0025   │
+│ Feb      │ $35,000 │ $100   │ 0.00286  │
+│ Mar      │ $30,000 │ $100   │ 0.00333  │
+│ Apr      │ $38,000 │ $100   │ 0.00263  │
+├──────────┼─────────┼────────┼──────────┤
+│ Total    │ Avg:    │ $400   │ 0.01132  │
+│          │ $35,335 │        │ BTC      │
+└──────────┴─────────┴────────┴──────────┘
+
+Average cost: $35,335/BTC
+(Thấp hơn giá cao nhất $40,000)
+```
+
+## Khi nào Take Profit?
+
+```
+Chiến lược take profit:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Percentage-based:
+   • +50%: Bán 25% position
+   • +100%: Bán 25% (đã lấy vốn)
+   • +200%: Bán 25%
+   • Còn 25%: "House money"
+
+2. Price targets:
+   • Set targets trước khi mua
+   • Ví dụ: Buy BTC $30k, sell $50k
+
+3. Time-based:
+   • Hold 1 năm → review
+   • Sell trước halving/events
+
+4. Rebalancing:
+   • Asset > target allocation
+   • Tự động take profit
+```
+
+## Quản lý Risk
+
+```
+Risk Management Rules:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+□ Không đầu tư tiền cần dùng
+□ Có emergency fund trước khi invest
+□ Diversify across assets
+□ Diversify across platforms
+□ Set stop-loss nếu trading
+□ Không FOMO vào tops
+□ Có kế hoạch exit
+
+Portfolio health check:
+┌────────────────────────────────────────┐
+│ ✓ Tôi có thể ngủ ngon với portfolio?  │
+│ ✓ Nếu mất 50%, tôi vẫn ổn?            │
+│ ✓ Tôi hiểu mọi asset tôi hold?        │
+│ ✓ Tôi có plan cho mọi scenario?       │
+└────────────────────────────────────────┘
+```
+
+## Common Mistakes
+
+```
+Sai lầm phổ biến:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Over-diversification
+   ✗ Hold 50+ coins
+   ✓ Focus 5-15 quality assets
+
+2. No exit strategy
+   ✗ "Hodl forever"
+   ✓ Có profit-taking plan
+
+3. Emotional decisions
+   ✗ Panic sell khi đỏ
+   ✗ FOMO buy khi xanh
+   ✓ Stick to plan
+
+4. Ignoring fees
+   ✗ Trade quá nhiều
+   ✓ Tính fees vào return
+
+5. Chasing yield
+   ✗ APY cao = rủi ro cao
+   ✓ Hiểu risk trước khi farm
+
+6. No records
+   ✗ Không track buy/sell
+   ✓ Ghi chép cho tax & analysis
+```
+
+## Tóm tắt
+
+- Diversification giúp giảm rủi ro tổng thể
+- Blue chips (BTC, ETH) nên chiếm phần lớn portfolio
+- Rebalance định kỳ để maintain allocation
+- Position sizing: Không quá 5% cho high-risk assets
+- DCA giúp giảm timing risk
+- Có kế hoạch take profit trước khi đầu tư
+- Track portfolio và ghi chép transactions
+
+> **Nhớ**: Portfolio tốt nhất là portfolio bạn có thể ngủ ngon với nó. Đừng để greed khiến bạn over-expose vào risk.

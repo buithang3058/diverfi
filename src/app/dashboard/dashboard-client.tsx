@@ -31,6 +31,7 @@ import { LearningRecommendations } from "@/components/learning-recommendations";
 import { CompletedTracks } from "@/components/completed-tracks";
 import { StudyStatistics } from "@/components/study-statistics";
 import { DailyTip } from "@/components/daily-tip";
+import { StudyReminder } from "@/components/study-reminder";
 import type { LessonMeta } from "@/lib/lessons";
 
 interface Track {
@@ -280,6 +281,9 @@ export function DashboardClient({ lessons, tracks, totalMinutes }: Props) {
       <div className="mb-8">
         <WeeklyGoals />
       </div>
+
+      {/* Study Reminder */}
+      <StudyReminder />
 
       {/* Learning Recommendations */}
       <div className="mb-8">
