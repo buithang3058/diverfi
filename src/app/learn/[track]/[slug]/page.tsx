@@ -17,6 +17,7 @@ import { Breadcrumb } from "@/components/breadcrumb";
 import { LessonPrerequisites } from "@/components/lesson-prerequisites";
 import { BookmarkButton } from "@/components/bookmark-button";
 import { LessonFeedback } from "@/components/lesson-feedback";
+import { ReadingTimeTracker } from "@/components/reading-time-tracker";
 import { getTracks } from "@/lib/lessons";
 
 interface Props {
@@ -110,6 +111,7 @@ export default async function LessonPage({ params }: Props) {
             url={`${siteConfig.url}/learn/${track}/${slug}`}
           />
           <BookmarkButton lessonId={`${track}/${slug}`} title={lesson.title} />
+          <ReadingTimeTracker lessonId={`${track}/${slug}`} />
         </div>
       </div>
 

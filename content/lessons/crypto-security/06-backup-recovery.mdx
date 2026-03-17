@@ -1,0 +1,349 @@
+---
+title: "Backup và Recovery Crypto"
+description: "Hướng dẫn backup an toàn và khôi phục ví crypto khi cần thiết"
+order: 6
+estimatedTime: "10 phút"
+difficulty: "beginner"
+prerequisites:
+  - "crypto-security/01-wallet-security"
+  - "crypto-security/05-hardware-wallets"
+---
+
+## Tại sao Backup quan trọng?
+
+```
+Các tình huống cần backup:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Mất thiết bị
+   • Điện thoại bị mất/hỏng
+   • Máy tính bị virus
+   • Hardware wallet hỏng
+
+2. Quên mật khẩu
+   • Quên password ví
+   • PIN hardware wallet
+
+3. Chuyển thiết bị
+   • Đổi điện thoại mới
+   • Đổi máy tính
+
+4. Trường hợp khẩn cấp
+   • Tai nạn, bệnh tật
+   • Cần người thân tiếp cận
+
+⚠️ Không có backup = Mất tiền vĩnh viễn
+   Không ai có thể giúp bạn recover
+```
+
+## Seed Phrase (Recovery Phrase)
+
+```
+Seed phrase là gì?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• 12 hoặc 24 từ tiếng Anh
+• Được tạo khi setup ví mới
+• Có thể restore toàn bộ ví
+• Một seed = Nhiều địa chỉ/chains
+
+Ví dụ (KHÔNG DÙNG seed này!):
+abandon ability able about above absent
+absorb abstract absurd abuse access accident
+
+Từ seed phrase → Private keys → Addresses
+
+💡 Seed phrase = Master key của tất cả
+   Ai có seed = Sở hữu toàn bộ crypto
+```
+
+## Backup Seed Phrase đúng cách
+
+### Cách ĐÚNG
+
+```
+✓ DO - Làm những điều này:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Viết tay trên giấy
+   • Dùng bút mực không phai
+   • Viết rõ ràng, đánh số thứ tự
+   • Kiểm tra lại từng từ
+
+2. Lưu nhiều bản ở nhiều nơi
+   • Nhà riêng (két sắt)
+   • Nhà người thân tin cậy
+   • Safe deposit box ngân hàng
+
+3. Dùng metal backup
+   • Cryptosteel, Billfodl
+   • Chống cháy, chống nước
+   • Bền vĩnh viễn
+
+4. Test recovery
+   • Thử restore trên ví khác
+   • Với số tiền nhỏ trước
+   • Đảm bảo backup hoạt động
+```
+
+### Cách SAI
+
+```
+✗ DON'T - Không bao giờ làm:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Lưu digital
+   ✗ Chụp ảnh seed phrase
+   ✗ Lưu trong Notes app
+   ✗ Email cho bản thân
+   ✗ Lưu trên cloud (iCloud, Google Drive)
+   ✗ Lưu trong file Word/txt
+
+2. Chia sẻ
+   ✗ Gửi qua Telegram/Zalo
+   ✗ Nói cho người khác
+   ✗ Nhập vào website lạ
+
+3. Lưu không an toàn
+   ✗ Để trong ngăn kéo bàn
+   ✗ Dán trên màn hình
+   ✗ Để chung với ví cứng
+```
+
+## Các phương pháp backup
+
+### 1. Paper Backup
+
+```
+Template backup giấy:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+│ SEED PHRASE BACKUP                      │
+│ Wallet: MetaMask / Ledger / Trezor      │
+│ Date: ___/___/______                    │
+│                                         │
+│ 1. ________    13. ________             │
+│ 2. ________    14. ________             │
+│ 3. ________    15. ________             │
+│ 4. ________    16. ________             │
+│ 5. ________    17. ________             │
+│ 6. ________    18. ________             │
+│ 7. ________    19. ________             │
+│ 8. ________    20. ________             │
+│ 9. ________    21. ________             │
+│ 10. _______    22. ________             │
+│ 11. _______    23. ________             │
+│ 12. _______    24. ________             │
+│                                         │
+│ ⚠️ KHÔNG CHIA SẺ - KHÔNG CHỤP ẢNH       │
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Tips:
+• Dùng giấy dày, chất lượng tốt
+• Laminate để chống nước
+• Bọc trong túi zip-lock
+```
+
+### 2. Metal Backup
+
+```
+Các sản phẩm phổ biến:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Cryptosteel Capsule (~$80):
+• Thép không gỉ
+• Chịu 1400°C
+• 24 từ
+• Compact design
+
+Billfodl (~$100):
+• Thép 316
+• Waterproof
+• Thiết kế dạng thẻ
+• Dễ sử dụng
+
+Keystone Tablet (~$50):
+• Budget option
+• Khắc bằng bút
+• Chống cháy 1200°C
+
+DIY Options:
+• Khắc lên thép
+• Đục chữ lên kim loại
+• Tiết kiệm nhưng tốn công
+```
+
+### 3. Shamir Secret Sharing
+
+```
+Chia seed thành nhiều phần:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Trezor Model T hỗ trợ Shamir backup:
+• Chia seed thành N phần
+• Cần M phần để restore (M < N)
+
+Ví dụ: 3-of-5 scheme
+• Tạo 5 shares
+• Cần 3 shares để recover
+• Mất 2 shares vẫn ok
+
+Lưu các shares:
+• Share 1: Nhà bạn
+• Share 2: Nhà bố mẹ
+• Share 3: Ngân hàng
+• Share 4: Luật sư
+• Share 5: Bạn thân
+
+Ưu điểm:
+✓ Không ai có đủ shares
+✓ Mất vài shares vẫn recover được
+✓ An toàn cho số tiền lớn
+```
+
+## Recovery Process
+
+### Khôi phục MetaMask
+
+```
+Bước restore MetaMask:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Cài MetaMask mới
+   • Download từ metamask.io
+   • Verify URL cẩn thận
+
+2. Chọn "Import Wallet"
+   • KHÔNG chọn Create New Wallet
+
+3. Nhập Seed Phrase
+   • Nhập đúng thứ tự 12/24 từ
+   • Phân biệt chữ hoa/thường (thường là lowercase)
+
+4. Đặt Password mới
+   • Password này chỉ cho thiết bị mới
+   • Khác với seed phrase
+
+5. Verify
+   • Kiểm tra địa chỉ ví
+   • Kiểm tra số dư
+   • Thêm networks/tokens nếu cần
+```
+
+### Khôi phục Hardware Wallet
+
+```
+Restore Ledger/Trezor:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Factory reset thiết bị
+   • Hoặc dùng thiết bị mới
+
+2. Chọn "Restore from recovery phrase"
+
+3. Nhập seed phrase
+   • Trên màn hình thiết bị
+   • KHÔNG nhập trên máy tính
+
+4. Đặt PIN mới
+
+5. Verify accounts
+   • Mở app tương ứng
+   • Kiểm tra addresses
+
+⚠️ Nếu địa chỉ khác với trước:
+   • Kiểm tra lại seed phrase
+   • Có thể sai từ hoặc sai thứ tự
+```
+
+## Passphrase (25th Word)
+
+```
+Passphrase là gì?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Thêm 1 "từ" nữa vào seed phrase
+• Tạo ra ví hoàn toàn mới
+• Cùng seed + khác passphrase = Khác ví
+
+Ví dụ:
+Seed phrase: 24 từ
+→ Địa chỉ: 0xABC... (ví chính)
+
+Seed phrase + Passphrase "mypass123"
+→ Địa chỉ: 0xXYZ... (ví ẩn)
+
+Ưu điểm:
+✓ Plausible deniability
+✓ Hidden wallet
+✓ Extra security layer
+
+Nhược điểm:
+✗ Quên passphrase = Mất tiền
+✗ Phức tạp hơn
+✗ Cần backup thêm passphrase
+```
+
+## Kế hoạch thừa kế
+
+```
+Digital Inheritance Planning:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Dead man's switch
+   • Google Inactive Account Manager
+   • Sau X tháng không active → Gửi email
+
+2. Luật sư giữ instructions
+   • Không giữ seed trực tiếp
+   • Giữ hướng dẫn tìm seed
+
+3. Multi-sig setup
+   • 2-of-3: Bạn + Vợ/chồng + Luật sư
+   • An toàn và có người thay thế
+
+4. Chia sẻ có điều kiện
+   • Shamir shares cho người thân
+   • Họ cần hợp tác để access
+
+Template thư hướng dẫn:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"Trong két sắt tại [địa chỉ], mã [xxxx],
+có metal plate chứa seed phrase.
+Dùng seed này với Ledger Live hoặc
+MetaMask để truy cập crypto.
+Liên hệ [người] nếu cần hỗ trợ."
+```
+
+## Checklist Backup
+
+```
+✓ Backup Security Checklist:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+□ Seed phrase được viết tay
+□ Có ít nhất 2 bản backup
+□ Backup ở 2 địa điểm khác nhau
+□ Đã test restore thành công
+□ Có metal backup cho long-term
+□ Người thân biết cách access khi cần
+□ Không có bản digital nào
+□ Passphrase (nếu có) được backup riêng
+□ Review backup mỗi 6 tháng
+
+Monthly Review:
+□ Backup vẫn còn nguyên vẹn
+□ Chữ viết vẫn đọc được
+□ Địa điểm lưu vẫn an toàn
+□ Instructions vẫn up-to-date
+```
+
+## Tóm tắt
+
+- Seed phrase là chìa khóa master, mất = mất tiền vĩnh viễn
+- Viết tay trên giấy hoặc khắc kim loại, KHÔNG lưu digital
+- Lưu nhiều bản ở nhiều nơi an toàn
+- Test restore trước khi cần thật
+- Có kế hoạch cho trường hợp khẩn cấp
+- Review backup định kỳ
+
+> **Nhớ**: "Your keys, your coins. Your backup, your safety." - Backup tốt = Ngủ ngon.
