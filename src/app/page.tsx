@@ -32,8 +32,12 @@ export default function Home() {
     ? `${Math.floor(totalTimeMinutes / 60)}h ${totalTimeMinutes % 60}m`
     : `${totalTimeMinutes}m`;
 
-  // Get first 3 lessons for featured section
-  const featuredLessons = lessons.slice(0, 3);
+  // Get featured lessons from different tracks
+  const featuredLessons = [
+    lessons.find((l) => l.track === "defi-basics" && l.slug === "01-what-is-defi"),
+    lessons.find((l) => l.track === "crypto-security" && l.slug === "01-wallet-security"),
+    lessons.find((l) => l.track === "trading" && l.slug === "01-trading-basics"),
+  ].filter((l): l is NonNullable<typeof l> => l !== undefined);
 
   // Get popular terms
   const popularTerms = terms.filter((t) =>

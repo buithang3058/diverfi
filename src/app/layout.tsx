@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { HeaderWithSearch } from "@/components/header-with-search";
 import { Footer } from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
+import { KeyboardShortcuts } from "@/components/keyboard-shortcuts";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
@@ -77,6 +78,7 @@ export default function RootLayout({
           <HeaderWithSearch />
           <main className="flex-1 container py-6">{children}</main>
           <Footer />
+          <KeyboardShortcuts />
         </ThemeProvider>
         <Analytics />
       </body>

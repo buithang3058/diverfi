@@ -292,5 +292,35 @@
     "fullName": "Market Capitalization",
     "definition": "Vốn hóa thị trường = Giá x Tổng supply. Dùng để so sánh quy mô các crypto. Large cap > $10B, mid cap $1-10B, small cap < $1B.",
     "category": "Metrics"
+  },
+  {
+    "term": "DCA",
+    "fullName": "Dollar Cost Averaging",
+    "definition": "Chiến lược mua đều đặn theo thời gian với số tiền cố định, bất kể giá. Giảm rủi ro mua đỉnh và trung bình hóa giá vào.",
+    "category": "Trading"
+  },
+  {
+    "term": "Halving",
+    "fullName": "Bitcoin Halving",
+    "definition": "Sự kiện giảm một nửa phần thưởng block của Bitcoin, xảy ra mỗi 210,000 blocks (~4 năm). Làm giảm lạm phát và thường đi kèm tăng giá.",
+    "category": "Blockchain"
+  },
+  {
+    "term": "Hard Fork",
+    "fullName": "Hard Fork",
+    "definition": "Nâng cấp blockchain không tương thích ngược, tạo ra chain mới. Ví dụ: Ethereum Classic tách từ Ethereum sau vụ DAO hack.",
+    "category": "Blockchain"
+  },
+  {
+    "term": "Soft Fork",
+    "fullName": "Soft Fork",
+    "definition": "Nâng cấp blockchain tương thích ngược. Nodes cũ vẫn có thể validate blocks mới. Ít disruptive hơn hard fork.",
+    "category": "Blockchain"
+  },
+  {
+    "term": "Mempool",
+    "fullName": "Memory Pool",
+    "definition": "Khu vực lưu trữ các giao dịch đang chờ được xác nhận. Khi mempool đầy, gas fee tăng cao do cạnh tranh.",
+    "category": "Blockchain"
   }
 ]
