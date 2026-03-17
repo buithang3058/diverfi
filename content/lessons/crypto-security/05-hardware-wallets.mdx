@@ -1,0 +1,300 @@
+---
+title: "Hardware Wallet là gì?"
+description: "Tìm hiểu về ví phần cứng và cách bảo vệ crypto với mức an toàn cao nhất"
+order: 5
+estimatedTime: "10 phút"
+difficulty: "beginner"
+prerequisites:
+  - "crypto-security/01-wallet-security"
+---
+
+## Hardware Wallet là gì?
+
+Hardware wallet (ví phần cứng) là thiết bị vật lý chuyên dụng để lưu trữ private keys offline. Đây là cách an toàn nhất để bảo vệ crypto, đặc biệt với số tiền lớn.
+
+```
+So sánh các loại ví:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Hot Wallet (MetaMask, Trust Wallet):
+• Private key lưu trên máy/điện thoại
+• Luôn kết nối internet
+• Thuận tiện nhưng dễ bị hack
+• Phù hợp: Số tiền nhỏ, giao dịch hàng ngày
+
+Cold Wallet (Hardware Wallet):
+• Private key lưu trên thiết bị riêng
+• Offline, không kết nối internet
+• An toàn cao nhưng ít thuận tiện hơn
+• Phù hợp: Số tiền lớn, lưu trữ dài hạn
+```
+
+## Tại sao cần Hardware Wallet?
+
+```
+Rủi ro của hot wallet:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Malware
+   • Keylogger ghi lại mọi thứ bạn gõ
+   • Clipboard hijacker thay đổi địa chỉ copy
+   • Screen recorder quay lại màn hình
+
+2. Phishing
+   • Fake websites đánh cắp seed phrase
+   • Browser extension giả mạo
+   • Scam emails yêu cầu verify
+
+3. Hacking
+   • Exploit trong browser/OS
+   • Remote access trojans
+   • SIM swap attacks
+
+Hardware wallet giải quyết:
+✓ Private key không bao giờ rời khỏi thiết bị
+✓ Ký transaction offline
+✓ Verify trên màn hình thiết bị
+✓ Không bị ảnh hưởng bởi malware
+```
+
+## Các Hardware Wallet phổ biến
+
+### Ledger
+
+```
+Ledger Nano S Plus (~$79):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Entry-level, giá tốt
+• Hỗ trợ 5,500+ coins
+• Màn hình nhỏ, 2 nút
+• Kết nối USB
+
+Ledger Nano X (~$149):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Bluetooth (dùng với mobile)
+• Pin sạc
+• Màn hình lớn hơn
+• Lưu được nhiều apps hơn
+
+Ledger Stax (~$279):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Màn hình cảm ứng E-ink
+• Premium design
+• Wireless charging
+• Cho power users
+```
+
+### Trezor
+
+```
+Trezor Model One (~$69):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Entry-level
+• Open source firmware
+• Màn hình OLED nhỏ
+• 2 nút bấm
+
+Trezor Model T (~$219):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Màn hình cảm ứng màu
+• Hỗ trợ nhiều coins hơn
+• Shamir backup support
+• MicroSD card slot
+
+Trezor Safe 3 (~$79):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Secure element chip
+• Compact design
+• USB-C
+• Entry-level mới nhất
+```
+
+### So sánh
+
+```
+┌────────────────┬─────────────┬─────────────┐
+│                │   Ledger    │   Trezor    │
+├────────────────┼─────────────┼─────────────┤
+│ Open source    │ Partial     │ Yes         │
+│ Secure element │ Yes         │ Model T: No │
+│ Bluetooth      │ Nano X      │ No          │
+│ Touch screen   │ Stax        │ Model T     │
+│ Coins support  │ 5,500+      │ 1,000+      │
+│ Mobile app     │ Ledger Live │ Trezor Suite│
+│ Made in        │ France      │ Czech Rep.  │
+└────────────────┴─────────────┴─────────────┘
+```
+
+## Cách setup Hardware Wallet
+
+```
+Bước 1: Mua từ nguồn chính thức
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Mua từ website chính thức hoặc authorized resellers
+✗ KHÔNG mua từ Amazon third-party, eBay, Shopee
+✗ KHÔNG mua hàng đã qua sử dụng
+✗ KHÔNG mua nếu seal đã mở
+
+Tại sao?
+• Thiết bị có thể đã bị tamper
+• Seed phrase có thể đã được ghi lại
+• Firmware có thể bị modified
+
+Bước 2: Kiểm tra khi nhận
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+□ Hộp còn nguyên seal
+□ Hologram sticker intact
+□ Không có dấu hiệu đã mở
+□ Verify trên website chính thức
+
+Bước 3: Setup thiết bị
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Kết nối với máy tính
+2. Download app chính thức (Ledger Live / Trezor Suite)
+3. Thiết bị sẽ TỰ TẠO seed phrase mới
+4. Ghi lại seed phrase (24 từ)
+5. Verify seed phrase
+6. Đặt PIN
+
+⚠️ QUAN TRỌNG:
+• Nếu thiết bị đã có sẵn seed phrase → ĐÓ LÀ SCAM
+• Seed phrase phải được tạo BỞI THIẾT BỊ
+```
+
+## Bảo quản Seed Phrase
+
+```
+DO:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Viết tay trên giấy/metal plate
+✓ Lưu ở nhiều nơi an toàn (két sắt, ngân hàng)
+✓ Không để ở nơi dễ cháy/ngập
+✓ Chia sẻ với người thân tin cậy (cho trường hợp khẩn cấp)
+
+DON'T:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✗ Chụp ảnh seed phrase
+✗ Lưu trên cloud (iCloud, Google Drive)
+✗ Gửi qua email/chat
+✗ Lưu trên máy tính
+✗ Để cùng chỗ với hardware wallet
+
+Metal backup options:
+• Cryptosteel Capsule
+• Billfodl
+• Keystone Tablet
+→ Chống cháy, chống nước, chống ăn mòn
+```
+
+## Sử dụng Hardware Wallet
+
+### Kết nối với DeFi
+
+```
+Cách connect với DApps:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Option 1: Qua MetaMask
+1. MetaMask → Settings → Hardware Wallet
+2. Kết nối Ledger/Trezor
+3. Import accounts
+4. Dùng MetaMask như bình thường
+5. Mỗi transaction cần confirm trên thiết bị
+
+Option 2: Native connection
+1. Click "Connect Wallet" trên DApp
+2. Chọn "Ledger" hoặc "Trezor"
+3. Approve trên thiết bị
+
+Lưu ý:
+• Luôn verify địa chỉ trên màn hình thiết bị
+• Đọc kỹ transaction details trước khi sign
+• Không sign mù quáng
+```
+
+### Quy trình giao dịch
+
+```
+Sending crypto với hardware wallet:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Tạo transaction trên app/web
+   ↓
+2. Transaction được gửi đến thiết bị
+   ↓
+3. VERIFY trên màn hình thiết bị:
+   • Địa chỉ nhận đúng không?
+   • Số lượng đúng không?
+   • Fee hợp lý không?
+   ↓
+4. Nhấn confirm/sign trên thiết bị
+   ↓
+5. Signed transaction được broadcast
+
+⚠️ Nếu địa chỉ trên thiết bị khác với trên màn hình
+   máy tính → KHÔNG SIGN, có thể bị hack!
+```
+
+## Best Practices
+
+```
+1. Firmware updates
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Luôn update firmware mới nhất
+• Chỉ update qua app chính thức
+• Backup seed phrase trước khi update
+
+2. PIN protection
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Đặt PIN mạnh (8+ digits)
+• Không dùng ngày sinh, số đơn giản
+• Ledger: 3 lần sai → reset
+• Trezor: Tăng thời gian chờ
+
+3. Passphrase (25th word)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Thêm layer bảo mật
+• Tạo hidden wallet
+• Ngay cả khi seed phrase bị lộ
+• ⚠️ Quên passphrase = mất tiền vĩnh viễn
+
+4. Multiple devices
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Cân nhắc có 2 thiết bị
+• 1 cho daily use, 1 backup
+• Hoặc 1 Ledger + 1 Trezor (diversify)
+```
+
+## Khi nào cần Hardware Wallet?
+
+```
+Nên dùng hardware wallet khi:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Giá trị portfolio > $1,000
+✓ Lưu trữ dài hạn (HODL)
+✓ Bạn là target (influencer, known holder)
+✓ Muốn yên tâm ngủ ngon
+✓ Business/professional use
+
+Có thể dùng hot wallet khi:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+○ Số tiền nhỏ bạn chấp nhận mất
+○ Trading thường xuyên
+○ Testing/learning
+○ Airdrops/interactions (dùng burner)
+```
+
+## Tóm tắt
+
+- Hardware wallet là cách an toàn nhất để lưu trữ crypto
+- Private keys không bao giờ rời khỏi thiết bị
+- Ledger và Trezor là 2 thương hiệu phổ biến nhất
+- Chỉ mua từ nguồn chính thức, không mua second-hand
+- Seed phrase phải do thiết bị tạo, không có sẵn
+- Lưu seed phrase offline, nhiều nơi an toàn
+- Luôn verify transaction trên màn hình thiết bị
+- Cân nhắc khi portfolio > $1,000
+
+> **Nhớ**: "Not your keys, not your coins" - Hardware wallet giúp bạn thực sự sở hữu crypto của mình.

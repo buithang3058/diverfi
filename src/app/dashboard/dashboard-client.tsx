@@ -19,7 +19,9 @@ import {
   CheckCircle2,
   Circle,
   ArrowRight,
+  Share2,
 } from "lucide-react";
+import { ShareProgress } from "@/components/share-progress";
 import type { LessonMeta } from "@/lib/lessons";
 
 interface Track {
@@ -98,6 +100,18 @@ export function DashboardClient({ lessons, tracks, totalMinutes }: Props) {
     };
   });
 
+  // Calculate level
+  const level =
+    completedCount === 0
+      ? "Mới bắt đầu"
+      : completedCount < 5
+      ? "Người học"
+      : completedCount < 10
+      ? "Trung cấp"
+      : completedCount < 15
+      ? "Nâng cao"
+      : "Chuyên gia";
+
   // Recent completed
   const recentCompleted = completedLessons
     .slice(-5)
@@ -112,10 +126,25 @@ export function DashboardClient({ lessons, tracks, totalMinutes }: Props) {
     <div>
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight">Tiến độ học tập</h1>
-        <p className="text-muted-foreground mt-2">
-          Theo dõi hành trình học DeFi của bạn
-        </p>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">Tiến độ học tập</h1>
+            <p className="text-muted-foreground mt-2">
+              Theo dõi hành trình học DeFi của bạn
+            </p>
+          </div>
+          {completedCount > 0 && (
+            <div className="flex items-center gap-2">
+              <Share2 className="h-4 w-4 text-muted-foreground" />
+              <span className="text-sm text-muted-foreground">Chia sẻ:</span>
+              <ShareProgress
+                completedCount={completedCount}
+                totalLessons={totalLessons}
+                level={level}
+              />
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Stats Grid */}
