@@ -129,3 +129,88 @@ export function getCompletionPercentage(totalLessons: number): number {
   if (totalLessons === 0) return 0;
   return Math.round((progress.completedLessons.length / totalLessons) * 100);
 }
+
+// Bookmarks
+const BOOKMARKS_KEY = "diverfi-bookmarks";
+
+export interface BookmarkedLesson {
+  id: string;
+  title: string;
+  savedAt: string;
+}
+
+export function getBookmarks(): BookmarkedLesson[] {
+  if (typeof window === "undefined") return [];
+
+  try {
+    const stored = localStorage.getItem(BOOKMARKS_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+}
+
+export function getBookmarkIds(): string[] {
+  return getBookmarks().map((b) => b.id);
+}
+
+// Study Streak
+const STREAK_KEY = "diverfi-streak";
+
+interface StreakData {
+  currentStreak: number;
+  longestStreak: number;
+  lastStudyDate: string | null;
+}
+
+function getDefaultStreak(): StreakData {
+  return {
+    currentStreak: 0,
+    longestStreak: 0,
+    lastStudyDate: null,
+  };
+}
+
+export function getStreak(): StreakData {
+  if (typeof window === "undefined") return getDefaultStreak();
+
+  try {
+    const stored = localStorage.getItem(STREAK_KEY);
+    return stored ? JSON.parse(stored) : getDefaultStreak();
+  } catch {
+    return getDefaultStreak();
+  }
+}
+
+export function updateStreak(): StreakData {
+  if (typeof window === "undefined") return getDefaultStreak();
+
+  try {
+    const streak = getStreak();
+    const today = new Date().toISOString().split("T")[0];
+
+    if (streak.lastStudyDate === today) {
+      return streak; // Already studied today
+    }
+
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const yesterdayStr = yesterday.toISOString().split("T")[0];
+
+    if (streak.lastStudyDate === yesterdayStr) {
+      // Continuing streak
+      streak.currentStreak += 1;
+    } else {
+      // Streak broken, start fresh
+      streak.currentStreak = 1;
+    }
+
+    streak.lastStudyDate = today;
+    streak.longestStreak = Math.max(streak.longestStreak, streak.currentStreak);
+
+    localStorage.setItem(STREAK_KEY, JSON.stringify(streak));
+    return streak;
+  } catch {
+    return getDefaultStreak();
+  }
+}

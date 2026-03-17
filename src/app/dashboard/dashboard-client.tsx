@@ -20,6 +20,8 @@ import {
   Circle,
   ArrowRight,
   Share2,
+  Flame,
+  Bookmark,
 } from "lucide-react";
 import { ShareProgress } from "@/components/share-progress";
 import type { LessonMeta } from "@/lib/lessons";
@@ -38,9 +40,29 @@ interface Props {
 }
 
 const STORAGE_KEY = "diverfi_progress";
+const BOOKMARKS_KEY = "diverfi-bookmarks";
+const STREAK_KEY = "diverfi-streak";
+
+interface BookmarkedLesson {
+  id: string;
+  title: string;
+  savedAt: string;
+}
+
+interface StreakData {
+  currentStreak: number;
+  longestStreak: number;
+  lastStudyDate: string | null;
+}
 
 export function DashboardClient({ lessons, tracks, totalMinutes }: Props) {
   const [completedLessons, setCompletedLessons] = useState<string[]>([]);
+  const [bookmarks, setBookmarks] = useState<BookmarkedLesson[]>([]);
+  const [streak, setStreak] = useState<StreakData>({
+    currentStreak: 0,
+    longestStreak: 0,
+    lastStudyDate: null,
+  });
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -49,6 +71,18 @@ export function DashboardClient({ lessons, tracks, totalMinutes }: Props) {
       if (stored) {
         const data = JSON.parse(stored);
         setCompletedLessons(data.completedLessons || []);
+      }
+
+      // Load bookmarks
+      const bookmarksStored = localStorage.getItem(BOOKMARKS_KEY);
+      if (bookmarksStored) {
+        setBookmarks(JSON.parse(bookmarksStored));
+      }
+
+      // Load streak
+      const streakStored = localStorage.getItem(STREAK_KEY);
+      if (streakStored) {
+        setStreak(JSON.parse(streakStored));
       }
     } catch {
       // Ignore
@@ -148,7 +182,7 @@ export function DashboardClient({ lessons, tracks, totalMinutes }: Props) {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5 mb-8">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">Đã hoàn thành</CardTitle>
@@ -212,6 +246,21 @@ export function DashboardClient({ lessons, tracks, totalMinutes }: Props) {
               {completedCount < 15
                 ? `Còn ${Math.max(5, (Math.floor(completedCount / 5) + 1) * 5) - completedCount} bài để lên cấp`
                 : "Đã đạt cấp cao nhất!"}
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">Chuỗi học</CardTitle>
+            <Flame className="h-4 w-4 text-orange-500" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">
+              {streak.currentStreak} ngày
+            </div>
+            <p className="text-xs text-muted-foreground">
+              Kỷ lục: {streak.longestStreak} ngày
             </p>
           </CardContent>
         </Card>
@@ -292,6 +341,38 @@ export function DashboardClient({ lessons, tracks, totalMinutes }: Props) {
           ))}
         </div>
       </div>
+
+      {/* Bookmarked Lessons */}
+      {bookmarks.length > 0 && (
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold mb-4">Bài học đã lưu</h2>
+          <div className="space-y-2">
+            {bookmarks.slice(0, 5).map((bookmark) => {
+              const [track, slug] = bookmark.id.split("/");
+              const lesson = lessons.find(
+                (l) => l.track === track && l.slug === slug
+              );
+              if (!lesson) return null;
+              return (
+                <Link
+                  key={bookmark.id}
+                  href={`/learn/${track}/${slug}`}
+                  className="flex items-center gap-3 p-3 rounded-lg border hover:bg-accent transition-colors"
+                >
+                  <Bookmark className="h-5 w-5 text-yellow-500 flex-shrink-0" />
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-medium truncate">{lesson.title}</h3>
+                    <p className="text-sm text-muted-foreground truncate">
+                      {tracks.find((t) => t.slug === lesson.track)?.title}
+                    </p>
+                  </div>
+                  <Badge variant="secondary">{lesson.estimatedTime}</Badge>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Recent Completed */}
       {recentCompleted.length > 0 && (

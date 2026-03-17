@@ -1,0 +1,322 @@
+---
+title: "DEX Trading - Giao dịch trên sàn phi tập trung"
+description: "Hướng dẫn đầy đủ về cách giao dịch trên các sàn DEX như Uniswap, PancakeSwap"
+order: 4
+estimatedTime: "12 phút"
+difficulty: "intermediate"
+prerequisites:
+  - "trading/01-trading-basics"
+  - "defi-basics/01-what-is-defi"
+---
+
+## DEX là gì?
+
+DEX (Decentralized Exchange) là sàn giao dịch phi tập trung, cho phép bạn swap token trực tiếp từ ví mà không cần đăng ký tài khoản hay KYC.
+
+```
+So sánh CEX vs DEX:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CEX (Binance, Coinbase):
+• Cần đăng ký, KYC
+• Sàn giữ tiền của bạn
+• Orderbook matching
+• Phí thấp hơn
+• Thanh khoản tốt
+
+DEX (Uniswap, PancakeSwap):
+• Không cần đăng ký
+• Bạn giữ tiền trong ví
+• AMM (Automated Market Maker)
+• Phí gas + swap fee
+• Có thể slippage
+```
+
+## Các DEX phổ biến
+
+```
+Theo blockchain:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Ethereum:
+• Uniswap     - DEX lớn nhất
+• SushiSwap   - Fork của Uniswap
+• Curve       - Chuyên stablecoins
+• Balancer    - Multi-token pools
+
+BNB Chain:
+• PancakeSwap - DEX lớn nhất BSC
+• BiSwap      - Phí thấp
+
+Arbitrum:
+• Camelot     - Native DEX
+• GMX         - Perpetuals
+
+Solana:
+• Jupiter     - Aggregator
+• Raydium     - AMM + Orderbook
+• Orca        - Concentrated liquidity
+```
+
+## Cách AMM hoạt động
+
+```
+Automated Market Maker:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Công thức: x * y = k (Constant Product)
+
+Ví dụ pool ETH/USDC:
+• Pool có: 100 ETH + 300,000 USDC
+• k = 100 * 300,000 = 30,000,000
+
+Khi bạn mua 1 ETH:
+• Pool còn: 99 ETH
+• USDC cần: 30,000,000 / 99 = 303,030 USDC
+• Bạn trả: 303,030 - 300,000 = 3,030 USDC
+• Giá thực tế: 3,030 USDC/ETH
+
+⚠️ Mua càng nhiều → Giá càng cao (Price Impact)
+```
+
+## Thực hiện swap
+
+### Bước 1: Kết nối ví
+
+```
+1. Truy cập DEX (vd: app.uniswap.org)
+2. Click "Connect Wallet"
+3. Chọn ví (MetaMask, WalletConnect...)
+4. Approve kết nối trên ví
+```
+
+### Bước 2: Chọn token
+
+```
+Swap interface:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+│ From:                                   │
+│ [ETH ▼]           [1.0        ]         │
+│                   ~$3,000               │
+│─────────────────────────────────────────│
+│ To:                                     │
+│ [USDC ▼]          [2,970      ]         │
+│                   ~$2,970               │
+│─────────────────────────────────────────│
+│ Rate: 1 ETH = 2,970 USDC                │
+│ Price Impact: 0.1%                      │
+│ Slippage: 0.5%                          │
+│                                         │
+│         [Swap]                          │
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+### Bước 3: Approve token (lần đầu)
+
+```
+Khi swap ERC-20 token lần đầu:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. DEX yêu cầu "Approve" token
+2. Bạn cho phép smart contract truy cập token
+3. Đây là giao dịch riêng, tốn gas
+
+Các loại approve:
+• Exact amount - Chỉ approve số lượng cần swap
+• Unlimited - Approve vô hạn (thuận tiện nhưng rủi ro)
+
+💡 Tip: Dùng exact amount cho DEX mới
+        Dùng unlimited cho DEX uy tín
+```
+
+### Bước 4: Confirm swap
+
+```
+Kiểm tra trước khi confirm:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Token đúng (check contract address)
+✓ Số lượng đúng
+✓ Price impact chấp nhận được (<1%)
+✓ Gas fee hợp lý
+✓ Slippage tolerance phù hợp
+
+⚠️ Red flags:
+✗ Price impact > 5%
+✗ Token không verified
+✗ Liquidity quá thấp
+```
+
+## Slippage là gì?
+
+```
+Slippage = Chênh lệch giá dự kiến vs giá thực tế
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Nguyên nhân:
+1. Thanh khoản thấp
+2. Trade size lớn
+3. Giá biến động nhanh
+4. MEV bots front-running
+
+Slippage tolerance:
+• 0.1% - 0.5%: Tokens phổ biến, thanh khoản cao
+• 1% - 3%: Tokens mới, thanh khoản trung bình
+• 5% - 10%: Meme coins, thanh khoản thấp
+
+⚠️ Slippage cao = Dễ bị sandwich attack
+```
+
+## Price Impact
+
+```
+Price Impact = Ảnh hưởng của trade lên giá
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Ví dụ:
+• Pool: 1000 ETH + 3,000,000 USDC
+• Bạn muốn mua 100 ETH (10% pool)
+• Price impact: ~11%
+
+Giảm price impact:
+1. Chia nhỏ trade
+2. Dùng DEX aggregator
+3. Chọn pool có thanh khoản cao
+4. Trade khi thanh khoản tốt
+
+Mức chấp nhận:
+✓ < 0.5%: Tốt
+⚠️ 0.5% - 3%: Chấp nhận được
+✗ > 3%: Cân nhắc chia nhỏ
+✗ > 10%: Không nên trade
+```
+
+## DEX Aggregators
+
+```
+Aggregator tìm route tốt nhất qua nhiều DEX:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1inch:
+• Multi-chain
+• Split orders
+• Limit orders
+• Fusion mode (gasless)
+
+Jupiter (Solana):
+• Best rates
+• DCA feature
+• Limit orders
+
+ParaSwap:
+• Ethereum focused
+• Augustus swapper
+
+Lợi ích:
+✓ Giá tốt hơn single DEX
+✓ Tự động split orders
+✓ Giảm slippage
+✓ Tìm routes phức tạp
+```
+
+## Phí khi swap
+
+```
+Tổng phí = Gas fee + Swap fee
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Gas fee (trả cho blockchain):
+• Ethereum: $5 - $50+ tùy network
+• Arbitrum/Optimism: $0.1 - $1
+• BSC: $0.1 - $0.5
+• Solana: < $0.01
+
+Swap fee (trả cho LP):
+• Uniswap V3: 0.01% / 0.05% / 0.3% / 1%
+• PancakeSwap: 0.25%
+• Curve: 0.04%
+
+Ví dụ swap $1000 trên Uniswap (Ethereum):
+• Gas: ~$10 (depend on network)
+• Swap fee: $3 (0.3%)
+• Total: ~$13
+```
+
+## Risks khi dùng DEX
+
+```
+1. Smart Contract Risk
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Bug trong code
+• Exploit/hack
+• Rug pull tokens
+
+Giảm thiểu:
+✓ Dùng DEX có audit
+✓ Check token contract
+✓ Không FOMO vào token mới
+
+2. MEV/Front-running
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Bots detect giao dịch pending
+• Sandwich attack
+• Bạn nhận giá xấu hơn
+
+Giảm thiểu:
+✓ Dùng slippage thấp
+✓ Private transactions (Flashbots)
+✓ Dùng aggregator có MEV protection
+
+3. Scam Tokens
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Fake tokens cùng tên
+• Honeypot (mua được, bán không được)
+• Tax tokens (99% tax)
+
+Giảm thiểu:
+✓ Verify contract address từ CoinGecko/CoinMarketCap
+✓ Check token trên DEX Screener
+✓ Thử bán ít trước
+```
+
+## Tips trading DEX
+
+```
+Best practices:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Timing
+   • Ethereum: Trade khi gas thấp (đêm/cuối tuần)
+   • Check gas trên etherscan.io/gastracker
+
+2. Security
+   • Dùng burner wallet cho token mới
+   • Revoke approvals sau khi trade
+   • Double-check contract addresses
+
+3. Efficiency
+   • Dùng aggregators cho trade lớn
+   • Set limit orders thay market
+   • DCA thay mua 1 lần
+
+4. Research
+   • Check liquidity depth
+   • Xem holders distribution
+   • Verify team/project
+
+5. Tools hữu ích:
+   • DEX Screener - Charts & analytics
+   • Revoke.cash - Quản lý approvals
+   • GasNow - Theo dõi gas
+```
+
+## Tóm tắt
+
+- DEX cho phép swap token trực tiếp từ ví, không cần KYC
+- AMM sử dụng công thức x*y=k để định giá
+- Slippage và price impact ảnh hưởng giá thực tế
+- Dùng aggregators (1inch, Jupiter) để có giá tốt nhất
+- Luôn verify token contract trước khi trade
+- Cẩn thận với scam tokens và MEV attacks
+
+> **Nhớ**: "On DEX, you are your own exchange" - Tự do đi kèm trách nhiệm. Luôn DYOR trước khi trade.

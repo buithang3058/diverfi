@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Confetti } from "@/components/confetti";
-import { isLessonComplete, markLessonComplete, updateLastVisited } from "@/lib/progress";
+import { isLessonComplete, markLessonComplete, updateLastVisited, updateStreak } from "@/lib/progress";
 
 interface Props {
   lessonId: string;
@@ -29,6 +29,7 @@ export function LessonProgress({ lessonId }: Props) {
       setIsComplete(true);
       setSaveError(false);
       setShowConfetti(true);
+      updateStreak(); // Update study streak
     } else {
       setSaveError(true);
     }
