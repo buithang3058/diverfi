@@ -24,6 +24,7 @@ import { PrintLesson } from "@/components/print-lesson";
 import { LessonViewTracker } from "@/components/lesson-view-tracker";
 import { FocusModeToggle } from "@/components/focus-mode";
 import { ReadingPreferences } from "@/components/reading-preferences";
+import { MobileLessonToolbar } from "@/components/mobile-lesson-toolbar";
 import { getTracks } from "@/lib/lessons";
 
 interface Props {
@@ -112,7 +113,8 @@ export default async function LessonPage({ params }: Props) {
             {difficultyLabels[lesson.difficulty]}
           </Badge>
         </div>
-        <div className="mt-4 flex flex-wrap items-center gap-3 relative">
+        {/* Desktop Toolbar */}
+        <div className="mt-4 hidden md:flex flex-wrap items-center gap-3 relative">
           <ShareButtons
             title={lesson.title}
             url={`${siteConfig.url}/learn/${track}/${slug}`}
@@ -122,6 +124,16 @@ export default async function LessonPage({ params }: Props) {
           <FocusModeToggle />
           <ReadingPreferences />
           <ReadingTimeTracker lessonId={`${track}/${slug}`} />
+        </div>
+
+        {/* Mobile Toolbar */}
+        <div className="mt-4 flex md:hidden items-center gap-3">
+          <ReadingTimeTracker lessonId={`${track}/${slug}`} />
+          <MobileLessonToolbar
+            lessonId={`${track}/${slug}`}
+            lessonTitle={lesson.title}
+            shareUrl={`${siteConfig.url}/learn/${track}/${slug}`}
+          />
         </div>
       </div>
 

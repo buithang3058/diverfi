@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { KeyboardShortcuts } from "@/components/keyboard-shortcuts";
 import { FocusModeProvider } from "@/components/focus-mode";
 import { ReadingPreferencesLoader } from "@/components/reading-preferences";
+import { MobileNav } from "@/components/mobile-nav";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
@@ -80,8 +81,9 @@ export default function RootLayout({
           <FocusModeProvider>
             <ReadingPreferencesLoader />
             <HeaderWithSearch />
-            <main className="flex-1 container py-6">{children}</main>
+            <main className="flex-1 container py-6 pb-20 md:pb-6">{children}</main>
             <Footer />
+            <MobileNav />
             <KeyboardShortcuts />
           </FocusModeProvider>
         </ThemeProvider>
