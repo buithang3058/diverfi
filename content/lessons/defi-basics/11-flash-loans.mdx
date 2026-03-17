@@ -1,0 +1,338 @@
+---
+title: "Flash Loans"
+description: "Hiểu về Flash Loans - khoản vay không cần thế chấp trong DeFi"
+difficulty: advanced
+estimatedTime: "18 phút"
+order: 11
+prerequisites: ["defi-basics/06-lending-borrowing", "defi-basics/03-smart-contracts"]
+---
+
+# Flash Loans - Vay Không Thế Chấp
+
+Flash Loans là một trong những đổi mới độc đáo nhất của DeFi - cho phép bạn vay hàng triệu đô la mà **không cần thế chấp**, miễn là bạn trả lại trong cùng một giao dịch.
+
+## Flash Loans Là Gì?
+
+### Định Nghĩa
+
+```
+Flash Loan = Vay + Sử dụng + Trả lại
+             ↓
+        TRONG 1 GIAO DỊCH DUY NHẤT
+             ↓
+        (~13 giây trên Ethereum)
+```
+
+### Tại Sao Có Thể Vay Không Thế Chấp?
+
+```
+Traditional Loan:
+┌────────────────────────────────────┐
+│ 1. Gửi thế chấp     → Day 1       │
+│ 2. Nhận tiền vay    → Day 1       │
+│ 3. Sử dụng tiền     → Day 1-30    │
+│ 4. Trả nợ + lãi     → Day 30      │
+│ 5. Nhận lại thế chấp→ Day 30      │
+└────────────────────────────────────┘
+Rủi ro: Nếu không trả → Mất thế chấp
+
+Flash Loan:
+┌────────────────────────────────────┐
+│ 1. Vay              → Block N     │
+│ 2. Sử dụng          → Block N     │
+│ 3. Trả lại + phí    → Block N     │
+│                                    │
+│ Tất cả trong CÙNG MỘT block!      │
+└────────────────────────────────────┘
+Rủi ro: Nếu không trả → Giao dịch REVERT
+        → Như chưa từng xảy ra!
+```
+
+### Atomic Transaction
+
+```
+Flash Loan là "atomic":
+
+Điều kiện: TẤT CẢ các bước phải thành công
+
+Step 1: Vay $1M      ✓
+Step 2: Swap A → B   ✓
+Step 3: Arbitrage    ✓
+Step 4: Trả $1M + fee✓
+→ Giao dịch THÀNH CÔNG ✓
+
+HOẶC:
+
+Step 1: Vay $1M      ✓
+Step 2: Swap A → B   ✓
+Step 3: Arbitrage    ✗ (thất bại)
+Step 4: Trả $1M + fee???
+→ Toàn bộ REVERT → Tiền về lại pool
+→ Bạn chỉ mất gas fee
+```
+
+## Cách Hoạt Động
+
+### Quy Trình Chi Tiết
+
+```
+                    AAVE / dYdX / Uniswap
+                           │
+    ┌──────────────────────┼──────────────────────┐
+    │                      │                      │
+    ▼                      │                      │
+┌────────┐            ┌────┴────┐            ┌────────┐
+│ 1. Vay │     →      │ 2. Logic │     →     │3. Trả  │
+│ $1M    │            │ của bạn  │            │$1M+fee │
+└────────┘            └──────────┘            └────────┘
+    │                      │                      │
+    │                      │                      │
+    └──────────────── SAME BLOCK ─────────────────┘
+```
+
+### Code Example (Simplified)
+
+```solidity
+// Simplified Flash Loan flow
+contract MyFlashLoan {
+    function executeFlashLoan(uint amount) external {
+        // 1. Borrow from Aave
+        pool.flashLoan(address(this), token, amount);
+    }
+
+    // 2. Aave calls this function
+    function executeOperation(
+        address asset,
+        uint256 amount,
+        uint256 premium  // fee
+    ) external {
+        // 3. Your logic here
+        // - Arbitrage
+        // - Liquidation
+        // - Collateral swap
+
+        // 4. Repay loan + fee
+        uint amountOwed = amount + premium;
+        IERC20(asset).approve(pool, amountOwed);
+    }
+}
+```
+
+## Use Cases
+
+### 1. Arbitrage
+
+```
+Phát hiện chênh lệch giá:
+ETH on Uniswap: $3,000
+ETH on Sushiswap: $3,050
+
+Flash Loan Strategy:
+┌──────────────────────────────────────┐
+│ 1. Vay 100 ETH từ Aave              │
+│ 2. Bán 100 ETH trên Sushi = $305,000│
+│ 3. Mua 100 ETH trên Uni  = $300,000 │
+│ 4. Trả 100 ETH + 0.09% fee to Aave  │
+│                                      │
+│ Profit: $5,000 - $270 fee - gas     │
+│       ≈ $4,700 trong 13 giây!       │
+└──────────────────────────────────────┘
+```
+
+### 2. Liquidation
+
+```
+Ai đó có vị thế sắp bị liquidate:
+- Collateral: 10 ETH ($30,000)
+- Debt: 25,000 DAI
+- Health Factor: < 1 (có thể liquidate)
+- Liquidation bonus: 5%
+
+Flash Loan Strategy:
+┌──────────────────────────────────────┐
+│ 1. Vay 25,000 DAI (flash loan)      │
+│ 2. Trả nợ cho victim → Nhận 5.26 ETH│
+│    (bao gồm 5% bonus)               │
+│ 3. Bán 5.26 ETH → 15,780 DAI        │
+│ 4. Trả flash loan 25,000 DAI + fee  │
+│                                      │
+│ Profit: ~$750 (5% của phần liquidate)│
+└──────────────────────────────────────┘
+```
+
+### 3. Collateral Swap
+
+```
+Bạn có position trên Aave:
+- Collateral: 10 WBTC
+- Debt: 100,000 USDC
+
+Muốn đổi collateral từ WBTC → ETH:
+
+WITHOUT Flash Loan:
+1. Tìm thêm USDC để trả nợ
+2. Trả 100,000 USDC
+3. Rút 10 WBTC
+4. Swap WBTC → ETH
+5. Deposit ETH
+6. Vay lại USDC
+→ Phức tạp, nhiều bước, nhiều gas
+
+WITH Flash Loan:
+┌──────────────────────────────────────┐
+│ 1. Vay 100,000 USDC (flash)         │
+│ 2. Trả nợ Aave                       │
+│ 3. Rút 10 WBTC                       │
+│ 4. Swap WBTC → ETH                   │
+│ 5. Deposit ETH as collateral         │
+│ 6. Borrow USDC để trả flash loan     │
+└──────────────────────────────────────┘
+→ 1 transaction duy nhất!
+```
+
+### 4. Self-Liquidation
+
+```
+Health Factor của bạn gần 1:
+- Không muốn bị liquidate bởi bots
+- Muốn tự xử lý để giảm thiệt hại
+
+Flash Loan Self-Liquidation:
+┌──────────────────────────────────────┐
+│ 1. Vay stablecoin (flash loan)      │
+│ 2. Trả một phần nợ của mình         │
+│ 3. Rút collateral tương ứng         │
+│ 4. Bán collateral                    │
+│ 5. Trả flash loan                    │
+│                                      │
+│ → Tránh được 5-10% liquidation penalty│
+└──────────────────────────────────────┘
+```
+
+## Flash Loan Providers
+
+### So Sánh Các Providers
+
+```
+┌─────────────┬───────────┬──────────────┬─────────────┐
+│ Provider    │ Fee       │ Max Amount   │ Tokens      │
+├─────────────┼───────────┼──────────────┼─────────────┤
+│ Aave V3     │ 0.05%     │ Pool TVL     │ Many        │
+│ Aave V2     │ 0.09%     │ Pool TVL     │ Many        │
+│ dYdX        │ 0%*       │ Pool TVL     │ Limited     │
+│ Uniswap V2  │ 0.3%      │ Pool TVL     │ Any pair    │
+│ Uniswap V3  │ Varies    │ Pool TVL     │ Any pair    │
+│ Balancer    │ 0%**      │ Pool TVL     │ Pool tokens │
+└─────────────┴───────────┴──────────────┴─────────────┘
+
+* dYdX: Free nhưng phức tạp hơn
+** Balancer: Free cho flash loans
+```
+
+## Rủi Ro & Bảo Mật
+
+### Flash Loan Attacks
+
+```
+Flash loans đã được dùng để tấn công:
+
+2020: bZx Attack - $8M
+2020: Harvest Finance - $34M
+2021: Cream Finance - $130M
+2022: Beanstalk - $182M
+
+Common Attack Vectors:
+┌──────────────────────────────────────┐
+│ 1. Oracle Manipulation               │
+│    Dùng flash loan để thao túng giá │
+│                                      │
+│ 2. Governance Attacks                │
+│    Vay tokens → Vote → Trả lại      │
+│                                      │
+│ 3. Reentrancy Attacks                │
+│    Kết hợp flash loan + reentrancy   │
+└──────────────────────────────────────┘
+```
+
+### Bảo Vệ Protocols
+
+```
+Các biện pháp protocols áp dụng:
+
+1. Time-weighted Oracles
+   - Không dùng spot price
+   - Dùng TWAP (time-weighted average)
+
+2. Voting Delay
+   - Phải hold tokens trước khi vote
+   - Tokens locked sau khi vote
+
+3. Flash Loan Guards
+   - Kiểm tra same-block transactions
+   - Limit actions per block
+```
+
+## Có Nên Thử Flash Loans?
+
+### Yêu Cầu
+
+```
+Để sử dụng Flash Loans, bạn cần:
+
+□ Kiến thức Solidity
+□ Hiểu về DeFi protocols
+□ Biết deploy smart contracts
+□ Có khả năng phân tích opportunities
+□ Hiểu về MEV và frontrunning
+□ Đủ ETH cho gas (có thể cao)
+```
+
+### Thực Tế
+
+```
+Flash Loan Arbitrage ngày nay:
+
+❌ Không dễ như videos trên YouTube
+❌ Bots MEV rất nhanh và sophisticated
+❌ Opportunities thường < $100
+❌ Gas có thể > profit
+❌ Cần infrastructure tốt
+
+✓ Vẫn có cơ hội trong:
+  - Cross-chain arbitrage
+  - Long-tail tokens
+  - Complex multi-hop strategies
+  - Liquidations
+```
+
+## Tóm Tắt
+
+```
+FLASH LOANS SUMMARY:
+
+Đặc điểm:
+├── Vay không thế chấp
+├── Trả trong cùng block
+├── Atomic (tất cả hoặc không gì)
+└── Fee thấp (0-0.3%)
+
+Use cases:
+├── Arbitrage
+├── Liquidations
+├── Collateral swaps
+└── Self-liquidation
+
+Risks:
+├── Smart contract bugs
+├── High gas costs
+├── MEV competition
+└── Được dùng cho attacks
+
+Yêu cầu:
+├── Solidity skills
+├── DeFi knowledge
+├── Timing & infrastructure
+└── Risk management
+```
+
+<LessonQuiz lessonId="defi-basics/11-flash-loans" />

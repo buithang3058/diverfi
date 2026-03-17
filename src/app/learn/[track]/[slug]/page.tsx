@@ -25,6 +25,7 @@ import { LessonViewTracker } from "@/components/lesson-view-tracker";
 import { FocusModeToggle } from "@/components/focus-mode";
 import { ReadingPreferences } from "@/components/reading-preferences";
 import { MobileLessonToolbar } from "@/components/mobile-lesson-toolbar";
+import { StructuredData } from "@/components/structured-data";
 import { getTracks } from "@/lib/lessons";
 
 interface Props {
@@ -88,6 +89,20 @@ export default async function LessonPage({ params }: Props) {
 
   return (
     <>
+      <StructuredData
+        type="article"
+        title={lesson.title}
+        description={lesson.description}
+      />
+      <StructuredData
+        type="breadcrumb"
+        items={[
+          { name: "Trang chủ", url: "/" },
+          { name: "Học", url: "/learn" },
+          { name: currentTrack?.title || track, url: `/learn/${track}` },
+          { name: lesson.title, url: `/learn/${track}/${slug}` },
+        ]}
+      />
       <LessonViewTracker lessonId={`${track}/${slug}`} />
       <ReadingProgress />
       <LessonKeyboardNav prevUrl={prevUrl} nextUrl={nextUrl} />

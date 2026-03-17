@@ -8,6 +8,7 @@ import { KeyboardShortcuts } from "@/components/keyboard-shortcuts";
 import { FocusModeProvider } from "@/components/focus-mode";
 import { ReadingPreferencesLoader } from "@/components/reading-preferences";
 import { MobileNav } from "@/components/mobile-nav";
+import { OrganizationSchema, EducationalOrgSchema } from "@/components/structured-data";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
@@ -69,6 +70,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi" suppressHydrationWarning>
+      <head>
+        <OrganizationSchema />
+        <EducationalOrgSchema />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
