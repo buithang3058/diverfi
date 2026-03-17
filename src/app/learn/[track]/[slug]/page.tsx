@@ -22,6 +22,7 @@ import { LessonNotes } from "@/components/lesson-notes";
 import { LessonRating } from "@/components/lesson-rating";
 import { PrintLesson } from "@/components/print-lesson";
 import { LessonViewTracker } from "@/components/lesson-view-tracker";
+import { FocusModeToggle } from "@/components/focus-mode";
 import { getTracks } from "@/lib/lessons";
 
 interface Props {
@@ -117,6 +118,7 @@ export default async function LessonPage({ params }: Props) {
           />
           <BookmarkButton lessonId={`${track}/${slug}`} title={lesson.title} />
           <PrintLesson lessonTitle={lesson.title} />
+          <FocusModeToggle />
           <ReadingTimeTracker lessonId={`${track}/${slug}`} />
         </div>
       </div>

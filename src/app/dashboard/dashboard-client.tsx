@@ -34,6 +34,7 @@ import { DailyTip } from "@/components/daily-tip";
 import { StudyReminder } from "@/components/study-reminder";
 import { ProgressMilestones, MilestoneProgress } from "@/components/progress-milestones";
 import { StreakCalendar } from "@/components/streak-calendar";
+import { TotalStudyTime } from "@/components/total-study-time";
 import type { LessonMeta } from "@/lib/lessons";
 
 interface Track {
@@ -441,6 +442,11 @@ export function DashboardClient({ lessons, tracks, totalMinutes }: Props) {
 
       {/* Study Statistics */}
       <StudyStatistics />
+
+      {/* Total Study Time */}
+      <div className="mb-8">
+        <TotalStudyTime />
+      </div>
 
       {/* Streak Calendar */}
       <div className="mb-8">

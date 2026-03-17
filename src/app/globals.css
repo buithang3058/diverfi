@@ -216,3 +216,31 @@
     border-color: #ccc !important;
   }
 }
+
+/* Focus mode styles */
+.focus-mode header,
+.focus-mode footer,
+.focus-mode nav,
+.focus-mode .no-focus,
+.focus-mode [data-focus-hide],
+.focus-mode [data-toc],
+.focus-mode .fixed:not([data-focus-keep]) {
+  display: none !important;
+}
+
+.focus-mode main {
+  padding-top: 2rem !important;
+}
+
+.focus-mode article {
+  max-width: 700px !important;
+  margin: 0 auto !important;
+}
+
+.focus-mode .prose {
+  font-size: var(--prose-font-size, 100%);
+}
+
+.focus-mode body {
+  overflow-x: hidden;
+}
