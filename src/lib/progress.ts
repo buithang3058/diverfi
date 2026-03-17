@@ -130,6 +130,11 @@ export function getCompletionPercentage(totalLessons: number): number {
   return Math.round((progress.completedLessons.length / totalLessons) * 100);
 }
 
+export function getCompletedCount(): number {
+  const progress = getProgress();
+  return progress.completedLessons.length;
+}
+
 // Bookmarks
 const BOOKMARKS_KEY = "diverfi-bookmarks";
 

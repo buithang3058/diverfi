@@ -136,7 +136,12 @@ export default async function LessonPage({ params }: Props) {
 
       {/* Progress & Navigation */}
       <div className="mt-12 pt-8 border-t">
-        <LessonProgress lessonId={`${track}/${slug}`} />
+        <LessonProgress
+          lessonId={`${track}/${slug}`}
+          lessonTitle={lesson.title}
+          trackTitle={currentTrack?.title || track}
+          totalLessons={getAllLessons().length}
+        />
 
         <div className="flex flex-col sm:flex-row gap-3 sm:justify-between mt-6">
           {prevLesson ? (

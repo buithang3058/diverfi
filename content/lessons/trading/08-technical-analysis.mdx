@@ -1,0 +1,324 @@
+---
+title: "Phân tích Kỹ thuật Cơ bản"
+description: "Học cách đọc chart và các indicators phổ biến trong trading crypto"
+order: 8
+estimatedTime: "15 phút"
+difficulty: "intermediate"
+prerequisites:
+  - "trading/01-trading-basics"
+  - "trading/02-order-types"
+---
+
+## Technical Analysis là gì?
+
+Technical Analysis (TA) là phương pháp phân tích giá dựa trên lịch sử price action và volume, sử dụng charts và indicators để dự đoán xu hướng tương lai.
+
+```
+So sánh hai trường phái:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Fundamental Analysis:
+• Phân tích giá trị thực
+• Tokenomics, team, tech
+• "Coin này có tốt không?"
+• Long-term focus
+
+Technical Analysis:
+• Phân tích price patterns
+• Charts, indicators, volume
+• "Khi nào nên mua/bán?"
+• Short to medium-term focus
+
+→ Nhiều traders kết hợp cả hai
+```
+
+## Đọc Candlestick Charts
+
+```
+Cấu trúc một nến (Candlestick):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+     │       ← Upper Wick (bấc trên)
+     │
+  ┌──┴──┐
+  │     │   ← Body (thân nến)
+  │     │
+  └──┬──┘
+     │
+     │       ← Lower Wick (bấc dưới)
+
+Nến Xanh (Bullish):         Nến Đỏ (Bearish):
+┌─────┐                     ┌─────┐
+│Close│ ← Đóng             │Open │ ← Mở
+│     │                     │     │
+│Open │ ← Mở               │Close│ ← Đóng
+└─────┘                     └─────┘
+Giá tăng                    Giá giảm
+```
+
+## Candlestick Patterns
+
+```
+Bullish Patterns (Tín hiệu tăng):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Hammer (Búa):
+    │
+  ┌─┴─┐
+  │   │  ← Thân nhỏ ở trên
+  └─┬─┘
+    │
+    │    ← Bấc dài ở dưới
+    │
+→ Xuất hiện cuối downtrend
+→ Tín hiệu đảo chiều tăng
+
+Bullish Engulfing:
+  ┌─┐
+  │ │ ← Nến đỏ nhỏ
+  └─┘
+┌─────┐
+│     │ ← Nến xanh lớn "nuốt" nến đỏ
+│     │
+└─────┘
+→ Tín hiệu đảo chiều mạnh
+
+Bearish Patterns (Tín hiệu giảm):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Shooting Star:
+    │
+    │    ← Bấc dài ở trên
+    │
+  ┌─┴─┐
+  │   │  ← Thân nhỏ ở dưới
+  └───┘
+→ Xuất hiện cuối uptrend
+→ Tín hiệu đảo chiều giảm
+
+Doji (Lưỡng lự):
+    │
+  ──┼──  ← Open ≈ Close
+    │
+→ Thị trường chưa quyết định
+→ Cần xác nhận từ nến tiếp theo
+```
+
+## Support và Resistance
+
+```
+Khái niệm:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Support (Hỗ trợ):
+• Mức giá mà buyers thường vào
+• Giá khó giảm xuống dưới
+• "Sàn" của giá
+
+Resistance (Kháng cự):
+• Mức giá mà sellers thường bán
+• Giá khó tăng vượt qua
+• "Trần" của giá
+
+Ví dụ:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+$50,000 ─────────────── Resistance
+            ╱╲    ╱╲
+           ╱  ╲  ╱  ╲
+          ╱    ╲╱    ╲
+$45,000 ─────────────── Support
+
+Breakout:
+• Giá vượt qua Resistance → Bullish
+• Giá xuyên qua Support → Bearish
+• Cần volume confirm
+```
+
+## Trend Lines
+
+```
+Vẽ trend lines:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Uptrend (Xu hướng tăng):
+         ╱
+        ╱
+       ╱╲
+      ╱  ╲
+     ╱    ╲╱
+    ╱────────  ← Nối các đáy cao dần
+   ╱
+
+Downtrend (Xu hướng giảm):
+╲────────  ← Nối các đỉnh thấp dần
+ ╲
+  ╲╱╲
+   ╲ ╲
+    ╲ ╲
+     ╲
+
+Rules:
+• Cần ít nhất 2 điểm để vẽ
+• 3+ điểm = trend line mạnh hơn
+• Breakout trend line = đổi xu hướng
+```
+
+## Moving Averages (MA)
+
+```
+Simple Moving Average (SMA):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Trung bình giá trong X ngày
+• SMA 20: Trung bình 20 ngày gần nhất
+• Smooth out noise
+
+Common MAs:
+• MA 7/9: Short-term
+• MA 20/21: Medium-term
+• MA 50: Long-term
+• MA 200: Very long-term
+
+MA Crossovers:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Golden Cross (Bullish):
+• MA ngắn cắt lên MA dài
+• Ví dụ: MA50 cắt lên MA200
+• Tín hiệu tăng dài hạn
+
+Death Cross (Bearish):
+• MA ngắn cắt xuống MA dài
+• Ví dụ: MA50 cắt xuống MA200
+• Tín hiệu giảm dài hạn
+
+       ╱───────  MA 50
+      ╳  ← Golden Cross
+     ╱ ╲
+────╱   ╲──────  MA 200
+```
+
+## RSI (Relative Strength Index)
+
+```
+RSI là gì:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Momentum indicator
+• Dao động từ 0 đến 100
+• Đo "sức mạnh" của xu hướng
+
+Đọc RSI:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+100 ┬────────────────────
+    │
+ 70 ├────────────────────  ← Overbought
+    │      ╱╲
+ 50 ├─────╱──╲────────────
+    │    ╱    ╲
+ 30 ├───╱──────╲─────────  ← Oversold
+    │  ╱        ╲
+  0 ┴────────────────────
+
+RSI > 70: Overbought (quá mua)
+• Có thể sắp giảm
+• Xem xét chốt lời
+
+RSI < 30: Oversold (quá bán)
+• Có thể sắp tăng
+• Xem xét mua vào
+
+RSI Divergence:
+• Giá tăng nhưng RSI giảm → Bearish divergence
+• Giá giảm nhưng RSI tăng → Bullish divergence
+```
+
+## Volume
+
+```
+Volume cho biết:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Số lượng giao dịch
+• "Sức mạnh" của movement
+• Xác nhận trend
+
+Reading Volume:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Giá tăng + Volume cao = Strong uptrend ✓
+Giá tăng + Volume thấp = Weak move ⚠️
+Giá giảm + Volume cao = Strong downtrend ✓
+Giá giảm + Volume thấp = Weak selloff
+
+Breakout với volume:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Breakout + High volume = Real breakout
+• Breakout + Low volume = Fake breakout?
+• Volume confirms price action
+```
+
+## Fibonacci Retracement
+
+```
+Fibonacci levels:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Dựa trên dãy Fibonacci
+• Dự đoán mức pullback/retracement
+• Key levels: 23.6%, 38.2%, 50%, 61.8%
+
+Cách sử dụng:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+100% ─── $60,000 (Đỉnh)
+         │
+ 61.8% ──├── $56,180
+         │
+ 50% ────├── $55,000
+         │
+ 38.2% ──├── $53,820
+         │
+ 23.6% ──├── $52,360
+         │
+ 0% ─────┴── $50,000 (Đáy)
+
+→ Giá thường bounce tại Fib levels
+→ 61.8% là "golden ratio"
+→ Dùng để đặt buy orders
+```
+
+## Tips cho Beginners
+
+```
+Dos:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Bắt đầu với timeframe lớn (Daily, 4H)
+✓ Học một vài indicators thật kỹ
+✓ Practice trên paper trading trước
+✓ Kết hợp nhiều signals để confirm
+✓ Luôn có plan trước khi trade
+
+Don'ts:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✗ Dùng quá nhiều indicators
+✗ Ignore volume
+✗ Trade chỉ dựa trên 1 signal
+✗ Không set stop-loss
+✗ Trade against the trend
+
+Remember:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"TA không dự đoán tương lai,
+ nó chỉ cho biết xác suất."
+```
+
+## Tóm tắt
+
+- Candlesticks cho biết câu chuyện của giá
+- Support/Resistance là các mức giá quan trọng
+- Moving Averages smooth out price noise
+- RSI cho biết overbought/oversold
+- Volume confirms price movements
+- Kết hợp nhiều tools để có tín hiệu tốt hơn
+- Practice trước khi trade real money
+
+> **Nhớ**: Technical Analysis là công cụ, không phải crystal ball. Luôn quản lý risk và không trade nhiều hơn bạn có thể mất.
