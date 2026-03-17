@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, BookOpen, BarChart3, Calculator, User } from "lucide-react";
+import { Home, BookOpen, BarChart3, Newspaper, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/", icon: Home, label: "Trang chủ" },
   { href: "/learn", icon: BookOpen, label: "Học" },
   { href: "/markets", icon: BarChart3, label: "Thị trường" },
-  { href: "/tools", icon: Calculator, label: "Công cụ" },
+  { href: "/news", icon: Newspaper, label: "Tin tức" },
   { href: "/dashboard", icon: User, label: "Tiến độ" },
 ];
 

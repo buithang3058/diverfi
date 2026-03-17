@@ -11,6 +11,7 @@ import { MobileNav } from "@/components/mobile-nav";
 import { OrganizationSchema, EducationalOrgSchema } from "@/components/structured-data";
 import { PWAProvider } from "@/components/pwa-provider";
 import { AchievementNotification } from "@/components/achievement-notification";
+import { PriceTicker } from "@/components/price-ticker";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
@@ -100,6 +101,7 @@ export default function RootLayout({
           <FocusModeProvider>
             <PWAProvider>
               <ReadingPreferencesLoader />
+              <PriceTicker />
               <HeaderWithSearch />
               <main className="flex-1 container py-6 pb-20 md:pb-6">{children}</main>
               <Footer />
