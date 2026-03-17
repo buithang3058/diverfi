@@ -13,6 +13,9 @@ import { TableOfContents } from "@/components/table-of-contents";
 import { RelatedLessons } from "@/components/related-lessons";
 import { BackToTop } from "@/components/back-to-top";
 import { mdxComponents } from "@/components/mdx-components";
+import { Breadcrumb } from "@/components/breadcrumb";
+import { LessonPrerequisites } from "@/components/lesson-prerequisites";
+import { getTracks } from "@/lib/lessons";
 
 interface Props {
   params: Promise<{
@@ -52,6 +55,8 @@ export default async function LessonPage({ params }: Props) {
   }
 
   const allLessons = getAllLessons(track);
+  const tracks = getTracks();
+  const currentTrack = tracks.find((t) => t.slug === track);
   const currentIndex = allLessons.findIndex((l) => l.slug === slug);
   const prevLesson = currentIndex > 0 ? allLessons[currentIndex - 1] : null;
   const nextLesson = currentIndex < allLessons.length - 1 ? allLessons[currentIndex + 1] : null;
@@ -80,12 +85,13 @@ export default async function LessonPage({ params }: Props) {
       <article className="max-w-3xl flex-1">
         {/* Header */}
       <div className="mb-8">
-        <Link
-          href={`/learn`}
-          className="text-sm text-muted-foreground hover:text-foreground mb-4 inline-block"
-        >
-          ← Quay lại danh sách
-        </Link>
+        <Breadcrumb
+          items={[
+            { label: "Học", href: "/learn" },
+            { label: currentTrack?.title || track, href: `/learn/${track}` },
+            { label: lesson.title },
+          ]}
+        />
         <h1 className="text-3xl font-bold tracking-tight mb-2">{lesson.title}</h1>
         <div className="flex flex-wrap items-center gap-2 text-muted-foreground">
           <Badge variant="secondary">{lesson.estimatedTime}</Badge>
@@ -103,6 +109,14 @@ export default async function LessonPage({ params }: Props) {
           />
         </div>
       </div>
+
+      {/* Prerequisites */}
+      {lesson.prerequisites && lesson.prerequisites.length > 0 && (
+        <LessonPrerequisites
+          prerequisites={lesson.prerequisites}
+          allLessons={getAllLessons()}
+        />
+      )}
 
       {/* Content */}
       <div className="prose prose-neutral dark:prose-invert max-w-none">

@@ -1,9 +1,8 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import { getAllLessons, getTracks } from "@/lib/lessons";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { LessonListItem } from "@/components/lesson-list-item";
+import { Breadcrumb } from "@/components/breadcrumb";
 
 interface Props {
   params: Promise<{
@@ -59,12 +58,12 @@ export default async function TrackPage({ params }: Props) {
   return (
     <div>
       <div className="mb-8">
-        <Link
-          href="/learn"
-          className="text-sm text-muted-foreground hover:text-foreground mb-4 inline-block"
-        >
-          ← Tất cả khóa học
-        </Link>
+        <Breadcrumb
+          items={[
+            { label: "Học", href: "/learn" },
+            { label: info.title },
+          ]}
+        />
         <h1 className="text-3xl font-bold tracking-tight">{info.title}</h1>
         <p className="text-muted-foreground mt-2">{info.description}</p>
         <div className="flex items-center gap-2 mt-4">

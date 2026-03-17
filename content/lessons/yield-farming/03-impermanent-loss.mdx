@@ -1,0 +1,329 @@
+---
+title: "Impermanent Loss chi tiết"
+description: "Hiểu sâu về Impermanent Loss - rủi ro lớn nhất khi cung cấp thanh khoản"
+order: 3
+estimatedTime: "15 phút"
+difficulty: "advanced"
+prerequisites:
+  - "defi-basics/05-liquidity-pool"
+  - "yield-farming/01-yield-farming-basics"
+---
+
+## Impermanent Loss là gì?
+
+**Impermanent Loss (IL)** là sự chênh lệch giá trị giữa việc giữ token trong ví và việc cung cấp thanh khoản vào pool. Đây là khái niệm quan trọng nhất mà liquidity provider cần hiểu.
+
+## Tại sao gọi là "Impermanent"?
+
+Gọi là "tạm thời" vì:
+- Nếu giá quay về mức ban đầu, loss biến mất
+- Chỉ trở thành "permanent" khi bạn rút thanh khoản
+
+```
+Giá ETH tăng 100% → IL = 5.7%
+Giá ETH quay về ban đầu → IL = 0%
+Rút ra khi giá đang lệch → IL trở thành permanent
+```
+
+## Cách IL xảy ra
+
+### AMM và công thức x * y = k
+
+Trong Uniswap V2, pool hoạt động theo công thức:
+
+```
+x * y = k
+
+Trong đó:
+- x = số lượng token A trong pool
+- y = số lượng token B trong pool
+- k = hằng số (constant product)
+```
+
+### Ví dụ cụ thể
+
+**Bước 1: Deposit ban đầu**
+```
+Bạn deposit vào pool ETH/USDC:
+- 1 ETH ($1000)
+- 1000 USDC
+
+Tổng giá trị: $2000
+Pool có k = 1 * 1000 = 1000
+```
+
+**Bước 2: Giá ETH tăng lên $4000**
+```
+Arbitrageurs sẽ mua ETH từ pool (rẻ hơn thị trường)
+cho đến khi giá trong pool = giá thị trường.
+
+Sau arbitrage, pool cân bằng lại:
+- x * y = 1000 (k không đổi)
+- Giá trong pool = y/x = 4000
+
+Giải phương trình:
+- y/x = 4000
+- x * y = 1000
+
+→ x = 0.5 ETH
+→ y = 2000 USDC
+```
+
+**Bước 3: Tính IL**
+```
+Giá trị nếu HODL:
+- 1 ETH × $4000 = $4000
+- 1000 USDC = $1000
+- Tổng: $5000
+
+Giá trị trong pool:
+- 0.5 ETH × $4000 = $2000
+- 2000 USDC = $2000
+- Tổng: $4000
+
+IL = ($5000 - $4000) / $5000 = 20%
+Bạn "mất" $1000 so với HODL
+```
+
+## Công thức tính IL
+
+### Công thức đơn giản
+
+```
+IL = 2 * √(price_ratio) / (1 + price_ratio) - 1
+
+price_ratio = giá mới / giá cũ
+```
+
+### Bảng IL theo mức thay đổi giá
+
+| Thay đổi giá | IL |
+|--------------|-----|
+| 1.25x (tăng 25%) | 0.6% |
+| 1.5x (tăng 50%) | 2.0% |
+| 1.75x (tăng 75%) | 3.8% |
+| 2x (tăng 100%) | 5.7% |
+| 3x (tăng 200%) | 13.4% |
+| 4x (tăng 300%) | 20.0% |
+| 5x (tăng 400%) | 25.5% |
+
+**Lưu ý:** IL xảy ra cả khi giá tăng VÀ giảm. Giá giảm 50% cũng có IL tương đương giá tăng 100%.
+
+## Khi nào IL lớn nhất?
+
+```
+IL phụ thuộc vào:
+1. Mức độ thay đổi giá (càng xa, IL càng lớn)
+2. Tương quan giữa 2 token trong pair
+
+          IL RISK MATRIX
+
+          |  Low IL    |  Medium IL |  High IL   |
+          |------------|------------|------------|
+Stable/   | USDC/USDT  |            |            |
+Stable    | DAI/USDC   |            |            |
+          |------------|------------|------------|
+Correlated|            | ETH/stETH  |            |
+          |            | BTC/WBTC   |            |
+          |------------|------------|------------|
+Uncorrel- |            |            | ETH/USDC   |
+ated      |            |            | BTC/ETH    |
+          |------------|------------|------------|
+Volatile  |            |            | SHIB/ETH   |
+pairs     |            |            | MEME/USDC  |
+```
+
+## IL vs Trading Fees
+
+LP kiếm được trading fees. Câu hỏi quan trọng:
+
+```
+Fees earned > IL?
+
+Ví dụ:
+- IL trong 1 tháng: 5%
+- Fees earned: 8%
+- Net profit: +3%
+
+→ Vẫn có lời dù có IL!
+```
+
+### Tính breakeven
+
+```
+Để hòa vốn, bạn cần:
+- Daily fees × số ngày > IL
+
+Ví dụ: ETH tăng 100% (IL = 5.7%)
+- Nếu daily fee = 0.1%
+- Breakeven = 5.7% / 0.1% = 57 ngày
+
+→ Sau 57 ngày, fees bù được IL
+```
+
+## Strategies để giảm IL
+
+### 1. Chọn pair có tương quan cao
+
+```
+Low IL pairs:
+✓ ETH/stETH (luôn gần 1:1)
+✓ USDC/USDT (cả hai pegged to USD)
+✓ WBTC/renBTC (cả hai đại diện Bitcoin)
+
+High IL pairs (tránh nếu mới):
+✗ ETH/SHIB (SHIB có thể 10x hoặc -90%)
+✗ Meme coins với stablecoins
+```
+
+### 2. Sử dụng Concentrated Liquidity (Uniswap V3)
+
+```
+V2: Thanh khoản trải đều từ $0 đến $∞
+V3: Tập trung thanh khoản trong khoảng giá
+
+Ví dụ: ETH/USDC
+- V2: Cung cấp từ $0 đến $∞
+- V3: Cung cấp từ $2000 đến $4000
+
+V3 ưu điểm:
++ Hiệu quả vốn cao hơn (ít vốn, nhiều fees hơn)
++ IL nhỏ hơn nếu giá trong range
+
+V3 nhược điểm:
+- Giá ra ngoài range = không kiếm fees
+- Cần quản lý active hơn
+```
+
+### 3. IL Protection protocols
+
+Một số protocol cung cấp IL protection:
+
+```
+Bancor:
+- 100% IL protection sau 100 ngày
+- Stake single-sided (chỉ cần 1 token)
+
+Thorchain:
+- IL protection tăng dần theo thời gian
+- 100% sau 100 ngày
+
+Lido (stETH/ETH):
+- IL rất thấp vì stETH ≈ ETH
+```
+
+### 4. Hedging với derivatives
+
+```
+LP ETH/USDC
+    ↓
+Nếu ETH tăng → IL xảy ra
+    ↓
+Hedge bằng short ETH futures
+    ↓
+Short lời bù IL
+```
+
+## Tools tính IL
+
+### Calculator online
+
+```javascript
+// Công thức trong code
+function calculateIL(priceRatio) {
+  return 2 * Math.sqrt(priceRatio) / (1 + priceRatio) - 1;
+}
+
+// Ví dụ: ETH tăng gấp đôi
+calculateIL(2); // = -0.057 = -5.7%
+```
+
+### Tracking tools
+
+- **APY.vision**: Tính IL thực tế cho vị thế của bạn
+- **Revert Finance**: Dashboard cho Uniswap V3
+- **DeFi Saver**: Simulation trước khi LP
+
+## Real-world scenario
+
+### Case study: ETH/USDC trong bull market 2021
+
+```
+Tháng 1/2021: ETH = $1000
+Tháng 11/2021: ETH = $4800
+
+Nếu LP từ tháng 1:
+- Price ratio = 4.8
+- IL = ~23%
+
+Nhưng:
+- Pool APY trung bình: ~30%/năm
+- Fees earned: ~27.5% (11 tháng)
+- Net: +4.5%
+
+→ Vẫn lời, nhưng ít hơn nhiều so với HODL ETH
+   HODL: +380%
+   LP: ~+30%
+```
+
+### Bài học
+
+```
+1. IL không phải lúc nào cũng xấu
+   → Fees có thể bù được
+
+2. Bull market thường không tốt cho LP volatile pairs
+   → HODL outperform LP
+
+3. Sideways market tốt cho LP
+   → Giá ít thay đổi, fees tích lũy
+
+4. Bear market có thể OK cho LP
+   → IL nhưng vẫn giữ được nhiều token hơn
+```
+
+## Khi nào KHÔNG nên LP?
+
+```
+❌ Bạn tin token sẽ pump mạnh
+   → HODL tốt hơn
+
+❌ Bạn cần exit nhanh
+   → IL + slippage khi rút
+
+❌ Pool có volume thấp
+   → Fees không đủ bù IL
+
+❌ Pair quá volatile
+   → IL khó dự đoán
+```
+
+## Khi nào NÊN LP?
+
+```
+✓ Thị trường sideways
+  → Ít IL, tích lũy fees
+
+✓ Stablecoin pairs
+  → Gần như không IL
+
+✓ Correlated pairs
+  → IL thấp
+
+✓ High volume pools
+  → Fees cao bù IL
+
+✓ Có IL protection
+  → Bancor, Thorchain
+```
+
+## Tóm tắt
+
+- IL là chênh lệch giữa LP và HODL
+- IL tỷ lệ thuận với biến động giá
+- Gọi "impermanent" vì có thể biến mất nếu giá quay về
+- Fees có thể bù IL, nhưng không phải lúc nào cũng đủ
+- Chọn pair và strategy phù hợp với kỳ vọng thị trường
+- Sử dụng tools để theo dõi IL thực tế
+
+Hiểu IL là bước quan trọng để trở thành LP thông minh!
