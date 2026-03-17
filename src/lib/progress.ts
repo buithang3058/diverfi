@@ -87,7 +87,41 @@ export function isLessonComplete(lessonId: string): boolean {
 export function updateLastVisited(lessonId: string): boolean {
   const progress = getProgress();
   progress.lastVisited = lessonId;
+
+  // Also update recently viewed list
+  updateRecentlyViewed(lessonId);
+
   return saveProgress(progress);
+}
+
+const RECENTLY_VIEWED_KEY = "diverfi-recently-viewed";
+const MAX_RECENT = 10;
+
+interface RecentLesson {
+  id: string;
+  timestamp: number;
+}
+
+export function updateRecentlyViewed(lessonId: string): void {
+  if (typeof window === "undefined") return;
+
+  try {
+    const stored = localStorage.getItem(RECENTLY_VIEWED_KEY);
+    let recent: RecentLesson[] = stored ? JSON.parse(stored) : [];
+
+    // Remove existing entry for this lesson
+    recent = recent.filter((r) => r.id !== lessonId);
+
+    // Add new entry at the beginning
+    recent.unshift({ id: lessonId, timestamp: Date.now() });
+
+    // Keep only the most recent
+    recent = recent.slice(0, MAX_RECENT);
+
+    localStorage.setItem(RECENTLY_VIEWED_KEY, JSON.stringify(recent));
+  } catch {
+    // Ignore errors
+  }
 }
 
 export function getCompletionPercentage(totalLessons: number): number {

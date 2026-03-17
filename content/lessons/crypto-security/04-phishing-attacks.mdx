@@ -1,0 +1,365 @@
+---
+title: "Phishing và Social Engineering"
+description: "Nhận biết và phòng tránh các hình thức lừa đảo phishing trong crypto"
+order: 4
+estimatedTime: "12 phút"
+difficulty: "beginner"
+prerequisites:
+  - "crypto-security/01-wallet-security"
+---
+
+## Phishing là gì?
+
+Phishing là hình thức lừa đảo giả mạo để đánh cắp thông tin nhạy cảm như seed phrase, private key, hoặc credentials. Đây là nguyên nhân #1 gây mất tiền trong crypto.
+
+## Các hình thức Phishing phổ biến
+
+### 1. Fake Websites
+
+```
+Cách hoạt động:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Scammer tạo website giống hệt protocol thật:
+
+Real:    uniswap.org
+Fake:    unlswap.org      (chữ "i" → "l")
+Fake:    uniswap.com      (sai domain)
+Fake:    app-uniswap.org  (thêm prefix)
+Fake:    uníswap.org      (unicode character)
+
+Khi bạn connect wallet và approve:
+→ Họ drain hết token của bạn
+
+Dấu hiệu nhận biết:
+⚠️ URL hơi khác bình thường
+⚠️ Không có HTTPS hoặc certificate lạ
+⚠️ Pop-up yêu cầu seed phrase
+⚠️ Giao diện hơi khác (fonts, spacing)
+```
+
+### 2. Fake Support/Admin
+
+```
+Kịch bản thường gặp:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Bạn: "Tôi gặp lỗi khi swap trên Uniswap"
+      (đăng trên Discord/Telegram)
+
+Scammer DM: "Xin chào, tôi là Admin Uniswap.
+             Để fix lỗi, hãy connect wallet
+             vào link này: [fake-link]"
+
+Hoặc: "Vui lòng cung cấp seed phrase
+       để chúng tôi verify tài khoản"
+
+⚠️ KHÔNG BAO GIỜ có admin nào DM trước
+⚠️ KHÔNG BAO GIỜ cần seed phrase để "support"
+⚠️ Official support chỉ qua kênh chính thức
+```
+
+### 3. Fake Airdrops
+
+```
+Hình thức:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. "Bạn đã nhận được 1000 UNI miễn phí!"
+2. "Claim airdrop tại: [fake-link]"
+3. Connect wallet → Approve all tokens
+4. Mất hết tiền
+
+Dấu hiệu:
+⚠️ Airdrops "quá tốt để là thật"
+⚠️ Yêu cầu approve không giới hạn
+⚠️ Token lạ xuất hiện trong wallet
+⚠️ Link từ nguồn không official
+```
+
+### 4. Seed Phrase Scams
+
+```
+Các cách lừa lấy seed phrase:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Fake wallet app
+   • App giả mạo MetaMask trên store
+   • Yêu cầu nhập seed để "restore"
+   • Gửi seed về server scammer
+
+2. "Sync wallet" scam
+   • Website yêu cầu "sync" để fix lỗi
+   • Form nhập 12/24 từ seed phrase
+   • Mất tiền ngay lập tức
+
+3. Fake hardware wallet
+   • Mua Ledger/Trezor từ nguồn không chính thức
+   • Đã có sẵn seed phrase (scammer biết)
+   • Bạn gửi tiền vào → Họ rút ra
+
+QUY TẮC VÀNG:
+┌─────────────────────────────────────────┐
+│ KHÔNG BAO GIỜ nhập seed phrase online  │
+│ KHÔNG BAO GIỜ chia sẻ với bất kỳ ai    │
+│ KHÔNG BAO GIỜ chụp ảnh seed phrase     │
+│ KHÔNG BAO GIỜ lưu trên cloud           │
+└─────────────────────────────────────────┘
+```
+
+### 5. Discord/Telegram Scams
+
+```
+Các chiêu trò phổ biến:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Fake Announcement
+   • Server bị hack
+   • Post fake airdrop/mint link
+   • Nhiều người mất tiền
+
+2. Impersonation
+   • Username gần giống admin
+   • "vitalik.eth" vs "vitalik_eth"
+   • DM với link lừa đảo
+
+3. Fake Giveaway
+   • "Gửi 0.1 ETH, nhận lại 1 ETH"
+   • Không có giveaway nào như vậy
+   • 100% scam
+
+4. Bot spam
+   • Bot tự động DM members mới
+   • Link đến fake minting sites
+   • Fake customer support
+```
+
+### 6. Email Phishing
+
+```
+Ví dụ email lừa đảo:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+From: security@coinbase-support.com (FAKE!)
+Subject: Urgent: Your account has been locked
+
+"Your Coinbase account has been locked due
+to suspicious activity. Click here to verify
+your identity: [phishing-link]"
+
+Dấu hiệu:
+⚠️ Email không từ domain chính thức
+⚠️ Tạo urgency (khẩn cấp)
+⚠️ Link không đúng domain
+⚠️ Grammar/spelling errors
+⚠️ Yêu cầu thông tin nhạy cảm
+```
+
+## Social Engineering
+
+```
+Các kỹ thuật tâm lý scammers dùng:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Urgency (Khẩn cấp)
+   "Chỉ còn 5 phút để claim!"
+   "Hành động ngay hoặc mất cơ hội!"
+
+2. Authority (Quyền lực)
+   "Tôi là admin/dev/founder"
+   "Đây là thông báo chính thức"
+
+3. Scarcity (Khan hiếm)
+   "Chỉ 100 slots đầu tiên"
+   "Whitelist sắp đóng"
+
+4. Social Proof
+   "10,000 người đã claim"
+   "Được verify bởi [famous person]"
+
+5. Reciprocity
+   "Free airdrop cho bạn"
+   "Gift đặc biệt vì bạn là member"
+
+→ Khi thấy những signal này, DỪNG LẠI và verify!
+```
+
+## Cách phòng tránh
+
+### 1. Verify URLs
+
+```
+Checklist trước khi connect wallet:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+□ URL chính xác 100%?
+□ HTTPS có padlock?
+□ Bookmark sites hay dùng
+□ Không click link từ DM/email
+□ Google "[protocol] official site"
+□ Check official Twitter/Discord
+```
+
+### 2. Kiểm tra Approvals
+
+```
+Trước khi approve transaction:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+□ Đọc kỹ message trong wallet
+□ Đang approve token nào?
+□ Approve cho contract nào?
+□ Số lượng approve có hợp lý?
+
+🚨 RED FLAGS:
+• "Approve unlimited"
+• Contract address lạ
+• Approve token bạn không định dùng
+• setApprovalForAll (NFTs)
+```
+
+### 3. Dùng tools bảo vệ
+
+```
+Extensions và tools hữu ích:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Wallet Guard
+• Cảnh báo khi vào site nguy hiểm
+• Simulate transaction trước khi sign
+• Free browser extension
+
+Pocket Universe
+• Hiển thị rõ ràng bạn đang approve gì
+• Cảnh báo transactions nguy hiểm
+
+Revoke.cash
+• Kiểm tra và revoke approvals
+• Xem ai có quyền spend tokens của bạn
+
+Fire
+• Transaction preview
+• Hiển thị assets sẽ thay đổi
+```
+
+### 4. Cài đặt bảo mật
+
+```
+Best practices:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Disable DMs trên Discord
+   Settings → Privacy → Allow DMs = OFF
+
+2. Telegram
+   • Settings → Privacy
+   • Who can add me to groups = My contacts
+   • Who can message = My contacts
+
+3. Twitter
+   • Tắt DMs từ người lạ
+   • Filter low-quality messages
+
+4. Email
+   • Dùng email riêng cho crypto
+   • Enable 2FA
+   • Check sender domain kỹ
+```
+
+### 5. Separate Wallets
+
+```
+Chiến lược ví an toàn:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Ví Vault (Cold)     Ví Hot (Daily)      Ví Burner
+───────────────     ────────────────    ──────────
+• 90% tài sản      • 10% tài sản       • Số nhỏ
+• Hardware wallet  • MetaMask          • Dùng thử
+• Ít khi dùng      • DeFi hàng ngày    • Mint NFT
+• Không connect    • Sites đã verify   • Sites mới
+
+Nếu ví burner bị hack → Mất ít
+Nếu ví hot bị hack → Vẫn còn 90% an toàn
+```
+
+## Nếu bị hack thì làm gì?
+
+```
+Bước 1: NHANH CHÓNG
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Chuyển assets còn lại sang ví mới ngay
+• Mỗi giây đều quan trọng
+• Dùng ví/device khác (device hiện tại có thể compromised)
+
+Bước 2: Revoke approvals
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• revoke.cash để revoke tất cả
+• Nhưng nếu seed phrase bị lộ → vô ích
+• Scammer có thể approve lại
+
+Bước 3: Document
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Screenshot mọi thứ
+• Ghi lại timeline
+• Transaction hashes
+• Có thể cần cho report
+
+Bước 4: Report
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Report tới platform (nếu CEX)
+• Report fake site lên Google
+• Cảnh báo community
+• Chainabuse.com để report địa chỉ scam
+
+Bước 5: Learn
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Phân tích bị hack như thế nào
+• Không lặp lại sai lầm
+• Chia sẻ kinh nghiệm để giúp người khác
+```
+
+## Quiz: Nhận biết Scam
+
+```
+Scenario 1:
+"Bạn nhận DM từ 'MetaMask Support' nói rằng
+wallet của bạn cần sync. Họ gửi link và yêu
+cầu nhập seed phrase."
+
+→ SCAM! MetaMask không bao giờ DM. Không nhập
+  seed phrase vào bất kỳ website nào.
+
+Scenario 2:
+"Bạn thấy quảng cáo Google cho 'Uniswap'
+nhưng URL là uni-swap.com"
+
+→ SCAM! Domain sai. Chỉ dùng uniswap.org
+  Quảng cáo Google thường là scam
+
+Scenario 3:
+"Admin trong Discord announce airdrop và
+post link trong #announcements channel"
+
+→ CÓ THỂ SCAM! Verify với Twitter official.
+  Servers có thể bị hack.
+
+Scenario 4:
+"Bạn nhận token lạ trong wallet với tên
+'$1000 USDT Voucher - claim at xyz.com'"
+
+→ SCAM! Đây là airdrop scam. Không interact
+  với token lạ. Không visit link.
+```
+
+## Tóm tắt
+
+- Phishing là nguyên nhân #1 mất tiền trong crypto
+- KHÔNG BAO GIỜ chia sẻ seed phrase
+- Verify URLs trước khi connect wallet
+- Admin/support không bao giờ DM trước
+- Sử dụng tools như Wallet Guard, Revoke.cash
+- Dùng nhiều ví với mục đích khác nhau
+- Nếu bị hack: chuyển tiền ngay, revoke, report
+
+> **Nhớ**: Trong crypto, bạn là ngân hàng của chính mình. Không ai có thể giúp recover nếu bạn mất seed phrase hoặc bị lừa approve scam contract.

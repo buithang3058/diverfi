@@ -1,6 +1,8 @@
 import { getTracks, getAllLessons } from "@/lib/lessons";
 import { TrackCard } from "@/components/track-card";
 import { BookmarkedLessons } from "@/components/bookmarked-lessons";
+import { LessonSearch } from "@/components/lesson-search";
+import { RecentlyViewed } from "@/components/recently-viewed";
 
 export const metadata = {
   title: "Học DeFi",
@@ -34,6 +36,12 @@ export default function LearnPage() {
           Bắt đầu hành trình tìm hiểu về tài chính phi tập trung
         </p>
       </div>
+
+      {/* Search */}
+      <LessonSearch lessons={allLessons} />
+
+      {/* Recently viewed */}
+      <RecentlyViewed lessons={allLessons} />
 
       {/* Bookmarked lessons */}
       <BookmarkedLessons />

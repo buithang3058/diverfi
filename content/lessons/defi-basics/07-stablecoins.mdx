@@ -1,0 +1,273 @@
+---
+title: "Stablecoins là gì?"
+description: "Tìm hiểu về stablecoins - loại crypto ổn định giá và vai trò quan trọng trong DeFi"
+order: 7
+estimatedTime: "10 phút"
+difficulty: "beginner"
+prerequisites:
+  - "defi-basics/01-what-is-defi"
+---
+
+## Stablecoin là gì?
+
+Stablecoin là loại cryptocurrency được thiết kế để giữ giá ổn định, thường neo 1:1 với đồng tiền pháp định như USD. Trong khi Bitcoin có thể biến động 10-20% trong ngày, stablecoin chỉ dao động 0.1-1%.
+
+## Tại sao cần Stablecoin?
+
+```
+Vấn đề với crypto thông thường:
+
+- Giá biến động mạnh
+- Khó định giá hàng hóa
+- Rủi ro khi giữ tiền
+- Không phù hợp cho thanh toán hàng ngày
+
+Stablecoin giải quyết:
+
+✓ Giá ổn định, dễ đoán
+✓ Phù hợp cho thanh toán
+✓ "Nơi trú ẩn" khi thị trường giảm
+✓ Cầu nối giữa crypto và fiat
+```
+
+## Các loại Stablecoin
+
+### 1. Fiat-backed (Bảo chứng bằng fiat)
+
+```
+Cách hoạt động:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Công ty phát hành giữ $1 trong ngân hàng
+2. Phát hành 1 stablecoin
+3. Khi người dùng đổi lại, họ burn stablecoin và trả $1
+
+Ví dụ:
+┌─────────────────────────────────────────┐
+│  USDT (Tether)                          │
+│  • Market cap: ~$80B+                   │
+│  • Lớn nhất, thanh khoản cao nhất       │
+│  • Controversy về reserves              │
+├─────────────────────────────────────────┤
+│  USDC (Circle)                          │
+│  • Market cap: ~$30B+                   │
+│  • Minh bạch, được kiểm toán định kỳ    │
+│  • Phổ biến trong DeFi                  │
+├─────────────────────────────────────────┤
+│  BUSD (Binance USD)                     │
+│  • Được quản lý bởi Paxos               │
+│  • Regulated tại New York               │
+└─────────────────────────────────────────┘
+
+Ưu điểm:          Nhược điểm:
+✓ Đơn giản        ✗ Centralized
+✓ Ổn định         ✗ Cần tin tưởng issuer
+✓ Dễ hiểu         ✗ Có thể bị đóng băng
+```
+
+### 2. Crypto-backed (Bảo chứng bằng crypto)
+
+```
+Cách hoạt động:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Lock crypto (ETH, BTC) vào smart contract
+2. Mint stablecoin với tỷ lệ overcollateralized
+3. Ví dụ: Lock $150 ETH → Mint $100 DAI
+
+         Lock $150 ETH
+              │
+              ▼
+    ┌─────────────────┐
+    │ Smart Contract  │
+    │  (MakerDAO)     │
+    └────────┬────────┘
+              │
+              ▼
+         Mint $100 DAI
+
+Ví dụ: DAI (MakerDAO)
+• Decentralized hoàn toàn
+• Over-collateralized 150%+
+• Governance bởi MKR holders
+
+Ưu điểm:          Nhược điểm:
+✓ Decentralized   ✗ Hiệu quả vốn thấp
+✓ Transparent     ✗ Có thể bị liquidate
+✓ Không bị freeze ✗ Phức tạp hơn
+```
+
+### 3. Algorithmic (Thuật toán)
+
+```
+Cách hoạt động:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Dùng thuật toán và token phụ để giữ giá ổn định
+
+Khi giá > $1:        Khi giá < $1:
+• Mint thêm supply   • Burn supply
+• Bán ra thị trường  • Incentive mua lại
+• Giá giảm về $1     • Giá tăng về $1
+
+⚠️ CẢNH BÁO: Rủi ro cao!
+
+UST/LUNA (2022):
+• Từng là top 3 stablecoin
+• Sụp đổ trong 1 tuần
+• Mất $40B+ giá trị
+• "Death spiral" - không thể recover
+
+Bài học: Algo stablecoins CỰC KỲ rủi ro
+```
+
+## So sánh các Stablecoin phổ biến
+
+```
+┌──────────┬────────────┬───────────┬────────────┬───────────┐
+│          │   USDT     │   USDC    │    DAI     │   FRAX    │
+├──────────┼────────────┼───────────┼────────────┼───────────┤
+│ Loại     │ Fiat-back  │ Fiat-back │ Crypto-back│ Hybrid    │
+│ Issuer   │ Tether     │ Circle    │ MakerDAO   │ Frax      │
+│ Decentral│ ❌         │ ❌        │ ✅         │ Partial   │
+│ Audit    │ Limited    │ Monthly   │ On-chain   │ On-chain  │
+│ Freeze   │ Có thể     │ Có thể    │ Không      │ Partial   │
+│ Chain    │ Multi      │ Multi     │ Ethereum+  │ Multi     │
+└──────────┴────────────┴───────────┴────────────┴───────────┘
+```
+
+## Rủi ro của Stablecoin
+
+### 1. De-peg Risk
+
+```
+Stablecoin có thể mất peg (lệch khỏi $1):
+
+Nguyên nhân:
+• Thiếu reserves
+• Bank run (rút ồ ạt)
+• Lỗi thuật toán
+• Regulatory action
+
+Ví dụ:
+• USDC de-peg xuống $0.87 (3/2023) - SVB collapse
+• UST de-peg xuống $0 (5/2022) - Death spiral
+• USDT de-peg $0.95 (2022) - FUD về reserves
+```
+
+### 2. Regulatory Risk
+
+```
+Stablecoin đang bị chú ý bởi regulators:
+
+• SEC có thể classify là securities
+• Yêu cầu reserves 100% fiat
+• Có thể cấm hoặc hạn chế
+• Ảnh hưởng đến DeFi ecosystem
+```
+
+### 3. Centralization Risk
+
+```
+Với fiat-backed stablecoins:
+
+• Issuer có thể đóng băng tài khoản
+• Blacklist địa chỉ wallet
+• Không thực sự "crypto"
+• Phụ thuộc vào ngân hàng truyền thống
+```
+
+## Stablecoin trong DeFi
+
+```
+Use cases phổ biến:
+
+1. Trading pairs
+   • BTC/USDT, ETH/USDC
+   • Thanh khoản cao
+
+2. Lending/Borrowing
+   • Deposit stablecoin → nhận lãi
+   • Vay stablecoin với collateral
+
+3. Yield Farming
+   • LP stablecoin pairs (ít IL)
+   • Curve, Aave, Compound
+
+4. Payment
+   • Chuyển tiền quốc tế
+   • Chi phí thấp, nhanh
+
+5. Safe haven
+   • Chuyển sang stablecoin khi thị trường giảm
+   • Bảo toàn giá trị
+```
+
+## Cách chọn Stablecoin
+
+```
+Checklist:
+
+□ Mục đích sử dụng?
+  • Trading → USDT (thanh khoản cao)
+  • DeFi → USDC hoặc DAI
+  • Long-term hold → DAI (decentralized)
+
+□ Chain nào?
+  • Ethereum: Tất cả
+  • BSC: USDT, BUSD
+  • Solana: USDC
+  • Arbitrum/Optimism: USDC, DAI
+
+□ Chấp nhận rủi ro nào?
+  • Centralization risk → Fiat-backed
+  • Smart contract risk → Crypto-backed
+  • De-peg risk → Cả hai
+
+□ Cần decentralization không?
+  • Có → DAI, LUSD
+  • Không → USDC, USDT
+```
+
+## Chiến lược với Stablecoin
+
+### 1. Stablecoin Farming
+
+```
+Cung cấp thanh khoản cho stablecoin pairs:
+
+USDC-USDT LP:
+• APY: 2-10%
+• IL: Gần như 0 (cả 2 đều $1)
+• Risk: Smart contract, de-peg
+
+Platforms:
+• Curve Finance (chuyên stablecoins)
+• Uniswap V3 (concentrated liquidity)
+• Aave/Compound (lending)
+```
+
+### 2. Delta-Neutral Strategies
+
+```
+Kiếm yield mà không exposure giá:
+
+1. Deposit ETH làm collateral
+2. Vay stablecoin
+3. Farm với stablecoin
+4. Trả lãi vay < Thu nhập farm
+
+⚠️ Cần monitor liquidation risk
+```
+
+## Tóm tắt
+
+- Stablecoin giữ giá ổn định ~$1
+- 3 loại chính: Fiat-backed, Crypto-backed, Algorithmic
+- USDT và USDC phổ biến nhất (centralized)
+- DAI là lựa chọn decentralized
+- Tránh algorithmic stablecoins (rủi ro cao)
+- Đa dạng hóa stablecoin holdings
+- Kiểm tra de-peg risk trước khi dùng
+
+> **Lời khuyên**: Không nên giữ tất cả stablecoin ở 1 loại. Diversify giữa USDC và DAI để giảm rủi ro.
