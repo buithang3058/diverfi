@@ -30,6 +30,7 @@ import { DataExport } from "@/components/data-export";
 import { LearningRecommendations } from "@/components/learning-recommendations";
 import { CompletedTracks } from "@/components/completed-tracks";
 import { StudyStatistics } from "@/components/study-statistics";
+import { DailyTip } from "@/components/daily-tip";
 import type { LessonMeta } from "@/lib/lessons";
 
 interface Track {
@@ -186,6 +187,9 @@ export function DashboardClient({ lessons, tracks, totalMinutes }: Props) {
           )}
         </div>
       </div>
+
+      {/* Daily Tip */}
+      <DailyTip />
 
       {/* Stats Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5 mb-8">

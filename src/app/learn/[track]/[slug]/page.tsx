@@ -19,6 +19,7 @@ import { BookmarkButton } from "@/components/bookmark-button";
 import { LessonFeedback } from "@/components/lesson-feedback";
 import { ReadingTimeTracker } from "@/components/reading-time-tracker";
 import { LessonNotes } from "@/components/lesson-notes";
+import { LessonRating } from "@/components/lesson-rating";
 import { getTracks } from "@/lib/lessons";
 
 interface Props {
@@ -155,6 +156,11 @@ export default async function LessonPage({ params }: Props) {
 
       {/* Feedback */}
       <LessonFeedback lessonId={`${track}/${slug}`} />
+
+      {/* Rating */}
+      <div className="mt-8">
+        <LessonRating lessonId={`${track}/${slug}`} lessonTitle={lesson.title} />
+      </div>
 
       {/* Notes */}
       <LessonNotes lessonId={`${track}/${slug}`} />

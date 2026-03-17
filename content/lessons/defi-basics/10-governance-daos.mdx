@@ -1,0 +1,358 @@
+---
+title: "Governance & DAOs"
+description: "Tìm hiểu về quản trị phi tập trung và cách tham gia vào các DAO"
+order: 10
+estimatedTime: "12 phút"
+difficulty: "intermediate"
+prerequisites:
+  - "defi-basics/01-what-is-defi"
+  - "defi-basics/03-smart-contracts"
+---
+
+## Governance trong DeFi là gì?
+
+Governance (quản trị) trong DeFi cho phép holders của governance tokens tham gia vào việc ra quyết định cho protocol. Đây là cách DeFi thực hiện phi tập trung hóa quyền lực.
+
+```
+So sánh với công ty truyền thống:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Công ty truyền thống:
+• Board of Directors quyết định
+• Shareholders vote qua proxy
+• Meetings định kỳ
+• Thay đổi chậm
+
+DeFi Protocol:
+• Token holders vote trực tiếp
+• On-chain voting
+• Proposals có thể submit bất cứ lúc nào
+• Execution tự động qua smart contracts
+```
+
+## DAO là gì?
+
+DAO (Decentralized Autonomous Organization) là tổ chức được quản trị bởi smart contracts và các thành viên, không có CEO hay ban quản trị trung tâm.
+
+```
+Cấu trúc DAO:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+┌─────────────────────────────────────────┐
+│               DAO                        │
+├─────────────────────────────────────────┤
+│  ┌─────────┐    ┌─────────┐             │
+│  │ Treasury │    │ Smart   │             │
+│  │ (Funds)  │    │Contracts│             │
+│  └─────────┘    └─────────┘             │
+│        ↑              ↑                  │
+│        │    Governance│                  │
+│        │      Votes   │                  │
+│  ┌─────────────────────────────┐        │
+│  │     Token Holders           │        │
+│  │  (Members / Voters)         │        │
+│  └─────────────────────────────┘        │
+└─────────────────────────────────────────┘
+
+Đặc điểm:
+• Mọi quyết định qua voting
+• Treasury controlled by contracts
+• Rules được code trong smart contracts
+• Transparent và auditable
+```
+
+## Governance Tokens
+
+```
+Governance token cho phép:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Voting rights
+   • 1 token = 1 vote (thường)
+   • Quyết định protocol parameters
+   • Approve/reject proposals
+
+2. Proposal submission
+   • Cần minimum tokens để submit
+   • Đề xuất thay đổi protocol
+
+3. Revenue sharing (một số protocols)
+   • Chia sẻ fees
+   • Buyback & burn
+
+Ví dụ governance tokens:
+• UNI (Uniswap)
+• AAVE (Aave)
+• COMP (Compound)
+• MKR (MakerDAO)
+• CRV (Curve)
+```
+
+## Quy trình Governance
+
+```
+Proposal Lifecycle:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Discussion (Off-chain)
+   • Forum discussions
+   • Discord/Telegram debates
+   • Temperature checks
+
+2. Proposal Draft
+   • Formal proposal writing
+   • Technical specifications
+   • Impact analysis
+
+3. Snapshot Vote (Off-chain)
+   • Gasless voting
+   • Gauge community sentiment
+   • Non-binding
+
+4. On-chain Vote
+   • Actual governance vote
+   • Binding result
+   • Requires gas
+
+5. Timelock
+   • Waiting period (24h - 7 days)
+   • Cho phép review/exit
+
+6. Execution
+   • Automatic via smart contract
+   • Changes take effect
+```
+
+## Các loại Proposals
+
+```
+Parameter Changes:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Thay đổi fee structure
+• Adjust collateral ratios
+• Modify interest rates
+• Update oracle sources
+
+Treasury Management:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Fund development
+• Grants programs
+• Marketing budgets
+• Security audits
+
+Protocol Upgrades:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• New features
+• Bug fixes
+• Integration với protocols khác
+• Migration plans
+
+Token Economics:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Emission schedules
+• Staking rewards
+• Buyback mechanisms
+• Token burns
+```
+
+## Cách tham gia Governance
+
+### Bước 1: Acquire Governance Tokens
+
+```
+Có tokens để vote:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Mua trên DEX/CEX
+• Earn qua liquidity mining
+• Receive qua airdrops
+• Stake để có voting power
+```
+
+### Bước 2: Follow Discussions
+
+```
+Nơi theo dõi proposals:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Forums:
+• Uniswap: gov.uniswap.org
+• Aave: governance.aave.com
+• Compound: comp.xyz
+
+Snapshot (voting platform):
+• snapshot.org
+
+Aggregators:
+• Tally (tally.xyz)
+• Boardroom (boardroom.io)
+```
+
+### Bước 3: Vote
+
+```
+Voting process:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Connect wallet to governance platform
+2. Delegate votes (nếu muốn)
+3. Review proposals
+4. Cast vote (For/Against/Abstain)
+5. Sign transaction
+
+Delegation:
+• Bạn có thể delegate vote cho người khác
+• Họ vote thay bạn
+• Có thể reclaim bất cứ lúc nào
+• Useful nếu không có thời gian research
+```
+
+## Voting Power & Delegation
+
+```
+Voting Power:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Standard:
+• 1 token = 1 vote
+• Whale có nhiều power
+
+Quadratic Voting:
+• Giảm power của whales
+• Cost tăng theo số votes
+• 1 vote = 1 token
+• 4 votes = 16 tokens
+
+Vote Escrow (veCRV model):
+• Lock tokens = more voting power
+• Lock lâu hơn = power nhiều hơn
+• Aligns long-term incentives
+
+Delegation:
+• Self-delegate để có thể vote
+• Delegate cho experts
+• Check delegation status
+```
+
+## Các DAO nổi tiếng
+
+```
+Protocol DAOs:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+MakerDAO (MKR):
+• Quản lý DAI stablecoin
+• Complex governance
+• Risk parameters
+
+Uniswap (UNI):
+• DEX governance
+• Fee switch discussions
+• Grant programs
+
+Aave (AAVE):
+• Lending protocol
+• Risk parameters
+• New asset listings
+
+Investment DAOs:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• BitDAO
+• PleasrDAO
+• FlamingoDAO
+
+Service DAOs:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Developer DAOs
+• Content DAOs
+• Social DAOs
+```
+
+## Risks & Challenges
+
+```
+1. Voter Apathy
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Low participation rates
+• Whales dominate
+• Quorum hard to reach
+
+2. Plutocracy
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Rich = more votes
+• Small holders lack influence
+• Concentration of power
+
+3. Governance Attacks
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Flash loan voting
+• Vote buying
+• Malicious proposals
+
+4. Slow Decision Making
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Long timeframes
+• Analysis paralysis
+• Emergency response difficult
+
+5. Complexity
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Hard to understand proposals
+• Technical knowledge required
+• Time-consuming research
+```
+
+## Best Practices
+
+```
+Cho Voters:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Research proposals kỹ
+✓ Understand implications
+✓ Delegate nếu không có thời gian
+✓ Participate in discussions
+✓ Vote consistently
+
+Cho Protocol Teams:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Clear proposal format
+✓ Adequate voting periods
+✓ Accessible communication
+✓ Progressive decentralization
+✓ Education for participants
+```
+
+## Tools & Platforms
+
+```
+Voting Platforms:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Snapshot - Off-chain voting
+• Tally - On-chain governance
+• Boardroom - Aggregator
+
+Forums:
+• Discourse (most protocols)
+• Commonwealth
+
+Delegation:
+• Sybil (sybil.org)
+• Karma (karma.vote)
+
+Analytics:
+• DeepDAO
+• Messari Governor
+```
+
+## Tóm tắt
+
+- Governance cho phép token holders tham gia quyết định protocol
+- DAO là tổ chức được quản trị bởi members và smart contracts
+- Quy trình: Discussion → Proposal → Vote → Timelock → Execution
+- Có thể delegate votes cho người khác
+- Participation thường thấp - mỗi vote của bạn có giá trị
+- Research kỹ trước khi vote
+
+> **Nhớ**: "With great power comes great responsibility" - Governance token không chỉ để hold, mà để tham gia xây dựng tương lai của DeFi.
