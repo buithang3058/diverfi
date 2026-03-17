@@ -16,6 +16,7 @@ import { mdxComponents } from "@/components/mdx-components";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { LessonPrerequisites } from "@/components/lesson-prerequisites";
 import { BookmarkButton } from "@/components/bookmark-button";
+import { LessonFeedback } from "@/components/lesson-feedback";
 import { getTracks } from "@/lib/lessons";
 
 interface Props {
@@ -148,6 +149,9 @@ export default async function LessonPage({ params }: Props) {
           )}
         </div>
       </div>
+
+      {/* Feedback */}
+      <LessonFeedback lessonId={`${track}/${slug}`} />
 
       {/* Related Lessons */}
       <RelatedLessons

@@ -3,6 +3,7 @@ import { TrackCard } from "@/components/track-card";
 import { BookmarkedLessons } from "@/components/bookmarked-lessons";
 import { LessonSearch } from "@/components/lesson-search";
 import { RecentlyViewed } from "@/components/recently-viewed";
+import { LearningRoadmap } from "@/components/learning-roadmap";
 
 export const metadata = {
   title: "Học DeFi",
@@ -46,16 +47,23 @@ export default function LearnPage() {
       {/* Bookmarked lessons */}
       <BookmarkedLessons />
 
-      <div className="grid gap-4 md:grid-cols-2">
-        {tracks.map((track) => (
-          <TrackCard
-            key={track.slug}
-            track={track}
-            lessonIds={trackLessonIds[track.slug] || []}
-            description={trackDescriptions[track.slug] || `Khóa học về ${track.title}`}
-          />
-        ))}
+      <div className="grid gap-6 lg:grid-cols-3">
+        {/* Main content - Tracks */}
+        <div className="lg:col-span-2 grid gap-4 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+          {tracks.map((track) => (
+            <TrackCard
+              key={track.slug}
+              track={track}
+              lessonIds={trackLessonIds[track.slug] || []}
+              description={trackDescriptions[track.slug] || `Khóa học về ${track.title}`}
+            />
+          ))}
+        </div>
 
+        {/* Sidebar - Learning Roadmap */}
+        <div className="lg:col-span-1">
+          <LearningRoadmap />
+        </div>
       </div>
     </div>
   );

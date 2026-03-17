@@ -1,0 +1,373 @@
+---
+title: "Quản lý Rủi ro trong Trading"
+description: "Chiến lược bảo vệ vốn và tồn tại lâu dài trong thị trường crypto"
+order: 3
+estimatedTime: "12 phút"
+difficulty: "intermediate"
+prerequisites:
+  - "trading/01-trading-basics"
+---
+
+## Tại sao Quản lý Rủi ro quan trọng?
+
+Trong trading, bảo vệ vốn quan trọng hơn kiếm lời. Một trader giỏi không phải người thắng nhiều nhất, mà là người thua ít nhất và tồn tại lâu nhất.
+
+```
+Thống kê thực tế:
+
+• 90% traders thua lỗ
+• 80% thua lỗ bỏ cuộc trong năm đầu
+• Nguyên nhân #1: Quản lý rủi ro kém
+
+Những traders thành công:
+• Thắng 40-60% trades
+• R:R ratio > 2:1
+• Kỷ luật với stop loss
+• Không bao giờ all-in
+```
+
+## Position Sizing
+
+### Rule of 1-2%
+
+```
+QUAN TRỌNG NHẤT trong quản lý rủi ro:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Không bao giờ rủi ro quá 1-2% vốn trong 1 trade
+
+Ví dụ: Vốn $10,000
+• Risk 1% = $100 mỗi trade
+• Risk 2% = $200 mỗi trade
+
+Tại sao?
+┌─────────────────────────────────────────┐
+│ Chuỗi thua    │ Risk 1%  │ Risk 10%    │
+├───────────────┼──────────┼─────────────┤
+│ 5 trades      │ -5%      │ -50%        │
+│ 10 trades     │ -10%     │ -100% (hết) │
+│ 20 trades     │ -18%     │ N/A         │
+└─────────────────────────────────────────┘
+
+Risk 1%: Thua 20 trades liên tiếp vẫn còn 82% vốn
+Risk 10%: Thua 10 trades = mất hết
+```
+
+### Tính Position Size
+
+```
+Công thức:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Position Size = (Vốn × Risk %) / Stop Loss %
+
+Ví dụ 1:
+• Vốn: $10,000
+• Risk: 2% ($200)
+• Stop Loss: 5%
+• Position = $200 / 5% = $4,000
+
+Ví dụ 2:
+• Vốn: $10,000
+• Risk: 1% ($100)
+• Stop Loss: 10%
+• Position = $100 / 10% = $1,000
+
+→ Stop loss xa hơn = Position size nhỏ hơn
+```
+
+### Calculator nhanh
+
+```
+Bảng Position Size (Risk 2%):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Vốn $10,000:
+┌─────────────┬────────────────┐
+│ Stop Loss   │ Position Size  │
+├─────────────┼────────────────┤
+│ 2%          │ $10,000        │
+│ 5%          │ $4,000         │
+│ 10%         │ $2,000         │
+│ 20%         │ $1,000         │
+│ 50%         │ $400           │
+└─────────────┴────────────────┘
+
+Vốn $1,000:
+┌─────────────┬────────────────┐
+│ Stop Loss   │ Position Size  │
+├─────────────┼────────────────┤
+│ 5%          │ $400           │
+│ 10%         │ $200           │
+│ 20%         │ $100           │
+└─────────────┴────────────────┘
+```
+
+## Risk/Reward Ratio
+
+```
+R:R = Potential Reward / Potential Risk
+
+Ví dụ:
+• Entry: $100
+• Stop Loss: $95 (Risk: $5)
+• Take Profit: $115 (Reward: $15)
+• R:R = 15/5 = 3:1
+
+Tại sao R:R quan trọng?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+R:R 1:1 + Win rate 50% = Hòa vốn (trừ phí)
+R:R 2:1 + Win rate 40% = Có lời
+R:R 3:1 + Win rate 30% = Có lời
+
+┌────────┬──────────┬──────────┬──────────┐
+│ R:R    │ Win 30%  │ Win 40%  │ Win 50%  │
+├────────┼──────────┼──────────┼──────────┤
+│ 1:1    │ Lỗ       │ Lỗ       │ Hòa      │
+│ 2:1    │ Lỗ       │ Lời      │ Lời      │
+│ 3:1    │ Hòa      │ Lời      │ Lời lớn  │
+│ 4:1    │ Lời      │ Lời lớn  │ Lời lớn  │
+└────────┴──────────┴──────────┴──────────┘
+
+→ Với R:R 3:1, chỉ cần thắng 30% trades vẫn có lời!
+```
+
+## Stop Loss Strategies
+
+### 1. Fixed Percentage Stop
+
+```
+Đơn giản nhất - cắt lỗ theo % cố định
+
+Ví dụ:
+• Luôn đặt stop loss -5% từ entry
+• Entry $100 → Stop Loss $95
+
+Ưu điểm: Đơn giản, dễ tính
+Nhược điểm: Không theo market structure
+```
+
+### 2. Technical Stop
+
+```
+Đặt stop dựa trên technical analysis
+
+Các vị trí đặt stop phổ biến:
+• Dưới support level
+• Dưới swing low gần nhất
+• Dưới moving average (MA20, MA50)
+• Dưới Bollinger Band lower
+
+Ví dụ:
+         Entry
+           ↓
+    ────●────────────
+         │
+         │  Swing low
+    ─────┼────────────
+         │
+     Stop Loss ← Đặt dưới swing low
+```
+
+### 3. ATR Stop
+
+```
+Dùng Average True Range để tính stop
+
+ATR = Đo độ biến động trung bình
+
+Công thức:
+Stop Loss = Entry - (ATR × Multiplier)
+
+Ví dụ:
+• Entry: $100
+• ATR (14): $5
+• Multiplier: 2
+• Stop = $100 - ($5 × 2) = $90
+
+Ưu điểm: Tự điều chỉnh theo volatility
+```
+
+### 4. Trailing Stop
+
+```
+Stop loss di chuyển theo giá
+
+Cách hoạt động:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Entry: $100
+Trailing: 5%
+Stop: $95
+
+Giá lên $110:
+Stop di chuyển lên: $104.50 (5% dưới $110)
+
+Giá lên $120:
+Stop: $114
+
+Giá giảm từ $120 về $114:
+→ Trigger stop, bán tại $114
+→ Lock profit $14 (14%)
+
+Ưu điểm: Bảo vệ lợi nhuận
+Nhược điểm: Có thể bị stop sớm
+```
+
+## Diversification
+
+```
+Không bỏ tất cả trứng vào 1 giỏ:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Theo Asset Class:
+• 60% Large cap (BTC, ETH)
+• 25% Mid cap (Top 20-50)
+• 10% Small cap (High risk)
+• 5% Cash (Sẵn sàng mua dip)
+
+Theo Sector:
+• DeFi: 30%
+• Layer 1: 30%
+• Layer 2: 20%
+• Gaming/NFT: 10%
+• Stablecoins: 10%
+
+Theo Strategy:
+• 50% Long-term hold
+• 30% Swing trades
+• 20% Active trading
+```
+
+## Tâm lý Trading
+
+### Các cảm xúc nguy hiểm
+
+```
+1. FOMO (Fear Of Missing Out)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Triệu chứng: Mua đuổi khi thấy giá tăng
+Hậu quả: Mua đỉnh, kẹp hàng
+Giải pháp: Có kế hoạch trước, chờ pullback
+
+2. Revenge Trading
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Triệu chứng: Thua → Tức giận → Trade tiếp để gỡ
+Hậu quả: Thua thêm, vòng xoáy thua lỗ
+Giải pháp: Nghỉ ngơi sau khi thua, giới hạn loss/ngày
+
+3. Overconfidence
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Triệu chứng: Thắng liên tiếp → Tự tin thái quá
+Hậu quả: Tăng size, bỏ qua risk management
+Giải pháp: Luôn tuân thủ rules, không thay đổi
+
+4. Fear
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Triệu chứng: Sợ vào lệnh, sợ mất tiền
+Hậu quả: Bỏ lỡ cơ hội tốt
+Giải pháp: Trade với size nhỏ, tăng dần confidence
+```
+
+### Trading Journal
+
+```
+Ghi chép mỗi trade để cải thiện:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Ngày: ___________
+Pair: ___________
+Direction: Long / Short
+
+Entry: $________
+Stop Loss: $________ (Risk: __%)
+Take Profit: $________ (R:R: __)
+Position Size: $________
+
+Lý do vào lệnh:
+□ Technical setup
+□ Fundamental catalyst
+□ Market conditions
+
+Kết quả:
+□ Win $________ (+__%)
+□ Loss $________ (-__%)
+□ Break even
+
+Bài học:
+_____________________________
+_____________________________
+
+Review hàng tuần:
+• Win rate: ___%
+• Avg R:R: __:1
+• Biggest winner: $____
+• Biggest loser: $____
+• Mistakes to avoid: ____
+```
+
+## Rules của Traders thành công
+
+```
+1. NEVER trade without stop loss
+   → Mọi trade đều có exit plan
+
+2. Risk only 1-2% per trade
+   → Tồn tại để trade tiếp
+
+3. Don't chase green candles
+   → Chờ pullback, không FOMO
+
+4. Cut losses fast, let winners run
+   → Cắt lỗ nhanh, để lời chạy
+
+5. Never average down on a losing trade
+   → Không DCA khi đang thua
+
+6. Take breaks after losses
+   → Nghỉ ngơi để reset tâm lý
+
+7. Stick to your plan
+   → Kỷ luật với chiến lược đã đặt ra
+
+8. Keep learning
+   → Thị trường luôn thay đổi
+
+9. Trade the chart, not your emotions
+   → Dựa trên data, không phải cảm xúc
+
+10. Protect capital first, profits second
+    → Bảo vệ vốn là ưu tiên số 1
+```
+
+## Pre-Trade Checklist
+
+```
+Trước mỗi trade, tự hỏi:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+□ Tôi có bias rõ ràng không? (Long/Short)
+□ Entry point có lý do technical không?
+□ Stop loss đã đặt chưa?
+□ R:R có > 2:1 không?
+□ Position size đúng rule 1-2%?
+□ Tâm lý tôi có ổn không?
+□ Tôi có chấp nhận được mất số tiền này?
+□ Thị trường có tin tức quan trọng sắp tới?
+
+Nếu có bất kỳ câu nào = NO → KHÔNG VÀO LỆNH
+```
+
+## Tóm tắt
+
+- Rule 1-2%: Không bao giờ risk quá 2% vốn/trade
+- Position sizing: Tính size dựa trên stop loss
+- R:R ratio: Minimum 2:1, tốt hơn là 3:1
+- Stop loss: Luôn có và tuân thủ
+- Diversification: Không all-in một asset
+- Tâm lý: Kiểm soát FOMO, revenge trading
+- Journal: Ghi chép và học từ mỗi trade
+- Rules: Có và tuân thủ trading rules
+
+> **Nhớ**: "Rule number one: Never lose money. Rule number two: Never forget rule number one." - Warren Buffett
