@@ -28,6 +28,8 @@ import { Achievements } from "@/components/achievements";
 import { WeeklyGoals } from "@/components/weekly-goals";
 import { DataExport } from "@/components/data-export";
 import { LearningRecommendations } from "@/components/learning-recommendations";
+import { CompletedTracks } from "@/components/completed-tracks";
+import { StudyStatistics } from "@/components/study-statistics";
 import type { LessonMeta } from "@/lib/lessons";
 
 interface Track {
@@ -356,6 +358,9 @@ export function DashboardClient({ lessons, tracks, totalMinutes }: Props) {
         </div>
       </div>
 
+      {/* Completed Tracks Certificates */}
+      <CompletedTracks lessons={lessons} tracks={tracks} />
+
       {/* Bookmarked Lessons */}
       {bookmarks.length > 0 && (
         <div className="mb-8">
@@ -420,6 +425,9 @@ export function DashboardClient({ lessons, tracks, totalMinutes }: Props) {
       <div className="mb-8">
         <Achievements />
       </div>
+
+      {/* Study Statistics */}
+      <StudyStatistics />
 
       {/* Data Export */}
       <div className="mb-8">
