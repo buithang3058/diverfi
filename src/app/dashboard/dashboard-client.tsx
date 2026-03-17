@@ -27,6 +27,7 @@ import { ShareProgress } from "@/components/share-progress";
 import { Achievements } from "@/components/achievements";
 import { WeeklyGoals } from "@/components/weekly-goals";
 import { DataExport } from "@/components/data-export";
+import { LearningRecommendations } from "@/components/learning-recommendations";
 import type { LessonMeta } from "@/lib/lessons";
 
 interface Track {
@@ -272,6 +273,11 @@ export function DashboardClient({ lessons, tracks, totalMinutes }: Props) {
       {/* Weekly Goals */}
       <div className="mb-8">
         <WeeklyGoals />
+      </div>
+
+      {/* Learning Recommendations */}
+      <div className="mb-8">
+        <LearningRecommendations lessons={lessons} />
       </div>
 
       {/* Continue Learning */}
