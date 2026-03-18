@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Share2, Copy, Check, BookOpen, X, Facebook } from "lucide-react";
@@ -23,6 +23,10 @@ export function LessonShareCard({
 }: Props) {
   const [isOpen, setIsOpen] = useState(autoOpen);
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (autoOpen) setIsOpen(true);
+  }, [autoOpen]);
 
   const progressPercent = Math.round((completedCount / totalLessons) * 100);
 
