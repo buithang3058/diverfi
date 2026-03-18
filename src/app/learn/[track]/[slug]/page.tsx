@@ -27,6 +27,8 @@ import { ReadingPreferences } from "@/components/reading-preferences";
 import { MobileLessonToolbar } from "@/components/mobile-lesson-toolbar";
 import { StructuredData } from "@/components/structured-data";
 import { getTracks } from "@/lib/lessons";
+import { AffiliateCta } from "@/components/affiliate-cta";
+import { TelegramCard } from "@/components/telegram-banner";
 
 interface Props {
   params: Promise<{
@@ -194,6 +196,9 @@ export default async function LessonPage({ params }: Props) {
         </div>
       </div>
 
+      {/* Affiliate CTAs */}
+      <AffiliateCta track={track} />
+
       {/* Feedback */}
       <LessonFeedback lessonId={`${track}/${slug}`} />
 
@@ -211,6 +216,11 @@ export default async function LessonPage({ params }: Props) {
         lessons={allLessons}
         track={track}
       />
+
+      {/* Telegram community */}
+      <div className="mt-8">
+        <TelegramCard />
+      </div>
     </article>
     <TableOfContents />
     </div>

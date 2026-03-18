@@ -48,6 +48,14 @@ export function Footer() {
               </li>
               <li>
                 <Link
+                  href="/protocols"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Protocols
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/faq"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
@@ -106,6 +114,14 @@ export function Footer() {
           <div>
             <h3 className="font-semibold mb-3">Kết nối</h3>
             <ul className="space-y-2 text-sm">
+              <li>
+                <Link
+                  href="/partners"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Đối tác & Tài trợ
+                </Link>
+              </li>
               <li>
                 <a
                   href={siteConfig.links.github}

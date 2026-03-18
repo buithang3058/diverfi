@@ -11,6 +11,7 @@ import { MobileNav } from "@/components/mobile-nav";
 import { OrganizationSchema, EducationalOrgSchema } from "@/components/structured-data";
 import { PWAProvider } from "@/components/pwa-provider";
 import { AchievementNotification } from "@/components/achievement-notification";
+import { TelegramBanner } from "@/components/telegram-banner";
 import { PriceTicker } from "@/components/price-ticker";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
@@ -108,6 +109,7 @@ export default function RootLayout({
               <MobileNav />
               <KeyboardShortcuts />
               <AchievementNotification />
+              <TelegramBanner />
             </PWAProvider>
           </FocusModeProvider>
         </ThemeProvider>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Confetti } from "@/components/confetti";
 import { LessonShareCard } from "@/components/lesson-share-card";
@@ -30,6 +30,14 @@ export function LessonProgress({
   const [saveError, setSaveError] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [completedCount, setCompletedCount] = useState(0);
+  const [showShareCard, setShowShareCard] = useState(false);
+  const shareTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (shareTimerRef.current) clearTimeout(shareTimerRef.current);
+    };
+  }, []);
 
   useEffect(() => {
     // Check if lesson is already complete
@@ -52,6 +60,8 @@ export function LessonProgress({
       setCompletedCount(getCompletedCount());
       updateStreak(); // Update study streak
       recordLearningActivity(); // Record in calendar
+      // Auto-open share card after confetti (2.5s delay)
+      shareTimerRef.current = setTimeout(() => setShowShareCard(true), 2500);
     } else {
       setSaveError(true);
     }
@@ -86,6 +96,7 @@ export function LessonProgress({
             trackTitle={trackTitle}
             completedCount={completedCount}
             totalLessons={totalLessons}
+            autoOpen={showShareCard}
           />
         </div>
       </>

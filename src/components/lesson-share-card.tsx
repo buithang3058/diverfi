@@ -3,13 +3,15 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Share2, Copy, Check, BookOpen, X } from "lucide-react";
+import { Share2, Copy, Check, BookOpen, X, Facebook } from "lucide-react";
+import { ZaloIcon, TelegramIcon } from "@/components/icons/zalo-icon";
 
 interface Props {
   lessonTitle: string;
   trackTitle: string;
   completedCount: number;
   totalLessons: number;
+  autoOpen?: boolean;
 }
 
 export function LessonShareCard({
@@ -17,13 +19,36 @@ export function LessonShareCard({
   trackTitle,
   completedCount,
   totalLessons,
+  autoOpen = false,
 }: Props) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(autoOpen);
   const [copied, setCopied] = useState(false);
 
   const progressPercent = Math.round((completedCount / totalLessons) * 100);
 
   const shareText = `Vừa hoàn thành "${lessonTitle}" trên diverFi! ${progressPercent}% tiến độ học DeFi. Học cùng tôi tại diverfi.com`;
+  const pageUrl = typeof window !== "undefined" ? window.location.href : "";
+
+  const shareZalo = () => {
+    window.open(
+      `https://zalo.me/share?u=${encodeURIComponent(pageUrl)}&t=${encodeURIComponent(shareText)}`,
+      "_blank"
+    );
+  };
+
+  const shareFacebook = () => {
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}&quote=${encodeURIComponent(shareText)}`,
+      "_blank"
+    );
+  };
+
+  const shareTelegram = () => {
+    window.open(
+      `https://t.me/share/url?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}`,
+      "_blank"
+    );
+  };
 
   const handleCopy = async () => {
     try {
@@ -149,34 +174,43 @@ export function LessonShareCard({
               </div>
             </div>
 
-            {/* Actions */}
-            <div className="flex gap-2">
-              <Button onClick={handleShare} className="flex-1 gap-2">
-                <Share2 className="h-4 w-4" />
-                Chia sẻ
+            {/* Platform share buttons */}
+            <div className="grid grid-cols-3 gap-2 mb-3">
+              <Button
+                onClick={shareZalo}
+                className="flex flex-col gap-1 h-auto py-2.5 bg-[#0068ff] hover:bg-[#0055cc] text-white text-xs"
+              >
+                <ZaloIcon className="h-5 w-5" />
+                Zalo
               </Button>
               <Button
-                variant="outline"
-                onClick={handleCopy}
-                className="flex-1 gap-2"
+                onClick={shareFacebook}
+                className="flex flex-col gap-1 h-auto py-2.5 bg-[#1877f2] hover:bg-[#1560cc] text-white text-xs"
               >
-                {copied ? (
-                  <>
-                    <Check className="h-4 w-4" />
-                    Đã copy
-                  </>
-                ) : (
-                  <>
-                    <Copy className="h-4 w-4" />
-                    Copy text
-                  </>
-                )}
+                <Facebook className="h-5 w-5" />
+                Facebook
+              </Button>
+              <Button
+                onClick={shareTelegram}
+                className="flex flex-col gap-1 h-auto py-2.5 bg-[#0088cc] hover:bg-[#0077bb] text-white text-xs"
+              >
+                <TelegramIcon className="h-5 w-5" />
+                Telegram
               </Button>
             </div>
 
-            <p className="text-xs text-muted-foreground text-center mt-4">
-              Chia sẻ thành tích của bạn với bạn bè!
-            </p>
+            {/* Copy fallback */}
+            <Button
+              variant="outline"
+              onClick={handleCopy}
+              className="w-full gap-2"
+            >
+              {copied ? (
+                <><Check className="h-4 w-4" />Đã copy!</>
+              ) : (
+                <><Copy className="h-4 w-4" />Copy text chia sẻ</>
+              )}
+            </Button>
           </CardContent>
         </Card>
       </div>

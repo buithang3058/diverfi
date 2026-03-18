@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Twitter, Facebook, Link2, Check } from "lucide-react";
+import { ZaloIcon, TelegramIcon } from "@/components/icons/zalo-icon";
 
 interface Props {
   title: string;
@@ -28,6 +29,20 @@ export function ShareButtons({ title, url }: Props) {
     );
   };
 
+  const shareZalo = () => {
+    window.open(
+      `https://zalo.me/share?u=${encodeURIComponent(url)}&t=${encodeURIComponent(shareText)}`,
+      "_blank"
+    );
+  };
+
+  const shareTelegram = () => {
+    window.open(
+      `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(shareText)}`,
+      "_blank"
+    );
+  };
+
   const copyLink = async () => {
     try {
       await navigator.clipboard.writeText(url);
@@ -41,14 +56,15 @@ export function ShareButtons({ title, url }: Props) {
   return (
     <div className="flex items-center gap-2">
       <span className="text-sm text-muted-foreground">Chia sẻ:</span>
+      {/* Zalo — most important for Vietnam */}
       <Button
         variant="outline"
         size="icon"
         className="h-8 w-8"
-        onClick={shareTwitter}
-        title="Chia sẻ lên Twitter"
+        onClick={shareZalo}
+        title="Chia sẻ lên Zalo"
       >
-        <Twitter className="h-4 w-4" />
+        <ZaloIcon className="h-4 w-4" />
       </Button>
       <Button
         variant="outline"
@@ -58,6 +74,24 @@ export function ShareButtons({ title, url }: Props) {
         title="Chia sẻ lên Facebook"
       >
         <Facebook className="h-4 w-4" />
+      </Button>
+      <Button
+        variant="outline"
+        size="icon"
+        className="h-8 w-8"
+        onClick={shareTelegram}
+        title="Chia sẻ lên Telegram"
+      >
+        <TelegramIcon className="h-4 w-4" />
+      </Button>
+      <Button
+        variant="outline"
+        size="icon"
+        className="h-8 w-8"
+        onClick={shareTwitter}
+        title="Chia sẻ lên Twitter"
+      >
+        <Twitter className="h-4 w-4" />
       </Button>
       <Button
         variant="outline"
