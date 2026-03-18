@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -14,10 +14,11 @@ interface Props {
 }
 
 export function TelegramBanner({ variant = "banner", memberCount = "1,000+" }: Props) {
-  const [dismissed, setDismissed] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return localStorage.getItem(DISMISS_KEY) === "1";
-  });
+  const [dismissed, setDismissed] = useState(false);
+
+  useEffect(() => {
+    setDismissed(localStorage.getItem(DISMISS_KEY) === "1");
+  }, []);
 
   if (dismissed) return null;
 
