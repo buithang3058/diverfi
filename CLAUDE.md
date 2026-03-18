@@ -13,7 +13,7 @@
 - Storage: localStorage (no auth/DB for MVP)
 
 ## Communication Rules (IMPORTANT)
-- Chủ tôi không biết code
+- Tôi không biết code
 - Trả lời tối đa 5 dòng mỗi bước
 - Chạy lệnh luôn, không hỏi confirm trừ khi destructive
 - Không giải thích lý thuyết
