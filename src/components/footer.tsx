@@ -25,7 +25,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/learn"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors block py-1"
                 >
                   Học DeFi
                 </Link>
@@ -33,7 +33,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/markets"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors block py-1"
                 >
                   Thị trường
                 </Link>
@@ -41,7 +41,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/glossary"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors block py-1"
                 >
                   Thuật ngữ
                 </Link>
@@ -49,7 +49,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/protocols"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors block py-1"
                 >
                   Protocols
                 </Link>
@@ -57,7 +57,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/faq"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors block py-1"
                 >
                   FAQ
                 </Link>
@@ -65,7 +65,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/tools"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors block py-1"
                 >
                   Công cụ
                 </Link>
@@ -82,7 +82,7 @@ export function Footer() {
                   href="https://defillama.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors block py-1"
                 >
                   DefiLlama
                 </a>
@@ -92,7 +92,7 @@ export function Footer() {
                   href="https://ethereum.org/vi"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors block py-1"
                 >
                   Ethereum.org
                 </a>
@@ -102,7 +102,7 @@ export function Footer() {
                   href="https://coinmarketcap.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors block py-1"
                 >
                   CoinMarketCap
                 </a>
@@ -117,7 +117,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/partners"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors block py-1"
                 >
                   Đối tác & Tài trợ
                 </Link>
@@ -127,7 +127,7 @@ export function Footer() {
                   href={siteConfig.links.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors block py-1"
                 >
                   GitHub
                 </a>
@@ -137,7 +137,7 @@ export function Footer() {
                   href={siteConfig.links.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors block py-1"
                 >
                   Twitter
                 </a>
