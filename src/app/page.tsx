@@ -141,7 +141,7 @@ export default function Home() {
       {/* Featured Lessons Section */}
       <section className="w-full py-12 border-t">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold">Bài học nổi bật</h2>
+          <h2 className="text-[1.75rem] font-semibold">Bài học nổi bật</h2>
           <Button
             variant="ghost"
             nativeButton={false}
@@ -176,7 +176,7 @@ export default function Home() {
       {/* Popular Terms Section */}
       <section className="w-full py-12 border-t">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold">Thuật ngữ phổ biến</h2>
+          <h2 className="text-[1.75rem] font-semibold">Thuật ngữ phổ biến</h2>
           <Button
             variant="ghost"
             nativeButton={false}
@@ -217,7 +217,7 @@ export default function Home() {
       <section className="w-full py-12 border-t">
         <Card className="bg-primary text-primary-foreground">
           <CardContent className="p-8 text-center">
-            <h2 className="text-2xl font-bold mb-2">Sẵn sàng bắt đầu?</h2>
+            <h2 className="text-[1.75rem] font-semibold mb-2">Sẵn sàng bắt đầu?</h2>
             <p className="mb-6 opacity-90">
               Tham gia ngay để học về DeFi và crypto một cách bài bản
             </p>
