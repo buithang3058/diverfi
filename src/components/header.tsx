@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { Menu, X } from "lucide-react";
-import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -19,23 +18,21 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">
-          <nav className="flex items-center space-x-6 text-sm font-medium">
+          <nav className="flex items-center space-x-1 text-sm font-medium">
             {siteConfig.nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="transition-colors hover:text-foreground/80 text-foreground/60"
+                className="flex items-center px-3 py-3 transition-colors hover:text-foreground/80 text-foreground/60"
               >
                 {item.title}
               </Link>
             ))}
           </nav>
-          <ThemeToggle />
         </div>
 
-        {/* Mobile: Theme toggle + Menu Button */}
+        {/* Mobile: Menu Button */}
         <div className="flex items-center md:hidden">
-          <ThemeToggle />
           <button
             className="p-2 -mr-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -58,7 +55,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="block py-2 text-foreground/80 hover:text-foreground transition-colors"
+                className="flex items-center py-3 text-foreground/80 hover:text-foreground transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.title}

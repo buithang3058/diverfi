@@ -7,13 +7,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { getAllLessons, getTracks } from "@/lib/lessons";
 import { getAllTerms } from "@/lib/glossary";
 import { ContinueLearning } from "@/components/continue-learning";
 import { Newsletter } from "@/components/newsletter";
 import { LearningStats } from "@/components/learning-stats";
-import { BookOpen, TrendingUp, Search, GraduationCap } from "lucide-react";
+import { BookOpen } from "lucide-react";
 
 export default function Home() {
   const lessons = getAllLessons();
@@ -49,10 +48,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="w-full py-12 md:py-20 lg:py-28">
         <div className="flex flex-col items-center space-y-4 text-center">
-          <Badge variant="secondary" className="mb-2">
-            100% Miễn phí
-          </Badge>
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
+          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-5xl">
             Học DeFi & Crypto
             <br />
             <span className="text-muted-foreground">dành cho người Việt</span>
@@ -113,61 +109,32 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="w-full py-12">
-        <h2 className="text-2xl font-bold text-center mb-8">
-          Tại sao chọn diverFi?
-        </h2>
-        <div className="grid gap-6 md:grid-cols-3">
-          <Card>
-            <CardHeader>
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-2">
-                <GraduationCap className="h-5 w-5 text-primary" />
-              </div>
-              <CardTitle>Học từ cơ bản</CardTitle>
-              <CardDescription>
-                Bắt đầu từ những khái niệm đơn giản nhất
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Blockchain là gì? Ví crypto hoạt động như thế nào? DeFi khác gì
-                CeFi? Tất cả được giải thích dễ hiểu bằng tiếng Việt.
+      {/* Differentiators Section */}
+      <section className="w-full py-12 border-t">
+        <div className="max-w-2xl space-y-5">
+          <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
+            Tại sao diverFi khác biệt
+          </p>
+          <div className="space-y-4">
+            <div className="flex gap-3">
+              <span className="text-muted-foreground mt-0.5">→</span>
+              <p className="text-base">
+                <strong>Mỗi bài học có Risk Table rõ ràng</strong> — không bài nào bỏ qua rủi ro. Bạn biết chính xác có thể mất bao nhiêu, trong trường hợp nào.
               </p>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-2">
-                <TrendingUp className="h-5 w-5 text-primary" />
-              </div>
-              <CardTitle>Dữ liệu thị trường</CardTitle>
-              <CardDescription>Theo dõi TVL real-time</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                TVL của các DeFi protocols hàng đầu từ DefiLlama. Tất cả dữ liệu
-                bạn cần để ra quyết định.
+            </div>
+            <div className="flex gap-3">
+              <span className="text-muted-foreground mt-0.5">→</span>
+              <p className="text-base">
+                <strong>Ví dụ dùng VNĐ, không phải $</strong> — bởi vì 50 triệu đồng dễ hình dung hơn $2,000, đặc biệt khi đang cân nhắc rủi ro.
               </p>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-2">
-                <Search className="h-5 w-5 text-primary" />
-              </div>
-              <CardTitle>Thuật ngữ</CardTitle>
-              <CardDescription>Từ điển crypto tiếng Việt</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                APY, TVL, Impermanent Loss, Liquidity Mining... Hiểu rõ ý nghĩa
-                từng thuật ngữ trước khi đầu tư.
+            </div>
+            <div className="flex gap-3">
+              <span className="text-muted-foreground mt-0.5">→</span>
+              <p className="text-base">
+                <strong>Có lập trường — không "tuỳ trường hợp"</strong> — mỗi bài kết thúc bằng: bạn NÊN hay KHÔNG NÊN làm gì với số tiền cụ thể của bạn.
               </p>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
       </section>
 

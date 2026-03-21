@@ -21,5 +21,16 @@
 - Chỉ báo khi cần input thực sự từ tôi
 
 ## Current Status
-- Week 1 Day 1: Done — Next.js + Tailwind + ShadCN setup
-- Next: Week 1 Day 2 — Contentlayer + MDX config
+- v0.43.0.0 — Affiliate system, partners page, glossary SEO, protocol pages, viral share loop
+- Next: Content depth (long-form rewrites) + SEO optimization
+
+## OS Context
+Đọc các file sau trước khi đề xuất bất cứ thứ gì:
+- `project/context/business_goal.md` — North star: 100k user / 12 tháng, revenue tháng 8/2026
+- `project/context/scope.md` — Chỉ làm content + SEO. Mọi thứ khác đều ngoài scope
+- `project/context/stakeholders.md` — Solo founder, user = người đi làm VN, affiliate chưa ký
+- `project/context/terminology.md` — Định nghĩa thuật ngữ sản phẩm và marketing
+
+## Priority Filter
+> Trước khi đề xuất bất cứ task nào, hỏi: "Cái này giúp rank cao hơn hoặc giúp user tìm thấy diverFi không?"
+> Nếu không → đừng đề xuất.

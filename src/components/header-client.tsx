@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { Menu, X } from "lucide-react";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { SearchDialog } from "@/components/search-dialog";
 
 interface Props {
@@ -25,25 +24,23 @@ export function HeaderClient({ lessons, terms }: Props) {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-4">
-          <nav className="flex items-center space-x-6 text-sm font-medium">
+          <nav className="flex items-center space-x-1 text-sm font-medium">
             {siteConfig.nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="transition-colors hover:text-foreground/80 text-foreground/60"
+                className="flex items-center px-3 py-3 transition-colors hover:text-foreground/80 text-foreground/60"
               >
                 {item.title}
               </Link>
             ))}
           </nav>
           <SearchDialog lessons={lessons} terms={terms} />
-          <ThemeToggle />
         </div>
 
-        {/* Mobile: Search + Theme toggle + Menu Button */}
+        {/* Mobile: Search + Menu Button */}
         <div className="flex items-center gap-1 md:hidden">
           <SearchDialog lessons={lessons} terms={terms} />
-          <ThemeToggle />
           <button
             className="p-2 -mr-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -66,7 +63,7 @@ export function HeaderClient({ lessons, terms }: Props) {
               <Link
                 key={item.href}
                 href={item.href}
-                className="block py-2 text-foreground/80 hover:text-foreground transition-colors"
+                className="flex items-center py-3 text-foreground/80 hover:text-foreground transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.title}

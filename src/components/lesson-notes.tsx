@@ -79,6 +79,7 @@ export function LessonNotes({ lessonId }: Props) {
               onChange={(e) => setNote(e.target.value)}
               placeholder="Viết ghi chú cho bài học này..."
               className="w-full min-h-[120px] p-3 border rounded-lg bg-background resize-y text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
+              suppressHydrationWarning
             />
             <div className="flex items-center justify-between mt-3">
               <div className="text-xs text-muted-foreground">

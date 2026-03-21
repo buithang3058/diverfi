@@ -9,7 +9,7 @@ This checklist applies to **source code in the diff** — not rendered output. R
 **Trigger:** Only run this checklist if the diff touches frontend files. Use `gstack-diff-scope` to detect:
 
 ```bash
-eval $(~/.claude/skills/gstack/bin/gstack-diff-scope <base> 2>/dev/null)
+source <(~/.claude/skills/gstack/bin/gstack-diff-scope <base> 2>/dev/null)
 ```
 
 If `SCOPE_FRONTEND=false`, skip the entire design review silently.
@@ -24,7 +24,7 @@ Each item is tagged with a detection confidence level:
 
 - **[HIGH]** — Reliably detectable via grep/pattern match. Definitive findings.
 - **[MEDIUM]** — Detectable via pattern aggregation or heuristic. Flag as findings but expect some noise.
-- **[LOW]** — Requires understanding visual intent. Present as: "Possible issue — verify visually or run /qa-design-review."
+- **[LOW]** — Requires understanding visual intent. Present as: "Possible issue — verify visually or run /design-review."
 
 ---
 
@@ -38,7 +38,7 @@ Each item is tagged with a detection confidence level:
 **ASK** (everything else — requires design judgment):
 - All AI slop findings, typography structure, spacing choices, interaction state gaps, DESIGN.md violations
 
-**LOW confidence items** → present as "Possible: [description]. Verify visually or run /qa-design-review." Never AUTO-FIX.
+**LOW confidence items** → present as "Possible: [description]. Verify visually or run /design-review." Never AUTO-FIX.
 
 ---
 
@@ -55,7 +55,7 @@ Design Review: N issues (X auto-fixable, Y need input, Z possible)
   Recommended fix: suggested fix
 
 **POSSIBLE (verify visually):**
-- [file:line] Possible issue — verify with /qa-design-review
+- [file:line] Possible issue — verify with /design-review
 ```
 
 If no issues found: `Design Review: No issues found.`
