@@ -5,6 +5,7 @@ import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { Menu, X } from "lucide-react";
 import { SearchDialog } from "@/components/search-dialog";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 interface Props {
   lessons: { slug: string; title: string; description: string; track: string }[];
@@ -36,11 +37,13 @@ export function HeaderClient({ lessons, terms }: Props) {
             ))}
           </nav>
           <SearchDialog lessons={lessons} terms={terms} />
+          <ThemeToggle />
         </div>
 
-        {/* Mobile: Search + Menu Button */}
+        {/* Mobile: Search + Theme + Menu Button */}
         <div className="flex items-center gap-1 md:hidden">
           <SearchDialog lessons={lessons} terms={terms} />
+          <ThemeToggle />
           <button
             className="p-2 -mr-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
