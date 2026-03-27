@@ -15,6 +15,7 @@ export const siteConfig = {
     { title: "Thuật ngữ", href: "/glossary" },
     { title: "Tin tức", href: "/news" },
     { title: "Công cụ", href: "/tools" },
+    { title: "Về diverFi", href: "/about" },
   ],
   keywords: [
     "DeFi",
