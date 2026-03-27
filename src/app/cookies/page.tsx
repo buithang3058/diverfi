@@ -53,6 +53,26 @@ export default function CookiesPage() {
           </div>
         </div>
 
+          <div className="border rounded-lg p-4 space-y-1">
+            <p className="text-sm font-semibold">Google Analytics (GA4)</p>
+            <p className="text-sm text-muted-foreground">
+              Đo lường chi tiết hơn Vercel Analytics: nguồn traffic, thiết bị, quốc gia,
+              thời gian trên trang. Dữ liệu ẩn danh, IP được rút gọn. Google lưu dữ liệu
+              trên server của họ theo chính sách riêng.
+            </p>
+            <p className="text-xs text-muted-foreground">Loại: Phân tích | Cookie: _ga, _ga_* | Có thể tắt: Có</p>
+          </div>
+
+          <div className="border rounded-lg p-4 space-y-1">
+            <p className="text-sm font-semibold">Google Search Console</p>
+            <p className="text-sm text-muted-foreground">
+              Công cụ xác minh sở hữu site và theo dõi hiệu suất SEO. Không đặt cookie
+              phía người dùng — chỉ dùng meta tag xác minh một lần, không ảnh hưởng đến
+              trải nghiệm của bạn.
+            </p>
+            <p className="text-xs text-muted-foreground">Loại: Xác minh kỹ thuật | Cookie: Không có | Ảnh hưởng đến bạn: Không</p>
+          </div>
+
         <p className="text-base text-muted-foreground leading-relaxed">
           Không có cookie quảng cáo. Không có cookie theo dõi hành vi cho bên thứ ba.
           Không có cookie social media tự động.
