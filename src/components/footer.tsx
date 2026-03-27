@@ -151,11 +151,13 @@ export function Footer() {
           <p className="text-sm text-muted-foreground">
             © {currentYear} {siteConfig.name}. Miễn phí và mã nguồn mở.
           </p>
-          <div className="flex items-center gap-3 text-xs text-muted-foreground">
-            <span>Dữ liệu thị trường từ DefiLlama. Không phải lời khuyên đầu tư.</span>
-            <Link href="/disclaimer" className="hover:text-foreground transition-colors underline underline-offset-2">
-              Disclaimer
-            </Link>
+          <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+            <span>Không phải lời khuyên đầu tư.</span>
+            <Link href="/disclaimer" className="hover:text-foreground transition-colors underline underline-offset-2">Disclaimer</Link>
+            <Link href="/privacy" className="hover:text-foreground transition-colors underline underline-offset-2">Bảo mật</Link>
+            <Link href="/cookies" className="hover:text-foreground transition-colors underline underline-offset-2">Cookie</Link>
+            <Link href="/terms" className="hover:text-foreground transition-colors underline underline-offset-2">Điều khoản</Link>
+            <Link href="/content-policy" className="hover:text-foreground transition-colors underline underline-offset-2">Nội dung</Link>
           </div>
         </div>
       </div>
