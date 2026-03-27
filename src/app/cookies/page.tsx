@@ -95,7 +95,7 @@ export default function CookiesPage() {
         </p>
         <p className="text-base text-muted-foreground leading-relaxed">
           Để xóa dữ liệu localStorage: vào Settings trình duyệt → Clear site data cho
-          diverfi.app. Tiến độ học sẽ bị xóa.
+          diverfi.com. Tiến độ học sẽ bị xóa.
         </p>
       </section>
 

@@ -20,7 +20,7 @@ export function ShareProgress({ completedCount, totalLessons, level }: Props) {
 📊 Tiến độ: ${progressPercent}%
 🏆 Cấp độ: ${level}
 
-Học DeFi miễn phí tại: diverfi.vercel.app
+Học DeFi miễn phí tại: diverfi.com
 
 #DeFi #Crypto #Learning`;
 

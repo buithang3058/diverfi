@@ -61,7 +61,7 @@ const PACKAGES = [
   },
 ];
 
-const CONTACT_EMAIL = "hello@diverfi.app";
+const CONTACT_EMAIL = "hello@diverfi.com";
 
 function buildMailtoLink(packageName: string) {
   const subject = encodeURIComponent(`[Đối tác] ${packageName} Package — Yêu cầu thông tin`);

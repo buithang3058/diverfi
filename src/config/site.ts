@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "diverFi",
   description:
     "Học DeFi & Crypto dành cho người Việt. Từ zero đến hero - hiểu về blockchain, DeFi, và cách tham gia thị trường crypto an toàn.",
-  url: "https://diverfi.vercel.app",
+  url: "https://diverfi.com",
   ogImage: "/og-image.png",
   links: {
     twitter: "https://twitter.com/diverfi",

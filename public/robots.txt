@@ -9,4 +9,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://diverfi.vercel.app/sitemap.xml
+Sitemap: https://diverfi.com/sitemap.xml

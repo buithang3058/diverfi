@@ -59,7 +59,7 @@ export default function PrivacyPage() {
         <h2 className="text-lg font-semibold">Bạn nên làm gì</h2>
         <p className="text-base text-muted-foreground leading-relaxed">
           Nếu muốn xóa dữ liệu tiến độ học: vào Settings trình duyệt → Clear localStorage
-          cho diverfi.app. Xong.
+          cho diverfi.com. Xong.
         </p>
         <p className="text-base text-muted-foreground leading-relaxed">
           Nếu bạn có câu hỏi về dữ liệu, liên hệ qua Telegram:{" "}

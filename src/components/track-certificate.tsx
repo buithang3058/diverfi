@@ -31,14 +31,14 @@ export function TrackCertificate({
 
   const handleShare = async () => {
     setIsSharing(true);
-    const shareText = `Tôi vừa hoàn thành khóa học "${trackTitle}" trên diverFi với ${lessonsCount} bài học! Học DeFi miễn phí tại diverfi.vercel.app #DeFi #Crypto #Learning`;
+    const shareText = `Tôi vừa hoàn thành khóa học "${trackTitle}" trên diverFi với ${lessonsCount} bài học! Học DeFi miễn phí tại diverfi.com #DeFi #Crypto #Learning`;
 
     try {
       if (navigator.share) {
         await navigator.share({
           title: `Chứng chỉ ${trackTitle}`,
           text: shareText,
-          url: "https://diverfi.vercel.app",
+          url: "https://diverfi.com",
         });
       } else {
         await navigator.clipboard.writeText(shareText);
@@ -68,7 +68,7 @@ export function TrackCertificate({
                     Mã chứng chỉ: ${certificateId}
 
 ════════════════════════════════════════════════════════════
-                    diverfi.vercel.app
+                    diverfi.com
 ════════════════════════════════════════════════════════════
     `.trim();
 

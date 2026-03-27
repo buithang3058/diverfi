@@ -14,7 +14,7 @@ export function LessonSummary({ title, points }: Props) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
-    const text = `📚 ${title}\n\nKey takeaways:\n${points.map((p) => `• ${p}`).join("\n")}\n\nHọc tại: diverfi.vercel.app`;
+    const text = `📚 ${title}\n\nKey takeaways:\n${points.map((p) => `• ${p}`).join("\n")}\n\nHọc tại: diverfi.com`;
 
     try {
       await navigator.clipboard.writeText(text);
