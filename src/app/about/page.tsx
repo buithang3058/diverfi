@@ -24,14 +24,14 @@ export default function AboutPage() {
       <section>
         <div className="space-y-5">
           {[
-            { year: "2018", text: "Tôi mất tiền vì Ponzi." },
-            { year: "2019–2020", text: "Tôi DCA và giữ kỷ luật." },
-            { year: "2020", text: "Tôi có thể dừng. Tôi không dừng." },
-            { year: "2022", text: "Tôi thiếu cảnh giác khi sự kiện LUNA xảy ra." },
-            { year: "2025", text: "Tôi tiếp tục mất tiền vì FOMO." },
+            { year: "2018", text: "Tôi mất tiền vì Ponzi.", danger: false },
+            { year: "2019–2020", text: "Tôi DCA và giữ kỷ luật.", danger: false },
+            { year: "2020", text: "Tôi có thể dừng. Tôi không dừng.", danger: false },
+            { year: "2022", text: "Tôi thấy LUNA sập. Tôi không thoát.", danger: true },
+            { year: "2025", text: "Tôi tiếp tục mất tiền vì FOMO.", danger: true },
           ].map((item) => (
             <div key={item.year} className="flex gap-6 items-baseline">
-              <span className="font-mono text-sm font-semibold text-primary min-w-[72px]">
+              <span className={`font-mono text-sm font-semibold min-w-[72px] ${item.danger ? "text-red-600" : "text-primary"}`}>
                 {item.year}
               </span>
               <p className="text-base text-muted-foreground">{item.text}</p>
@@ -40,12 +40,33 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 3. Core Truth */}
-      <section className="border-l-4 border-primary pl-5 space-y-3">
-        <p className="text-base leading-relaxed">
+      {/* 2.5 Credibility — RISK C: confession > credentials */}
+      <section className="space-y-2">
+        <p className="text-sm text-muted-foreground">
+          Tôi học IT, sau đó chuyển sang marketing. Tôi có nhiều năm làm trong lĩnh vực đầu tư và tài chính.
+        </p>
+        <p className="text-2xl font-semibold leading-snug">
+          Tôi không thiếu thông tin.
+        </p>
+        <p className="text-base text-muted-foreground">
+          Tôi chỉ nhiều lần không làm theo điều mình đã biết là đúng.
+        </p>
+      </section>
+
+      {/* IMAGE: Ảnh thật của founder — candid, không phải headshot
+           Kích thước: 640×400px, tỷ lệ 16:9 hoặc 4:3
+           Style: trắng đen hoặc màu tự nhiên, không filter
+           Alt: "Bui Thang — founder diverFi"
+           Đặt: sau block credibility, trước Core Truth
+           → Thêm <Image> khi có ảnh thật: src="/images/founder.jpg" className="w-full rounded-sm grayscale" />
+      */}
+
+      {/* 3. Core Truth — RISK A: poster moment, no border */}
+      <section className="space-y-4">
+        <p className="text-base text-muted-foreground">
           Bạn không mất tiền vì thiếu thông tin.
         </p>
-        <p className="text-base leading-relaxed font-semibold">
+        <p className="text-[28px] font-bold leading-tight">
           Bạn mất tiền vì bạn không làm theo những gì bạn đã biết là đúng.
         </p>
       </section>
