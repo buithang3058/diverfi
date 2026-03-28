@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="280" height="80" viewBox="0 0 280 80" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;700&amp;display=swap');
+      .wordmark { font-family: 'Geist', -apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif; letter-spacing: -0.025em; }
+    </style>
+  </defs>
+  <text class="wordmark" x="24" y="54" font-size="40">
+    <tspan font-weight="300" fill="#0A0A0A">diver</tspan><tspan font-weight="700" fill="#2F6BFF">Fi</tspan>
+  </text>
+</svg>

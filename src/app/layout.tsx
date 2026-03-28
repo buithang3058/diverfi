@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Be_Vietnam_Pro, JetBrains_Mono } from "next/font/google";
+import { Be_Vietnam_Pro, JetBrains_Mono, Geist } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { HeaderWithSearch } from "@/components/header-with-search";
 import { Footer } from "@/components/footer";
@@ -20,6 +20,12 @@ const beVietnamPro = Be_Vietnam_Pro({
   variable: "--font-sans",
   subsets: ["latin", "vietnamese"],
   weight: ["400", "500", "600", "700"],
+});
+
+const geist = Geist({
+  variable: "--font-geist",
+  subsets: ["latin"],
+  weight: ["300", "700", "800"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -88,12 +94,14 @@ export default function RootLayout({
       <head>
         <meta name="theme-color" content="#7c3aed" />
         <meta name="mobile-web-app-capable" content="yes" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico" sizes="32x32" />
         <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
         <OrganizationSchema />
         <EducationalOrgSchema />
       </head>
       <body
-        className={`${beVietnamPro.variable} ${jetbrainsMono.variable} font-sans antialiased min-h-screen flex flex-col`}
+        className={`${beVietnamPro.variable} ${jetbrainsMono.variable} ${geist.variable} font-sans antialiased min-h-screen flex flex-col`}
       >
         <ThemeProvider
           attribute="class"
