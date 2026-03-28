@@ -133,18 +133,28 @@ Dùng khi trích dẫn TVL, APY, volume theo thời gian.
 
 ## 4. Kích thước và định dạng
 
-| Loại ảnh | Kích thước | Format |
-|----------|-----------|--------|
-| Flow diagram | 800×450px (16:9) | PNG |
-| Screenshot | 800px width, height tự do | PNG |
-| Comparison table | 800×auto | PNG |
-| Risk matrix | 600×600px (1:1) | PNG |
-| Data chart | 800×400px | PNG |
-| OG Image (mỗi bài) | 1200×630px | PNG/JPG |
+> **Nguyên tắc:** Upload ảnh **2x kích thước hiển thị** để sắc nét trên màn hình Retina.
+> Content width tối đa của diverFi là **720px** — ảnh sẽ tự scale xuống.
 
-**Export:**
-- PNG cho diagram và screenshot (không mất nét)
-- JPG cho ảnh có nhiều gradient/photo (nhỏ hơn)
+### Kích thước chuẩn
+
+| Loại ảnh | Upload (gốc) | Hiển thị thực tế | Tỷ lệ | Format |
+|----------|-------------|-----------------|-------|--------|
+| **Featured Image** | 1200×630px | 720×378px | 16:9 | PNG/JPG |
+| **OG Image** (share mạng xã hội) | 1200×630px | — | 16:9 | JPG |
+| **Flow diagram** | 1440×810px | 720×405px | 16:9 | PNG |
+| **Screenshot ngang** | 1440×810px | 720×405px | 16:9 | PNG |
+| **Screenshot dọc** | 960×720px | 720×540px | 4:3 | PNG |
+| **Comparison table** | 1440×auto | 720×auto | tự do | PNG |
+| **Risk matrix** | 800×800px | 400×400px | 1:1 | PNG |
+| **Data chart** | 1440×720px | 720×360px | 2:1 | PNG |
+| **Icon / Protocol logo** | 400×400px | 40–80px | 1:1 | PNG/SVG |
+
+### Lưu ý
+- Featured Image và OG Image dùng chung 1 file `1200×630px`
+- File sau compress: **<500KB** (dùng squoosh.app nếu vượt)
+- PNG cho diagram và screenshot (không mất nét text/icon)
+- JPG cho ảnh chứa nhiều vùng màu liên tục (chart, photo)
 - Tên file: `[slug-bai]-[mo-ta].png` — ví dụ: `liquidity-pool-flow-diagram.png`
 
 ---
