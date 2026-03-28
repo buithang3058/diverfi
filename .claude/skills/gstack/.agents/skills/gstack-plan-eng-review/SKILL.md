@@ -30,8 +30,10 @@ _PROACTIVE=$($GSTACK_BIN/gstack-config get proactive 2>/dev/null || echo "true")
 _PROACTIVE_PROMPTED=$([ -f ~/.gstack/.proactive-prompted ] && echo "yes" || echo "no")
 _BRANCH=$(git branch --show-current 2>/dev/null || echo "unknown")
 echo "BRANCH: $_BRANCH"
+_SKILL_PREFIX=$($GSTACK_BIN/gstack-config get skill_prefix 2>/dev/null || echo "false")
 echo "PROACTIVE: $_PROACTIVE"
 echo "PROACTIVE_PROMPTED: $_PROACTIVE_PROMPTED"
+echo "SKILL_PREFIX: $_SKILL_PREFIX"
 source <($GSTACK_BIN/gstack-repo-mode 2>/dev/null) || true
 REPO_MODE=${REPO_MODE:-unknown}
 echo "REPO_MODE: $REPO_MODE"
@@ -46,7 +48,15 @@ echo "TEL_PROMPTED: $_TEL_PROMPTED"
 mkdir -p ~/.gstack/analytics
 echo '{"skill":"plan-eng-review","ts":"'$(date -u +%Y-%m-%dT%H:%M:%SZ)'","repo":"'$(basename "$(git rev-parse --show-toplevel 2>/dev/null)" 2>/dev/null || echo "unknown")'"}'  >> ~/.gstack/analytics/skill-usage.jsonl 2>/dev/null || true
 # zsh-compatible: use find instead of glob to avoid NOMATCH error
-for _PF in $(find ~/.gstack/analytics -maxdepth 1 -name '.pending-*' 2>/dev/null); do [ -f "$_PF" ] && $GSTACK_BIN/gstack-telemetry-log --event-type skill_run --skill _pending_finalize --outcome unknown --session-id "$_SESSION_ID" 2>/dev/null || true; break; done
+for _PF in $(find ~/.gstack/analytics -maxdepth 1 -name '.pending-*' 2>/dev/null); do
+  if [ -f "$_PF" ]; then
+    if [ "$_TEL" != "off" ] && [ -x "$GSTACK_BIN/gstack-telemetry-log" ]; then
+      $GSTACK_BIN/gstack-telemetry-log --event-type skill_run --skill _pending_finalize --outcome unknown --session-id "$_SESSION_ID" 2>/dev/null || true
+    fi
+    rm -f "$_PF" 2>/dev/null || true
+  fi
+  break
+done
 ```
 
 If `PROACTIVE` is `"false"`, do not proactively suggest gstack skills AND do not
@@ -54,6 +64,11 @@ auto-invoke skills based on conversation context. Only run skills the user expli
 types (e.g., /qa, /ship). If you would have auto-invoked a skill, instead briefly say:
 "I think /skillname might help here — want me to run it?" and wait for confirmation.
 The user opted out of proactive behavior.
+
+If `SKILL_PREFIX` is `"true"`, the user has namespaced skill names. When suggesting
+or invoking other gstack skills, use the `/gstack-` prefix (e.g., `/gstack-qa` instead
+of `/qa`, `/gstack-ship` instead of `/ship`). Disk paths are unaffected — always use
+`$GSTACK_ROOT/[skill-name]/SKILL.md` for reading skill files.
 
 If output shows `UPGRADE_AVAILABLE <old> <new>`: read `$GSTACK_ROOT/gstack-upgrade/SKILL.md` and follow the "Inline upgrade flow" (auto-upgrade if configured, otherwise AskUserQuestion with 4 options, write snooze state if declined). If `JUST_UPGRADED <from> <to>`: tell user "Running gstack v{to} (just updated!)" and continue.
 
@@ -273,15 +288,20 @@ Run this bash:
 _TEL_END=$(date +%s)
 _TEL_DUR=$(( _TEL_END - _TEL_START ))
 rm -f ~/.gstack/analytics/.pending-"$_SESSION_ID" 2>/dev/null || true
-$GSTACK_ROOT/bin/gstack-telemetry-log \
-  --skill "SKILL_NAME" --duration "$_TEL_DUR" --outcome "OUTCOME" \
-  --used-browse "USED_BROWSE" --session-id "$_SESSION_ID" 2>/dev/null &
+# Local analytics (always available, no binary needed)
+echo '{"skill":"SKILL_NAME","duration_s":"'"$_TEL_DUR"'","outcome":"OUTCOME","browse":"USED_BROWSE","session":"'"$_SESSION_ID"'","ts":"'$(date -u +%Y-%m-%dT%H:%M:%SZ)'"}' >> ~/.gstack/analytics/skill-usage.jsonl 2>/dev/null || true
+# Remote telemetry (opt-in, requires binary)
+if [ "$_TEL" != "off" ] && [ -x $GSTACK_ROOT/bin/gstack-telemetry-log ]; then
+  $GSTACK_ROOT/bin/gstack-telemetry-log \
+    --skill "SKILL_NAME" --duration "$_TEL_DUR" --outcome "OUTCOME" \
+    --used-browse "USED_BROWSE" --session-id "$_SESSION_ID" 2>/dev/null &
+fi
 ```
 
 Replace `SKILL_NAME` with the actual skill name from frontmatter, `OUTCOME` with
 success/error/abort, and `USED_BROWSE` with true/false based on whether `$B` was used.
-If you cannot determine the outcome, use "unknown". This runs in the background and
-never blocks the user.
+If you cannot determine the outcome, use "unknown". The local JSONL always logs. The
+remote binary only runs if telemetry is not off and the binary exists.
 
 ## Plan Status Footer
 
@@ -365,6 +385,7 @@ When evaluating architecture, think "boring by default." When reviewing tests, t
 
 ### Design Doc Check
 ```bash
+setopt +o nomatch 2>/dev/null || true  # zsh compat
 SLUG=$($GSTACK_ROOT/browse/bin/remote-slug 2>/dev/null || basename "$(git rev-parse --show-toplevel 2>/dev/null || pwd)")
 BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null | tr '/' '-' || echo 'no-branch')
 DESIGN=$(ls -t ~/.gstack/projects/$SLUG/*-$BRANCH-design-*.md 2>/dev/null | head -1)
@@ -414,6 +435,7 @@ If the Read fails (file not found), say:
 
 After /office-hours completes, re-run the design doc check:
 ```bash
+setopt +o nomatch 2>/dev/null || true  # zsh compat
 SLUG=$($GSTACK_ROOT/browse/bin/remote-slug 2>/dev/null || basename "$(git rev-parse --show-toplevel 2>/dev/null || pwd)")
 BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null | tr '/' '-' || echo 'no-branch')
 DESIGN=$(ls -t ~/.gstack/projects/$SLUG/*-$BRANCH-design-*.md 2>/dev/null | head -1)
@@ -491,6 +513,7 @@ Before analyzing coverage, detect the project's test framework:
 2. **If CLAUDE.md has no testing section, auto-detect:**
 
 ```bash
+setopt +o nomatch 2>/dev/null || true  # zsh compat
 # Detect project runtime
 [ -f Gemfile ] && echo "RUNTIME:ruby"
 [ -f package.json ] && echo "RUNTIME:node"
@@ -737,6 +760,33 @@ For each new codepath identified in the test review diagram, list one realistic 
 
 If any failure mode has no test AND no error handling AND would be silent, flag it as a **critical gap**.
 
+### Worktree parallelization strategy
+
+Analyze the plan's implementation steps for parallel execution opportunities. This helps the user split work across git worktrees (via Claude Code's Agent tool with `isolation: "worktree"` or parallel workspaces).
+
+**Skip if:** all steps touch the same primary module, or the plan has fewer than 2 independent workstreams. In that case, write: "Sequential implementation, no parallelization opportunity."
+
+**Otherwise, produce:**
+
+1. **Dependency table** — for each implementation step/workstream:
+
+| Step | Modules touched | Depends on |
+|------|----------------|------------|
+| (step name) | (directories/modules, NOT specific files) | (other steps, or —) |
+
+Work at the module/directory level, not file level. Plans describe intent ("add API endpoints"), not specific files. Module-level ("controllers/, models/") is reliable; file-level is guesswork.
+
+2. **Parallel lanes** — group steps into lanes:
+   - Steps with no shared modules and no dependency go in separate lanes (parallel)
+   - Steps sharing a module directory go in the same lane (sequential)
+   - Steps depending on other steps go in later lanes
+
+Format: `Lane A: step1 → step2 (sequential, shared models/)` / `Lane B: step3 (independent)`
+
+3. **Execution order** — which lanes launch in parallel, which wait. Example: "Launch A + B in parallel worktrees. Merge both. Then C."
+
+4. **Conflict flags** — if two parallel lanes touch the same module directory, flag it: "Lanes X and Y both touch module/ — potential merge conflict. Consider sequential execution or careful coordination."
+
 ### Completion summary
 At the end of the review, fill in and display this summary so the user can see all findings at a glance:
 - Step 0: Scope Challenge — ___ (scope accepted as-is / scope reduced per recommendation)
@@ -749,6 +799,7 @@ At the end of the review, fill in and display this summary so the user can see a
 - TODOS.md updates: ___ items proposed to user
 - Failure modes: ___ critical gaps flagged
 - Outside voice: ran (codex/claude) / skipped
+- Parallelization: ___ lanes, ___ parallel / ___ sequential
 - Lake Score: X/Y recommendations chose complete option
 
 ## Retrospective learning
