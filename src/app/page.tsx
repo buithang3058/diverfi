@@ -48,7 +48,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="w-full py-12 md:py-20 lg:py-28">
         <div className="flex flex-col items-center space-y-4 text-center">
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-5xl">
+          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-5xl leading-[1.12]">
             Học DeFi & Crypto
             <br />
             <span className="text-muted-foreground">dành cho người Việt</span>
