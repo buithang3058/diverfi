@@ -185,25 +185,16 @@ export default function Home() {
             Xem tất cả →
           </Button>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="divide-y border rounded-lg overflow-hidden">
           {popularTerms.map((term) => (
-            <Card key={term.term}>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-lg">
-                  <span className="text-primary">{term.term}</span>
-                  {term.term !== term.fullName && (
-                    <span className="text-sm font-normal text-muted-foreground ml-2">
-                      {term.fullName}
-                    </span>
-                  )}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground line-clamp-2">
-                  {term.definition}
-                </p>
-              </CardContent>
-            </Card>
+            <Link
+              key={term.term}
+              href={`/glossary?q=${encodeURIComponent(term.term)}`}
+              className="flex items-baseline gap-4 px-4 py-3 hover:bg-muted/50 transition-colors"
+            >
+              <span className="font-semibold text-primary shrink-0 w-20">{term.term}</span>
+              <span className="text-sm text-muted-foreground line-clamp-1">{term.definition}</span>
+            </Link>
           ))}
         </div>
       </section>
