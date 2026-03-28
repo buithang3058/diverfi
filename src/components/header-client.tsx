@@ -19,7 +19,7 @@ export function HeaderClient({ lessons, terms }: Props) {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center">
+        <Link href="/" className="flex items-center py-2.5">
           <span className="font-[family-name:var(--font-geist)] text-[22px] leading-none tracking-[-0.025em]">
             <span className="font-light text-foreground">diver</span>
             <span className="font-bold text-[#2F6BFF] dark:text-[#5B8FFF]">Fi</span>
