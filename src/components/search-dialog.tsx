@@ -83,7 +83,7 @@ export function SearchDialog({ lessons, terms }: Props) {
       {/* Search trigger button */}
       <button
         onClick={() => setOpen(true)}
-        className="flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground border rounded-md hover:bg-muted transition-colors"
+        className="flex items-center gap-2 px-3 py-2.5 text-sm text-muted-foreground border rounded-md hover:bg-muted transition-colors"
       >
         <Search className="h-4 w-4" />
         <span className="hidden sm:inline">Tìm kiếm...</span>
