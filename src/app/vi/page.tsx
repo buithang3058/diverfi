@@ -6,35 +6,16 @@ import { ContinueLearning } from "@/components/continue-learning";
 import { Newsletter } from "@/components/newsletter";
 import { LearningStats } from "@/components/learning-stats";
 
-const EN_FEATURED_LESSONS = [
-  {
-    track: "defi-basics",
-    slug: "01-what-is-defi",
-    title: "What is DeFi — how it works and the risks you must understand",
-    estimatedTime: "10 min",
-    difficulty: "beginner" as const,
-  },
-  {
-    track: "yield-farming",
-    slug: "01-yield-farming-basics",
-    title: "Yield farming — what the APY numbers actually mean",
-    estimatedTime: "12 min",
-    difficulty: "intermediate" as const,
-  },
-  {
-    track: "crypto-security",
-    slug: "01-wallet-security",
-    title: "Crypto wallet security — how to protect your assets",
-    estimatedTime: "10 min",
-    difficulty: "beginner" as const,
-  },
-];
-
-
-export default function Home() {
+export default function HomeVi() {
   const lessons = getAllLessons();
   const tracks = getTracks();
   const terms = getAllTerms();
+
+  const featuredLessons = [
+    lessons.find((l) => l.track === "defi-basics" && l.slug === "01-what-is-defi"),
+    lessons.find((l) => l.track === "yield-farming" && l.slug === "01-yield-farming-basics"),
+    lessons.find((l) => l.track === "crypto-security" && l.slug === "01-wallet-security"),
+  ].filter((l): l is NonNullable<typeof l> => l !== undefined);
 
   return (
     <div className="flex flex-col">
@@ -45,37 +26,33 @@ export default function Home() {
 
           {/* Left — copy */}
           <div className="flex flex-col gap-6">
-            {/* Tag */}
             <div className="flex items-center gap-2 w-fit">
               <span className="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" />
               <span className="font-mono text-xs text-amber-500 tracking-widest uppercase">
-                Risk-first DeFi education
+                Giáo dục DeFi — Rủi ro trước tiên
               </span>
             </div>
 
-            {/* Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.08] tracking-tight">
-              Most DeFi education{" "}
-              <span className="text-amber-500">hides the risks.</span>
+              Hầu hết giáo dục DeFi{" "}
+              <span className="text-amber-500">giấu đi rủi ro.</span>
               <br />
-              We don&apos;t.
+              Chúng tôi thì không.
             </h1>
 
-            {/* Subheadline */}
             <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
-              See exactly what protocols promise vs. what they actually deliver.
-              Real numbers. No sponsored content. No agenda.
+              Xem chính xác các protocol hứa hẹn gì so với những gì họ thực sự mang lại.
+              Số liệu thực tế. Không nội dung tài trợ. Không agenda.
             </p>
 
-            {/* CTAs */}
             <div className="flex flex-wrap gap-3 pt-2">
               <Button
                 size="lg"
                 className="bg-amber-500 hover:bg-amber-400 text-black font-bold"
                 nativeButton={false}
-                render={<Link href="/learn" />}
+                render={<Link href="/vi/learn" />}
               >
-                Start Learning
+                Bắt đầu học
               </Button>
               <Button
                 size="lg"
@@ -83,28 +60,27 @@ export default function Home() {
                 nativeButton={false}
                 render={<Link href="/markets" />}
               >
-                Browse Protocols
+                Xem Protocol
               </Button>
             </div>
 
-            {/* Mini stats */}
             <div className="flex gap-8 pt-4 border-t border-border">
               <div>
                 <span className="block font-mono text-xl font-bold">{lessons.length}</span>
-                <span className="text-xs text-muted-foreground font-mono uppercase tracking-wider">Lessons</span>
+                <span className="text-xs text-muted-foreground font-mono uppercase tracking-wider">Bài học</span>
               </div>
               <div>
                 <span className="block font-mono text-xl font-bold">{tracks.length}</span>
-                <span className="text-xs text-muted-foreground font-mono uppercase tracking-wider">Tracks</span>
+                <span className="text-xs text-muted-foreground font-mono uppercase tracking-wider">Khóa học</span>
               </div>
               <div>
                 <span className="block font-mono text-xl font-bold">{terms.length}</span>
-                <span className="text-xs text-muted-foreground font-mono uppercase tracking-wider">Terms</span>
+                <span className="text-xs text-muted-foreground font-mono uppercase tracking-wider">Thuật ngữ</span>
               </div>
             </div>
           </div>
 
-          {/* Right — Learning journey */}
+          {/* Right — Hành trình học */}
           <div className="flex flex-col gap-3">
             <Link
               href="/learn/defi-basics/01-what-is-defi"
@@ -112,9 +88,9 @@ export default function Home() {
             >
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-amber-500 font-mono text-sm font-bold text-black">1</span>
               <div>
-                <div className="text-sm font-bold leading-snug group-hover:text-amber-500 transition-colors">Understand what DeFi actually is</div>
-                <div className="mt-1 text-sm text-muted-foreground leading-relaxed">No jargon, no marketing. The real mechanics — why protocols pay high APY and where that money comes from.</div>
-                <div className="mt-2 font-mono text-xs text-amber-500">→ What is DeFi · 10 min</div>
+                <div className="text-sm font-bold leading-snug group-hover:text-amber-500 transition-colors">Hiểu DeFi thực sự là gì</div>
+                <div className="mt-1 text-sm text-muted-foreground leading-relaxed">Không jargon, không marketing. Cơ chế thực — tại sao APY cao, tiền đó lấy từ đâu.</div>
+                <div className="mt-2 font-mono text-xs text-amber-500">→ DeFi là gì · 10 phút</div>
               </div>
             </Link>
             <Link
@@ -123,9 +99,9 @@ export default function Home() {
             >
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-muted font-mono text-sm font-bold">2</span>
               <div>
-                <div className="text-sm font-bold leading-snug group-hover:text-amber-500 transition-colors">Spot the risks before you invest</div>
-                <div className="mt-1 text-sm text-muted-foreground leading-relaxed">Impermanent loss, rug pulls, smart contract bugs. Name the risks to avoid losing money.</div>
-                <div className="mt-2 font-mono text-xs text-muted-foreground">→ Why people lose money in DeFi · 12 min</div>
+                <div className="text-sm font-bold leading-snug group-hover:text-amber-500 transition-colors">Nhận ra rủi ro trước khi đầu tư</div>
+                <div className="mt-1 text-sm text-muted-foreground leading-relaxed">Impermanent loss, rug pull, smart contract bug. Biết tên rủi ro giúp bạn tránh mất tiền.</div>
+                <div className="mt-2 font-mono text-xs text-muted-foreground">→ Tại sao mất tiền DeFi · 12 phút</div>
               </div>
             </Link>
             <Link
@@ -134,41 +110,41 @@ export default function Home() {
             >
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-muted font-mono text-sm font-bold">3</span>
               <div>
-                <div className="text-sm font-bold leading-snug group-hover:text-amber-500 transition-colors">Make confident decisions with real money</div>
-                <div className="mt-1 text-sm text-muted-foreground leading-relaxed">Read any protocol, calculate real APY yourself, and know when to enter — and when to walk away.</div>
-                <div className="mt-2 font-mono text-xs text-muted-foreground">→ Yield farming in practice · 15 min</div>
+                <div className="text-sm font-bold leading-snug group-hover:text-amber-500 transition-colors">Ra quyết định tự tin với số tiền thật</div>
+                <div className="mt-1 text-sm text-muted-foreground leading-relaxed">Đọc được protocol, tự tính APY thực, biết khi nào nên vào — khi nào nên dừng.</div>
+                <div className="mt-2 font-mono text-xs text-muted-foreground">→ Yield farming thực tế · 15 phút</div>
               </div>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ── CONTINUE LEARNING (shows only if user has progress) ────── */}
+      {/* ── CONTINUE LEARNING ────────────────────────────────────── */}
       <section className="w-full pb-6">
         <ContinueLearning lessons={lessons} />
       </section>
 
-      {/* ── LEARNING STATS (shows only if user completed lessons) ───── */}
+      {/* ── LEARNING STATS ───────────────────────────────────────── */}
       <section className="w-full pb-6">
-        <LearningStats totalLessons={lessons.length} totalTime={`${lessons.length * 12}m`} />
+        <LearningStats totalLessons={lessons.length} totalTime={`${lessons.length * 10}m`} />
       </section>
 
       {/* ── LESSONS — strip layout ────────────────────────────────── */}
       <section className="w-full py-10 border-t">
         <div className="flex items-baseline justify-between mb-6">
-          <h2 className="text-xl font-bold">Start here</h2>
+          <h2 className="text-xl font-bold">Bắt đầu từ đây</h2>
           <Button
             variant="ghost"
             className="text-amber-500 hover:text-amber-400 font-mono text-sm"
             nativeButton={false}
             render={<Link href="/learn" />}
           >
-            view all lessons →
+            xem tất cả →
           </Button>
         </div>
 
         <div className="flex flex-col gap-0.5">
-          {EN_FEATURED_LESSONS.map((lesson, i) => (
+          {featuredLessons.map((lesson, i) => (
             <Link
               key={lesson.slug}
               href={`/learn/${lesson.track}/${lesson.slug}`}
@@ -199,7 +175,11 @@ export default function Home() {
                     : "bg-red-500/10 text-red-400"
                 }`}
               >
-                {lesson.difficulty}
+                {lesson.difficulty === "beginner"
+                  ? "cơ bản"
+                  : lesson.difficulty === "intermediate"
+                  ? "trung cấp"
+                  : "nâng cao"}
               </span>
             </Link>
           ))}

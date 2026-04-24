@@ -56,16 +56,16 @@ export function ContinueLearning({ lessons }: Props) {
       <CardHeader className="pb-2">
         <CardTitle className="text-lg flex items-center gap-2">
           <PlayCircle className="h-5 w-5 text-primary" />
-          Tiếp tục học
+          Continue learning
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         {/* Progress bar */}
         <div>
           <div className="flex justify-between text-sm mb-1">
-            <span className="text-muted-foreground">Tiến độ</span>
+            <span className="text-muted-foreground">Progress</span>
             <span className="font-medium">
-              {completedCount}/{totalCount} bài ({percentage}%)
+              {completedCount}/{totalCount} lessons ({percentage}%)
             </span>
           </div>
           <div className="h-2 bg-muted rounded-full overflow-hidden">
@@ -80,7 +80,7 @@ export function ContinueLearning({ lessons }: Props) {
         {nextLesson ? (
           <div className="flex items-center justify-between gap-4">
             <div className="flex-1 min-w-0">
-              <p className="text-sm text-muted-foreground">Bài tiếp theo</p>
+              <p className="text-sm text-muted-foreground">Next up</p>
               <p className="font-medium truncate">{nextLesson.title}</p>
             </div>
             <Button
@@ -88,13 +88,13 @@ export function ContinueLearning({ lessons }: Props) {
               nativeButton={false}
               render={<Link href={`/learn/${nextLesson.track}/${nextLesson.slug}`} />}
             >
-              Học tiếp
+              Continue
             </Button>
           </div>
         ) : (
           <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
             <CheckCircle2 className="h-5 w-5" />
-            <span className="font-medium">Chúc mừng! Bạn đã hoàn thành tất cả bài học.</span>
+            <span className="font-medium">You&apos;ve completed all lessons.</span>
           </div>
         )}
 
@@ -104,7 +104,7 @@ export function ContinueLearning({ lessons }: Props) {
           lastVisitedLesson.slug !== nextLesson.slug && (
             <div className="pt-2 border-t">
               <p className="text-xs text-muted-foreground">
-                Lần cuối xem:{" "}
+                Last visited:{" "}
                 <Link
                   href={`/learn/${lastVisitedLesson.track}/${lastVisitedLesson.slug}`}
                   className="underline hover:text-foreground"
