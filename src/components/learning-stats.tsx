@@ -44,7 +44,7 @@ export function LearningStats({ totalLessons, totalTime }: Props) {
       <CardContent className="p-6">
         <div className="flex items-center gap-2 mb-4">
           <Trophy className="h-5 w-5 text-primary" />
-          <h3 className="font-semibold">Tiến độ học tập của bạn</h3>
+          <h3 className="font-semibold">Your learning progress</h3>
         </div>
 
         <div className="grid grid-cols-3 gap-4 mb-4">
@@ -53,27 +53,27 @@ export function LearningStats({ totalLessons, totalTime }: Props) {
               <CheckCircle className="h-5 w-5 text-green-500" />
               {completedCount}
             </div>
-            <p className="text-xs text-muted-foreground">Đã hoàn thành</p>
+            <p className="text-xs text-muted-foreground">Completed</p>
           </div>
           <div className="text-center">
             <div className="flex items-center justify-center gap-1 text-2xl font-bold">
               <BookOpen className="h-5 w-5 text-primary" />
               {totalLessons}
             </div>
-            <p className="text-xs text-muted-foreground">Tổng bài học</p>
+            <p className="text-xs text-muted-foreground">Total lessons</p>
           </div>
           <div className="text-center">
             <div className="flex items-center justify-center gap-1 text-2xl font-bold">
               <Clock className="h-5 w-5 text-muted-foreground" />
               {totalTime}
             </div>
-            <p className="text-xs text-muted-foreground">Thời lượng</p>
+            <p className="text-xs text-muted-foreground">Total time</p>
           </div>
         </div>
 
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
-            <span>Tiến độ tổng thể</span>
+            <span>Overall progress</span>
             <span className="font-medium">{progressPercent}%</span>
           </div>
           <Progress value={progressPercent} className="h-2" />
@@ -81,7 +81,7 @@ export function LearningStats({ totalLessons, totalTime }: Props) {
 
         {progressPercent === 100 && (
           <p className="text-sm text-center text-primary mt-4 font-medium">
-            Chúc mừng! Bạn đã hoàn thành tất cả bài học!
+            You&apos;ve completed all lessons!
           </p>
         )}
       </CardContent>

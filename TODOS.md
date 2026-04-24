@@ -51,3 +51,12 @@
 - Mobile app (native) — wait for 100k MAU
 - Multi-language — focus Vietnamese first
 - Premium tier with Stripe — affiliate model is better fit for Vietnam
+
+---
+
+## SEO + Content Agent Suite — Deferred Items
+
+- [ ] **Competitor Monitor** — Track top 3 URLs ranking for each keyword weekly. If competitor updates → suggest bạn update tương ứng. Effort: M. Priority: P2. Depends on: articles live + ranking data.
+- [ ] **Ranking Alerts** — Khi keyword tụt dưới top 10 → auto-trigger /seo diagnose. Effort: S. Priority: P2. Depends on: articles in top 20.
+- [ ] **Full Content Automation** — /content-writer không cần user interview, dựa trên learnings từ bài trước. Effort: L. Priority: P3. Depends on: 10+ bài published, GSC data.
+- [ ] **Content Calendar Generator** — Từ keyword list → sắp xếp thứ tự viết optimal. Effort: S. Priority: P2. Note: priority order đã có trong CLAUDE.md.
