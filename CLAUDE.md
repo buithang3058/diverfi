@@ -2,7 +2,7 @@
 
 ## gstack
 - Dùng /browse cho tất cả web browsing, không dùng mcp__claude-in-chrome__* tools
-- Available skills: /office-hours, /seo, /content-writer, /ship, /retro, /design-review, /qa, /browse, /review
+- Available skills: /office-hours, /seo, /ship, /retro, /design-review, /qa, /browse, /review
 - Nếu skills không hoạt động: cd .claude/skills/gstack && ./setup
 
 ## Project

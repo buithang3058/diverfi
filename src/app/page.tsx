@@ -5,7 +5,6 @@ import { getAllTerms } from "@/lib/glossary";
 import { ContinueLearning } from "@/components/continue-learning";
 import { Newsletter } from "@/components/newsletter";
 import { LearningStats } from "@/components/learning-stats";
-import { ProtocolLogo } from "@/components/protocol-logo";
 
 const EN_FEATURED_LESSONS = [
   {
@@ -31,51 +30,6 @@ const EN_FEATURED_LESSONS = [
   },
 ];
 
-const PROTOCOL_DATA = [
-  {
-    name: "Uniswap V3",
-    type: "DEX · Liquidity",
-    claimedAPY: "50–200%",
-    realisticAPY: "8–15%",
-    risk: "med" as const,
-  },
-  {
-    name: "Aave V3",
-    type: "Lending",
-    claimedAPY: "5–15%",
-    realisticAPY: "3–8%",
-    risk: "low" as const,
-  },
-  {
-    name: "GMX",
-    type: "Perps · Derivatives",
-    claimedAPY: "15–70%",
-    realisticAPY: "10–25%",
-    risk: "high" as const,
-  },
-  {
-    name: "Lido",
-    type: "Liquid Staking",
-    claimedAPY: "4–6%",
-    realisticAPY: "3.5–5%",
-    risk: "low" as const,
-  },
-];
-
-const RISK_STYLES = {
-  low: {
-    badge: "bg-green-500/10 text-green-500",
-    label: "🟢 Low",
-  },
-  med: {
-    badge: "bg-yellow-500/10 text-yellow-400",
-    label: "🟡 Med",
-  },
-  high: {
-    badge: "bg-red-500/10 text-red-400",
-    label: "🔴 High",
-  },
-};
 
 export default function Home() {
   const lessons = getAllLessons();
@@ -150,68 +104,41 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right — Protocol Reality Check panel */}
-          <div className="rounded-xl border border-border bg-card overflow-hidden shadow-sm">
-            {/* Panel header */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-muted/40">
-              <span className="font-mono text-xs text-muted-foreground uppercase tracking-widest font-bold">
-                Protocol Reality Check
-              </span>
-              <span className="flex items-center gap-1.5 font-mono text-xs text-green-500">
-                <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
-                Live data
-              </span>
-            </div>
-
-            {/* Table head */}
-            <div className="grid grid-cols-[2fr_1fr_1fr_1fr] px-4 py-2 border-b border-border">
-              {["Protocol", "Claimed", "Realistic", "Risk"].map((h) => (
-                <span key={h} className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest first:text-left text-center">
-                  {h}
-                </span>
-              ))}
-            </div>
-
-            {/* Rows */}
-            {PROTOCOL_DATA.map((p) => {
-              const risk = RISK_STYLES[p.risk];
-              return (
-                <div
-                  key={p.name}
-                  className="grid grid-cols-[2fr_1fr_1fr_1fr] px-4 py-3 border-b border-border last:border-b-0 hover:bg-muted/30 transition-colors items-center"
-                >
-                  <div className="flex items-center gap-2.5">
-                    <ProtocolLogo name={p.name} size={26} />
-                    <div>
-                      <div className="text-sm font-bold leading-tight">{p.name}</div>
-                      <div className="font-mono text-[11px] text-muted-foreground">{p.type}</div>
-                    </div>
-                  </div>
-                  <div className="text-center">
-                    <span className="font-mono text-sm text-muted-foreground line-through decoration-red-400">
-                      {p.claimedAPY}
-                    </span>
-                  </div>
-                  <div className="text-center">
-                    <span className="font-mono text-sm text-green-500 font-bold">
-                      {p.realisticAPY}
-                    </span>
-                  </div>
-                  <div className="flex justify-center">
-                    <span className={`font-mono text-[11px] font-semibold px-2 py-0.5 rounded ${risk.badge}`}>
-                      {risk.label}
-                    </span>
-                  </div>
-                </div>
-              );
-            })}
-
-            {/* Panel footer */}
-            <div className="px-4 py-2.5 bg-amber-500/5 border-t border-amber-500/20">
-              <p className="font-mono text-[11px] text-amber-400">
-                → diverFi calculates realistic APY after IL, fees &amp; market conditions
-              </p>
-            </div>
+          {/* Right — Learning journey */}
+          <div className="flex flex-col gap-3">
+            <Link
+              href="/learn/defi-basics/01-what-is-defi"
+              className="group flex items-start gap-4 rounded-xl border border-border bg-card p-5 hover:border-amber-500/50 hover:bg-amber-500/5 transition-all"
+            >
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-amber-500 font-mono text-sm font-bold text-black">1</span>
+              <div>
+                <div className="text-sm font-bold leading-snug group-hover:text-amber-500 transition-colors">Understand what DeFi actually is</div>
+                <div className="mt-1 text-sm text-muted-foreground leading-relaxed">No jargon, no marketing. The real mechanics — why protocols pay high APY and where that money comes from.</div>
+                <div className="mt-2 font-mono text-xs text-amber-500">→ What is DeFi · 10 min</div>
+              </div>
+            </Link>
+            <Link
+              href="/learn"
+              className="group flex items-start gap-4 rounded-xl border border-border bg-card p-5 hover:border-amber-500/50 hover:bg-amber-500/5 transition-all"
+            >
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-muted font-mono text-sm font-bold">2</span>
+              <div>
+                <div className="text-sm font-bold leading-snug group-hover:text-amber-500 transition-colors">Spot the risks before you invest</div>
+                <div className="mt-1 text-sm text-muted-foreground leading-relaxed">Impermanent loss, rug pulls, smart contract bugs. Name the risks to avoid losing money.</div>
+                <div className="mt-2 font-mono text-xs text-muted-foreground">→ Why people lose money in DeFi · 12 min</div>
+              </div>
+            </Link>
+            <Link
+              href="/learn/yield-farming/01-yield-farming-basics"
+              className="group flex items-start gap-4 rounded-xl border border-border bg-card p-5 hover:border-amber-500/50 hover:bg-amber-500/5 transition-all"
+            >
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-muted font-mono text-sm font-bold">3</span>
+              <div>
+                <div className="text-sm font-bold leading-snug group-hover:text-amber-500 transition-colors">Make confident decisions with real money</div>
+                <div className="mt-1 text-sm text-muted-foreground leading-relaxed">Read any protocol, calculate real APY yourself, and know when to enter — and when to walk away.</div>
+                <div className="mt-2 font-mono text-xs text-muted-foreground">→ Yield farming in practice · 15 min</div>
+              </div>
+            </Link>
           </div>
         </div>
       </section>

@@ -2,6 +2,11 @@
 
 All notable changes to diverFi are documented here.
 
+## [0.44.1.0] - 2026-04-24
+
+### Changed
+- **Homepage hero — Variant C** — Replaced Protocol Reality Check panel (APY table) with 3 numbered learning-journey cards on both EN (`/`) and VI (`/vi`) routes. Lower cognitive load for first-time visitors; each card links directly to the corresponding lesson.
+
 ## [0.44.0.0] - 2026-04-24
 
 ### Added
